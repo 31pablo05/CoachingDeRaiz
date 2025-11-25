@@ -1,0 +1,12 @@
+/* App.css - Custom styles for Coaching de Raíz */
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
