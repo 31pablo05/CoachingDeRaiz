@@ -88,19 +88,19 @@ const Contact = () => {
       ref={sectionRef}
       className="section-padding bg-gradient-to-br from-neutral-beige via-neutral-cream to-neutral-yellow"
     >
-      <div className="container-custom px-4 sm:px-6 md:px-12 lg:px-20">
+      <div className="container-custom">
         {/* Header */}
         <div className="text-center mb-8 sm:mb-10 md:mb-12 fade-in-section">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-3 sm:mb-4">
             Contacto
           </h2>
           <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-secondary to-accent-lime mx-auto mb-4 sm:mb-6"></div>
-          <p className="text-base sm:text-lg md:text-xl text-gray-700 max-w-3xl mx-auto px-4">
+          <p className="text-base sm:text-lg md:text-xl text-gray-700 max-w-3xl mx-auto">
             ¿Tenés alguna consulta? ¿Querés agendar una sesión? Escribime y conversemos
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 w-full max-w-6xl mx-auto">
           {/* Contact Form */}
           <div className="fade-in-section">
             <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8">

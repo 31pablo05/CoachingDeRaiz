@@ -407,3 +407,105 @@ main {
   animation: scale-in 0.3s ease-out forwards;
 }
 
+/* === FOOTER ENHANCED ANIMATIONS === */
+
+/* Gradient Radial Background */
+.bg-gradient-radial {
+  background: radial-gradient(circle, var(--tw-gradient-stops));
+}
+
+/* Advanced Footer Animations */
+@keyframes footerSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes footerFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes footerGlowPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px rgba(122, 212, 53, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(122, 212, 53, 0.6));
+  }
+}
+
+@keyframes footerShimmerWave {
+  0% {
+    transform: translateX(-100%) skewX(-15deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-15deg);
+  }
+}
+
+@keyframes footerBounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.05) translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Footer Animation Classes */
+.footer-slide-up {
+  animation: footerSlideUp 0.8s ease-out forwards;
+}
+
+.footer-fade-in {
+  animation: footerFadeIn 0.6s ease-in-out forwards;
+}
+
+.footer-glow-pulse {
+  animation: footerGlowPulse 3s ease-in-out infinite;
+}
+
+.footer-shimmer-wave {
+  animation: footerShimmerWave 2s ease-in-out;
+}
+
+.footer-bounce-in {
+  animation: footerBounceIn 1s ease-out forwards;
+}
+
+/* Enhanced Hover Effects for Footer */
+.footer-card-hover {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.footer-card-hover:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.25),
+    0 0 30px rgba(122, 212, 53, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Staggered Animation Delays */
+.footer-stagger-1 { animation-delay: 0.1s; }
+.footer-stagger-2 { animation-delay: 0.2s; }
+.footer-stagger-3 { animation-delay: 0.3s; }
+.footer-stagger-4 { animation-delay: 0.4s; }
+.footer-stagger-5 { animation-delay: 0.5s; }
+

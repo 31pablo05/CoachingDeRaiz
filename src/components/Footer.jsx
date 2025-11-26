@@ -1,7 +1,33 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const Footer = () => {
+  const footerRef = useRef(null);
   const currentYear = new Date().getFullYear();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Add staggered animations to footer elements
+            const elements = entry.target.querySelectorAll('.footer-animate');
+            elements.forEach((el, index) => {
+              setTimeout(() => {
+                el.classList.add('footer-bounce-in');
+              }, index * 150);
+            });
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (footerRef.current) {
+      observer.observe(footerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   const socialLinks = [
     {
@@ -48,128 +74,198 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gradient-to-br from-primary to-primary-deeper text-white">
-      <div className="container-custom px-6 md:px-12 lg:px-20 py-12">
-        <div className="grid md:grid-cols-3 gap-8 mb-8">
-          {/* Brand Section */}
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <img src="/logos/logocoaching.svg" alt="Coaching de Raíz" className="h-12 w-12" />
-              <h3 className="text-2xl font-bold">Coaching de Raíz</h3>
+    <footer ref={footerRef} className="relative bg-gradient-to-br from-primary via-primary-deeper to-primary-dark text-white overflow-hidden">
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Floating Orbs with Glow - Más sutiles */}
+        <div className="absolute bottom-32 right-20 w-96 h-96 bg-white/3 rounded-full blur-3xl animate-float-slower"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-radial from-accent-lime/3 to-transparent rounded-full animate-pulse-slow"></div>
+        
+        {/* Subtle Pattern Overlay */}
+        <div className="absolute inset-0 opacity-[0.02]" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+        }}></div>
+      </div>
+
+      <div className="container-custom px-6 md:px-12 lg:px-20 py-6 md:py-8 relative z-10">
+        <div className="grid md:grid-cols-3 gap-6 md:gap-8 mb-6 md:mb-8">
+          {/* Enhanced Brand Section */}
+          <div className="space-y-3 md:space-y-4 group footer-animate opacity-0">
+            <div className="flex items-center gap-4 mb-3 md:mb-4">
+              <div className="relative">
+                <img 
+                  src="/logos/logocoaching.svg" 
+                  alt="Coaching de Raíz" 
+                  className="h-16 w-16 group-hover:scale-110 group-hover:rotate-6 transition-all duration-700 drop-shadow-lg footer-glow-pulse" 
+                />
+                <div className="absolute inset-0 bg-accent-lime/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              </div>
+              <div>
+                <h3 className="text-3xl font-bold bg-gradient-to-r from-white via-accent-lime/80 to-white bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-500">
+                  Coaching de Raíz
+                </h3>
+                <div className="w-0 h-0.5 bg-gradient-to-r from-accent-lime to-white group-hover:w-full transition-all duration-700 mt-1"></div>
+              </div>
             </div>
-            <p className="text-white/90 mb-4 leading-relaxed">
-              Acompañamiento profesional para el desarrollo de líderes, equipos y organizaciones.
-            </p>
-            <p className="text-white/80 italic text-sm">
-              "Así como una planta necesita raíces sanas para florecer..."
-            </p>
+            
+            <div className="space-y-2 transform group-hover:translate-x-2 transition-transform duration-500">
+              <p className="text-white/90 mb-2 leading-relaxed text-base md:text-lg group-hover:text-white transition-colors duration-300">
+                Acompañamiento profesional para el desarrollo de líderes, equipos y organizaciones.
+              </p>
+              <div className="relative overflow-hidden rounded-lg bg-white/10 backdrop-blur-sm p-2 md:p-3 border border-white/20 group-hover:bg-white/20 group-hover:border-accent-lime/30 transition-all duration-500 footer-card-hover">
+                <p className="text-accent-lime/90 italic text-sm md:text-base font-medium relative z-10">
+                  "Así como una planta necesita raíces sanas para florecer..."
+                </p>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+              </div>
+            </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-xl font-bold mb-4">Enlaces rápidos</h4>
-            <ul className="space-y-2">
-              {quickLinks.map((link) => (
-                <li key={link.href}>
+          {/* Enhanced Quick Links */}
+          <div className="space-y-3 md:space-y-4 group footer-animate opacity-0">
+            <div className="relative">
+              <h4 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 group-hover:text-accent-lime transition-colors duration-500">
+                Enlaces rápidos
+              </h4>
+              <div className="absolute -bottom-2 left-0 w-0 h-0.5 bg-gradient-to-r from-accent-lime to-transparent group-hover:w-32 transition-all duration-700"></div>
+            </div>
+            <div className="grid grid-cols-1 gap-1 md:gap-2">
+              {quickLinks.map((link, index) => (
+                <div key={link.href} 
+                     className="transform hover:translate-x-3 transition-all duration-300 footer-card-hover"
+                     style={{animationDelay: `${index * 100}ms`}}>
                   <a
                     href={link.href}
                     onClick={(e) => scrollToSection(e, link.href)}
-                    className="text-white/80 hover:text-white transition-colors"
+                    className="group/link flex items-center gap-3 text-white/80 hover:text-white py-2 px-3 rounded-lg hover:bg-white/10 hover:backdrop-blur-sm border border-transparent hover:border-white/20 transition-all duration-300 relative overflow-hidden"
                   >
-                    {link.name}
+                    <div className="w-2 h-2 bg-accent-lime/60 rounded-full group-hover/link:bg-accent-lime group-hover/link:scale-150 transition-all duration-300 footer-glow-pulse"></div>
+                    <span className="font-medium group-hover/link:font-semibold transition-all duration-300">{link.name}</span>
+                    <svg className="w-4 h-4 ml-auto opacity-0 group-hover/link:opacity-100 group-hover/link:translate-x-1 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -translate-x-full group-hover/link:translate-x-full transition-transform duration-700 footer-shimmer-wave"></div>
                   </a>
-                </li>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
 
-          {/* Contact Info */}
-          <div>
-            <h4 className="text-xl font-bold mb-4">Contacto</h4>
-            <div className="space-y-3 text-white/90">
-              <p className="flex items-center gap-2">
-                <span>📍</span>
-                <span>CABA y zona norte, Buenos Aires</span>
-              </p>
-              <p className="flex items-center gap-2">
-                <span>📧</span>
+          {/* Enhanced Contact Info */}
+          <div className="space-y-3 md:space-y-4 group footer-animate opacity-0">
+            <div className="relative">
+              <h4 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 group-hover:text-accent-lime transition-colors duration-500">
+                Contacto
+              </h4>
+              <div className="absolute -bottom-2 left-0 w-0 h-0.5 bg-gradient-to-r from-accent-lime to-transparent group-hover:w-24 transition-all duration-700"></div>
+            </div>
+            
+            <div className="space-y-2 text-white/90">
+              <div className="group/item flex items-center gap-4 p-2 md:p-3 rounded-lg hover:bg-white/10 hover:backdrop-blur-sm border border-transparent hover:border-white/20 transition-all duration-300 transform hover:scale-105 footer-card-hover">
+                <div className="text-2xl group-hover/item:scale-125 group-hover/item:rotate-12 transition-all duration-300 footer-glow-pulse">📍</div>
+                <span className="group-hover/item:text-white transition-colors duration-300">CABA y zona norte, Buenos Aires</span>
+              </div>
+              
+              <div className="group/item flex items-center gap-4 p-2 md:p-3 rounded-lg hover:bg-white/10 hover:backdrop-blur-sm border border-transparent hover:border-white/20 transition-all duration-300 transform hover:scale-105 footer-card-hover">
+                <div className="text-2xl group-hover/item:scale-125 group-hover/item:rotate-12 transition-all duration-300 footer-glow-pulse">📧</div>
                 <a 
                   href="mailto:luciavallejo@coachingderaiz.com" 
-                  className="hover:text-white hover:underline transition-all duration-300"
+                  className="hover:text-accent-lime hover:underline transition-all duration-300 font-medium"
                 >
                   luciavallejo@coachingderaiz.com
                 </a>
-              </p>
-              <p className="flex items-center gap-2">
-                <span>📱</span>
+              </div>
+              
+              <div className="group/item flex items-center gap-4 p-2 md:p-3 rounded-lg hover:bg-white/10 hover:backdrop-blur-sm border border-transparent hover:border-white/20 transition-all duration-300 transform hover:scale-105 footer-card-hover">
+                <div className="text-2xl group-hover/item:scale-125 group-hover/item:rotate-12 transition-all duration-300 footer-glow-pulse">📱</div>
                 <a
                   href="https://api.whatsapp.com/send?phone=5491136677321"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white hover:underline transition-all duration-300"
+                  className="hover:text-accent-lime hover:underline transition-all duration-300 font-medium"
                 >
                   +54 9 11 3667-7321
                 </a>
-              </p>
-              <p className="flex items-center gap-2">
-                <span>📸</span>
+              </div>
+              
+              <div className="group/item flex items-center gap-4 p-2 md:p-3 rounded-lg hover:bg-white/10 hover:backdrop-blur-sm border border-transparent hover:border-white/20 transition-all duration-300 transform hover:scale-105 footer-card-hover">
+                <div className="text-2xl group-hover/item:scale-125 group-hover/item:rotate-12 transition-all duration-300 footer-glow-pulse">📸</div>
                 <a
                   href="https://www.instagram.com/coachingderaiz/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white hover:underline transition-all duration-300"
+                  className="hover:text-accent-lime hover:underline transition-all duration-300 font-medium"
                 >
                   @coachingderaiz
                 </a>
-              </p>
+              </div>
             </div>
             
-            {/* Social Links */}
-            <div className="flex space-x-4 mt-6">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.name}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-white/10 p-3 rounded-full hover:bg-white hover:text-[#5a7458] hover:scale-110 transition-all duration-300 shadow-lg"
-                  aria-label={social.name}
-                >
-                  {social.icon}
-                </a>
-              ))}
+            {/* Enhanced Social Links */}
+            <div className="pt-3 md:pt-4">
+              <h5 className="text-sm font-semibold text-white/70 mb-4 uppercase tracking-wider">Síguenos en redes</h5>
+              <div className="flex space-x-4">
+                {socialLinks.map((social, index) => (
+                  <a
+                    key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group/social relative bg-gradient-to-br from-white/10 to-white/5 p-4 rounded-xl hover:from-accent-lime hover:to-accent-lime/80 hover:text-primary hover:scale-110 hover:rotate-6 transition-all duration-500 shadow-lg hover:shadow-2xl hover:shadow-accent-lime/25 backdrop-blur-sm border border-white/20 hover:border-accent-lime/50 footer-card-hover footer-glow-pulse"
+                    aria-label={social.name}
+                    style={{animationDelay: `${index * 100}ms`}}
+                  >
+                    <div className="relative z-10 transform group-hover/social:scale-110 transition-transform duration-300">
+                      {social.icon}
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -translate-x-full group-hover/social:translate-x-full transition-transform duration-700 rounded-xl footer-shimmer-wave"></div>
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Divider */}
-        <div className="border-t border-white/20 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 mb-6">
-            <p className="text-white/70 text-sm">
-              © {currentYear} Coaching de Raíz. Todos los derechos reservados.
-            </p>
-            <p className="text-white/70 text-sm">
-              Lucía Vallejo - Coach Ontológica Empresarial
-            </p>
-          </div>
-          
-          {/* Developer Credit */}
-          <div className="text-center border-t border-white/10 pt-6">
-            <p className="text-white/60 text-sm flex items-center justify-center gap-2 flex-wrap">
-              <span>Desarrollado con</span>
-              <svg className="w-5 h-5 text-red-400 animate-pulse" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-              </svg>
-              <span>por</span>
-              <a
-                href="https://devcraftpablo.online/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:text-[#fefcea] font-semibold underline underline-offset-4 decoration-2 hover:decoration-[#fefcea] transition-all duration-300"
-              >
-                Pablo Proboste
-              </a>
-            </p>
+        {/* Enhanced Divider with Gradient */}
+        <div className="relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-accent-lime/30 to-transparent h-px"></div>
+          <div className="border-t border-white/10 pt-4 md:pt-6">
+            <div className="flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0 mb-4 md:mb-5">
+              <div className="text-center md:text-left transform hover:scale-105 transition-transform duration-300">
+                <p className="text-white/70 text-base mb-2 hover:text-white/90 transition-colors duration-300">
+                  © {currentYear} Coaching de Raíz. Todos los derechos reservados.
+                </p>
+                <div className="w-0 h-0.5 bg-gradient-to-r from-accent-lime to-transparent hover:w-full transition-all duration-700 mx-auto md:mx-0"></div>
+              </div>
+              
+              <div className="text-center md:text-right transform hover:scale-105 transition-transform duration-300">
+                <p className="text-white/70 text-base hover:text-white/90 transition-colors duration-300 font-medium">
+                  Lucía Vallejo - Coach Ontológica Empresarial
+                </p>
+                <div className="text-accent-lime/60 text-sm mt-1 hover:text-accent-lime transition-colors duration-300">
+                  ✨ Transformación • Liderazgo • Resultados
+                </div>
+              </div>
+            </div>
+            
+            {/* Simple Developer Credit */}
+            <div className="text-center">
+              <p className="text-white/60 text-sm md:text-base flex items-center justify-center gap-2 flex-wrap hover:text-white/80 transition-colors duration-300">
+                <span>Desarrollado con</span>
+                <svg className="w-4 h-4 md:w-5 md:h-5 text-red-400 animate-pulse" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+                <span>por</span>
+                <a
+                  href="https://devcraftpablo.online/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-accent-lime font-semibold underline underline-offset-2 hover:underline-offset-4 transition-all duration-300"
+                >
+                  Pablo Proboste
+                </a>
+              </p>
+            </div>
           </div>
         </div>
       </div>
