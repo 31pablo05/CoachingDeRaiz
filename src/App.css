@@ -509,3 +509,79 @@ main {
 .footer-stagger-4 { animation-delay: 0.4s; }
 .footer-stagger-5 { animation-delay: 0.5s; }
 
+/* === WHATSAPP FLOAT BUTTON === */
+
+/* WhatsApp Float Animation */
+@keyframes whatsappFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes whatsappPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+@keyframes whatsappBounce {
+  0% {
+    transform: scale(0.8) translateY(20px);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.1) translateY(-5px);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) translateY(0px);
+    opacity: 1;
+  }
+}
+
+/* WhatsApp Animation Classes */
+.whatsapp-float {
+  animation: whatsappFloat 4s ease-in-out infinite;
+}
+
+.whatsapp-pulse {
+  animation: whatsappPulse 2s ease-in-out infinite;
+}
+
+.whatsapp-bounce {
+  animation: whatsappBounce 0.8s ease-out forwards;
+}
+
+/* Enhanced WhatsApp Hover Effects */
+.whatsapp-glow {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.whatsapp-glow:hover {
+  filter: drop-shadow(0 0 15px rgba(37, 211, 102, 0.6));
+}
+
+.whatsapp-glow::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: conic-gradient(from 0deg, #25D366, #1db954, #25D366);
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.whatsapp-glow:hover::before {
+  opacity: 0.3;
+}
+

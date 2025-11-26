@@ -6,6 +6,7 @@ import Services from './components/Services';
 import WhatIsCoaching from './components/WhatIsCoaching';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import WhatsAppFloat from './components/WhatsAppFloat';
 import './App.css';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Contact />
       </main>
       <Footer />
+      <WhatsAppFloat />
     </div>
   );
 }
