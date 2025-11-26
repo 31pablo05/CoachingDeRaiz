@@ -153,7 +153,7 @@ const About = () => {
               </div>
             </div>
 
-            <div className="flex gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4">
               <Button 
                 variant="primary" 
                 href="#contact"
@@ -161,7 +161,7 @@ const About = () => {
                   e.preventDefault();
                   document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="transform hover:scale-105 hover:shadow-2xl transition-all duration-300"
+                className="w-full sm:w-auto transform hover:scale-105 hover:shadow-2xl transition-all duration-300 text-sm md:text-base"
               >
                 Conectá conmigo
               </Button>
@@ -172,7 +172,7 @@ const About = () => {
                   e.preventDefault();
                   document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="transform hover:scale-105 transition-all duration-300"
+                className="w-full sm:w-auto transform hover:scale-105 transition-all duration-300 text-sm md:text-base"
               >
                 Ver Servicios
               </Button>

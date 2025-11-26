@@ -74,7 +74,7 @@ const Hero = () => {
 
           {/* Hero Card with Image - Enhanced */}
           <div 
-            className="backdrop-blur-md bg-white/30 rounded-3xl shadow-2xl border border-white/40 p-4 md:p-6 lg:p-8 text-center transform hover:scale-[1.01] transition-all duration-700 relative overflow-hidden min-h-[400px] md:min-h-[480px] lg:min-h-[560px] hover:shadow-[0_20px_60px_rgba(90,116,88,0.3)]"
+            className="backdrop-blur-md bg-white/30 rounded-2xl md:rounded-3xl shadow-2xl border border-white/40 p-3 sm:p-4 md:p-6 lg:p-8 text-center transform hover:scale-[1.01] transition-all duration-700 relative overflow-hidden min-h-[350px] sm:min-h-[400px] md:min-h-[480px] lg:min-h-[560px] hover:shadow-[0_20px_60px_rgba(90,116,88,0.3)]"
             style={{
               backgroundImage: "url('/imagenes/hero.jpg')",
               backgroundSize: 'contain',
@@ -94,12 +94,12 @@ const Hero = () => {
             </div>
 
             {/* Quote at bottom with slide-up animation - Enhanced */}
-            <div className="absolute bottom-4 md:bottom-6 lg:bottom-8 left-4 right-4 fade-in-section">
-              <div className="bg-gradient-to-r from-[#5a7458]/50 via-[#5a7458]/40 to-[#5a7458]/50 backdrop-blur-sm rounded-2xl px-4 py-3 md:px-6 md:py-4 border border-white/20 shadow-xl">
-                <p className="text-sm sm:text-base md:text-lg text-white leading-relaxed font-body italic text-center transform translate-y-8 opacity-0 animate-slide-up-delayed drop-shadow-md">
-                  <span className="text-xl text-[#fefcea] font-serif">"</span>
+            <div className="absolute bottom-3 sm:bottom-4 md:bottom-6 lg:bottom-8 left-3 right-3 sm:left-4 sm:right-4 fade-in-section">
+              <div className="bg-gradient-to-r from-[#5a7458]/50 via-[#5a7458]/40 to-[#5a7458]/50 backdrop-blur-sm rounded-xl md:rounded-2xl px-3 py-2 sm:px-4 sm:py-3 md:px-6 md:py-4 border border-white/20 shadow-xl">
+                <p className="text-xs sm:text-sm md:text-base lg:text-lg text-white leading-relaxed font-body italic text-center transform translate-y-8 opacity-0 animate-slide-up-delayed drop-shadow-md">
+                  <span className="text-base sm:text-lg md:text-xl text-[#fefcea] font-serif">“</span>
                   Así como una planta necesita raíces sanas para florecer, las personas necesitamos mirar hacia adentro para transformar nuestra forma de ser, liderar y vincularnos.
-                  <span className="text-xl text-[#fefcea] font-serif">"</span>
+                  <span className="text-base sm:text-lg md:text-xl text-[#fefcea] font-serif">”</span>
                 </p>
               </div>
             </div>
@@ -109,19 +109,19 @@ const Hero = () => {
 
 
           {/* Enhanced CTAs - Outside the card */}
-          <div className="fade-in-section mt-6 md:mt-8 lg:mt-10 px-4 sm:px-0">
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
+          <div className="fade-in-section mt-6 md:mt-8 lg:mt-10 px-4 sm:px-6">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-stretch sm:items-center">
               {/* Primary CTA - Enhanced */}
               <Button 
                 variant="primary" 
-                href="https://wa.me/message/VPS3R5LKA4QNJ1"
-                className="w-full sm:w-auto text-base sm:text-lg md:text-xl font-bold px-6 sm:px-8 md:px-12 py-3 sm:py-4 md:py-5 shadow-2xl hover:shadow-[0_15px_40px_rgba(90,116,88,0.4)] transform hover:scale-105 hover:-translate-y-1 active:scale-95 transition-all duration-500 relative overflow-hidden group max-w-sm sm:max-w-md md:max-w-lg"
+                href="https://api.whatsapp.com/send?phone=5491136677321&text=Hola! Me gustaría agendar una sesión gratuita de 15 minutos"
+                className="w-full sm:w-auto text-sm md:text-base lg:text-lg font-bold px-4 sm:px-6 md:px-8 lg:px-12 py-3 md:py-4 lg:py-5 shadow-2xl hover:shadow-[0_15px_40px_rgba(90,116,88,0.4)] transform hover:scale-105 hover:-translate-y-1 active:scale-95 transition-all duration-500 relative overflow-hidden group"
               >
-                <span className="relative z-10 flex items-center justify-center gap-2 sm:gap-3">
-                  <svg className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0 animate-pulse-slow" fill="currentColor" viewBox="0 0 24 24">
+                <span className="relative z-10 flex items-center justify-center gap-2">
+                  <svg className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 flex-shrink-0 animate-pulse-slow" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654z"/>
                   </svg>
-                  <span className="text-sm sm:text-base md:text-lg lg:text-xl">Agenda tu sesión gratuita de 15 min</span>
+                  <span className="text-xs sm:text-sm md:text-base lg:text-lg leading-tight">Agenda tu sesión gratuita de 15 min</span>
                 </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-white/30 via-white/20 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
               </Button>
@@ -134,7 +134,7 @@ const Hero = () => {
                   e.preventDefault();
                   document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="w-full sm:w-auto text-sm sm:text-base md:text-lg px-6 sm:px-8 md:px-10 py-2.5 sm:py-3 md:py-4 hover:shadow-xl hover:bg-[#5a7458] hover:text-white hover:border-[#5a7458] transform hover:-translate-y-1 transition-all duration-500 max-w-xs sm:max-w-sm md:max-w-md"
+                className="w-full sm:w-auto text-sm md:text-base lg:text-lg px-4 sm:px-6 md:px-8 lg:px-10 py-2.5 md:py-3 lg:py-4 hover:shadow-xl hover:bg-[#5a7458] hover:text-white hover:border-[#5a7458] transform hover:-translate-y-1 transition-all duration-500"
               >
                 Conoce más sobre mí
               </Button>
