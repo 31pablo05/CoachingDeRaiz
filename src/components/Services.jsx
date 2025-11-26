@@ -24,24 +24,19 @@ const Services = () => {
 
   const services = [
     {
-      title: 'Coaching Organizacional',
-      description: 'Acompaño a líderes, equipos y profesionales a alcanzar sus objetivos fortaleciendo el liderazgo, la comunicación y la confianza.',
-      icon: '🏢',
-    },
-    {
       title: 'Coaching Ejecutivo',
-      description: 'Acompañamos a líderes, mandos medios y equipos directivos en procesos de desarrollo de liderazgo, alineados con los objetivos estratégicos de la organización.',
       icon: '👔',
+      image: '/imagenes/serv1.png'
     },
     {
       title: 'Coaching de Equipos',
-      description: 'Facilitamos espacios de conversación y aprendizaje compartido donde los equipos mejoran su coordinación, confianza y sentido de propósito común.',
       icon: '👥',
+      image: '/imagenes/serv2.png'
     },
     {
       title: 'Transformación Organizacional',
-      description: 'Diseñamos intervenciones a medida para acompañar procesos de cambio, desarrollo de liderazgo o mejora del clima.',
       icon: '🔄',
+      image: '/imagenes/serv3.png'
     },
     {
       title: 'Sesiones de Coaching Individual',
@@ -60,64 +55,219 @@ const Services = () => {
     },
   ];
 
+  const additionalInfo = [
+    {
+      title: 'Cómo Trabajamos',
+      icon: '🔧',
+      subtitle: 'Combinamos:',
+      pillars: 'Coaching Ontológico + Gestión de proyectos + Inteligencia emocional aplicada al liderazgo',
+      description: 'Creamos espacios de reflexión y acción que permiten a las personas mirar hacia adentro, reconocer sus patrones de comunicación y liderazgo, y diseñar nuevas formas de vincularse con sus equipos.',
+      features: [
+        { label: 'Mirada sistémica', desc: 'Entendemos la organización como un sistema interconectado.' },
+        { label: 'Cuerpo, emoción y lenguaje', desc: 'Intervenimos en los tres dominios del aprendizaje humano.' },
+        { label: 'Prácticas de liderazgo', desc: 'Feedback, coordinación, escucha y conversaciones efectivas.' },
+        { label: 'Gestión del cambio', desc: 'Acompañamos a líderes en procesos de transformación real.' },
+        { label: 'Estructuras liberadoras', desc: 'Facilitamos la participación colectiva.' }
+      ]
+    },
+    {
+      title: 'Propuesta de Inversión',
+      icon: '💰',
+      subtitle: 'Cada propuesta se diseña a medida según el alcance, cantidad de participantes y objetivos del proceso.',
+      description: 'Buscamos que la inversión refleje el valor del acompañamiento y el impacto que genera en la organización.',
+      packages: [
+        { name: 'Paquete Inicial', hours: '10 horas mensuales', desc: 'Acompañamiento a líderes o equipos. Incluye sesiones, reuniones de seguimiento y diseño de plan de acción.' },
+        { name: 'Sesión individual', desc: 'Coaching individual o sesión de equipo.' }
+      ],
+      cta: 'Te invitamos a coordinar una consulta inicial gratuita (sin compromiso) para conocernos y diseñar juntos la mejor modalidad para vos y/o tu equipo.'
+    },
+    {
+      title: 'Por Qué Elegirnos',
+      icon: '⭐',
+      reasons: [
+        'Combinamos mirada humana y pensamiento estructurado: la sensibilidad del coaching con la precisión de la ingeniería.',
+        'Nos enfocamos en impactar resultados, no solo en generar reflexión.',
+        'Traducimos lo intangible del desarrollo humano en indicadores de negocio: retención, productividad, compromiso y calidad.'
+      ]
+    }
+  ];
+
   return (
     <section 
       id="services" 
       ref={sectionRef}
-      className="section-padding bg-gradient-to-br from-neutral-beige via-neutral-cream to-white"
+      className="relative overflow-hidden py-20 md:py-28"
+      style={{
+        background: 'linear-gradient(180deg, #fefcea 0%, #f8faf5 30%, #e8f0e4 70%, #d4e5d0 100%)'
+      }}
     >
-      <div className="container-custom">
-        {/* Header */}
-        <div className="text-center mb-12 fade-in-section">
-          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">
-            Servicios
+      {/* Elegant Background Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-20 right-10 w-96 h-96 bg-[#5a7458]/5 rounded-full blur-3xl animate-float-slow"></div>
+        <div className="absolute bottom-40 left-10 w-80 h-80 bg-[#7a9477]/5 rounded-full blur-3xl animate-float-slower"></div>
+      </div>
+
+      <div className="container-custom px-6 md:px-12 lg:px-20 relative z-10">
+        {/* Enhanced Header */}
+        <div className="text-center mb-16 fade-in-section">
+          <span className="inline-block text-[#5a7458] font-semibold text-sm uppercase tracking-wider mb-3 px-4 py-1 bg-[#5a7458]/10 rounded-full">
+            Coaching Organizacional
+          </span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-[#5a7458] via-[#7a9477] to-[#5a7458] bg-clip-text text-transparent mb-6">
+            Transformación que Genera Resultados
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-secondary to-accent-lime mx-auto mb-6"></div>
-          <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-            Acompaño procesos de transformación personal y organizacional desde una mirada integral y humana
+          <div className="w-32 h-1 bg-gradient-to-r from-transparent via-[#5a7458] to-transparent mx-auto mb-6"></div>
+          <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+            Acompaño a líderes, equipos y profesionales a alcanzar sus objetivos fortaleciendo el liderazgo, la comunicación y la confianza.
           </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Services Grid - Enhanced */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
           {services.map((service, index) => (
             <div 
               key={index}
               className="fade-in-section"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="h-full">
-                {/* Icon */}
-                <div className="text-5xl mb-4 text-center">{service.icon}</div>
-                <ServiceCard
-                  title={service.title}
-                  description={service.description}
-                  price={service.price}
-                  featured={service.featured}
-                  ctaText={service.ctaText}
-                />
-              </div>
+              <ServiceCard {...service} />
             </div>
           ))}
         </div>
 
-        {/* Bottom CTA */}
-        <div className="mt-16 text-center fade-in-section">
-          <div className="bg-gradient-to-r from-primary to-primary-deeper rounded-2xl p-8 md:p-12 shadow-xl">
-            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-              ¿No sabés cuál es el servicio ideal para vos?
+        {/* Additional Information Section - New */}
+        <div className="mt-24 fade-in-section">
+          <div className="text-center mb-12">
+            <h3 className="text-3xl md:text-4xl font-bold text-[#5a7458] mb-4">
+              Conoce Más Sobre Nuestra Propuesta
             </h3>
-            <p className="text-white/90 mb-6 text-lg">
-              Agendá una sesión gratuita de 15 minutos y conversemos sobre tus necesidades
-            </p>
-            <a
-              href="https://wa.me/message/VPS3R5LKA4QNJ1"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-white text-primary font-semibold py-3 px-8 rounded-lg hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300"
-            >
-              Agendar sesión gratuita
-            </a>
+            <div className="w-24 h-1 bg-gradient-to-r from-transparent via-[#7a9477] to-transparent mx-auto"></div>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {additionalInfo.map((info, index) => (
+              <div 
+                key={index}
+                className="fade-in-section group"
+                style={{ animationDelay: `${(services.length + index) * 100}ms` }}
+              >
+                <div className="relative overflow-hidden rounded-2xl shadow-2xl bg-white border border-[#5a7458]/10 transform hover:scale-[1.02] transition-all duration-500 hover:shadow-[0_20px_60px_rgba(90,116,88,0.2)] h-full">
+                  
+                  {/* Header with Icon and Title */}
+                  <div className="bg-gradient-to-r from-[#5a7458] to-[#7a9477] p-6 text-white">
+                    <div className="flex items-center gap-3 mb-2">
+                      <span className="text-4xl">{info.icon}</span>
+                      <h4 className="text-2xl font-bold">{info.title}</h4>
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-6">
+                    {/* Cómo Trabajamos */}
+                    {info.subtitle && (
+                      <>
+                        <p className="font-semibold text-[#5a7458] mb-2">{info.subtitle}</p>
+                        {info.pillars && (
+                          <p className="text-sm text-[#7a9477] font-medium mb-4 italic">{info.pillars}</p>
+                        )}
+                        <p className="text-gray-700 mb-6 leading-relaxed">{info.description}</p>
+                        
+                        {info.features && (
+                          <div className="space-y-4">
+                            {info.features.map((feature, idx) => (
+                              <div key={idx} className="border-l-4 border-[#7a9477] pl-4">
+                                <h5 className="font-bold text-[#5a7458] text-sm mb-1">{feature.label}</h5>
+                                <p className="text-gray-600 text-sm leading-relaxed">{feature.desc}</p>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </>
+                    )}
+
+                    {/* Propuesta de Inversión */}
+                    {info.packages && (
+                      <>
+                        <p className="text-gray-700 mb-4 leading-relaxed">{info.subtitle}</p>
+                        <p className="text-gray-700 mb-6 leading-relaxed font-medium">{info.description}</p>
+                        
+                        <div className="bg-[#5a7458]/5 rounded-xl p-4 mb-6">
+                          <p className="font-semibold text-[#5a7458] mb-4">Nuestras propuestas estándar:</p>
+                          <div className="space-y-4">
+                            {info.packages.map((pkg, idx) => (
+                              <div key={idx} className="bg-white rounded-lg p-4 shadow-md border border-[#5a7458]/10">
+                                <div className="flex items-start gap-2 mb-2">
+                                  <span className="text-[#7a9477] font-bold">•</span>
+                                  <div>
+                                    <h5 className="font-bold text-[#5a7458]">{pkg.name}</h5>
+                                    {pkg.hours && <p className="text-sm text-[#7a9477] font-medium">{pkg.hours}</p>}
+                                  </div>
+                                </div>
+                                <p className="text-gray-600 text-sm leading-relaxed ml-4">{pkg.desc}</p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="bg-gradient-to-r from-[#fefcea] to-[#e8f0e4] rounded-lg p-4 border border-[#7a9477]/20">
+                          <p className="text-gray-700 text-sm leading-relaxed italic">{info.cta}</p>
+                        </div>
+                      </>
+                    )}
+
+                    {/* Por Qué Elegirnos */}
+                    {info.reasons && (
+                      <div className="space-y-4">
+                        {info.reasons.map((reason, idx) => (
+                          <div key={idx} className="flex items-start gap-3 p-4 bg-gradient-to-r from-[#5a7458]/5 to-[#7a9477]/5 rounded-lg border-l-4 border-[#7a9477] hover:shadow-md transition-shadow duration-300">
+                            <span className="text-[#7a9477] text-xl flex-shrink-0 mt-1">✓</span>
+                            <p className="text-gray-700 leading-relaxed">{reason}</p>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Decorative corner element */}
+                  <div className="absolute bottom-0 right-0 w-24 h-24 bg-gradient-to-tl from-[#7a9477]/10 to-transparent rounded-tl-full transform translate-x-12 translate-y-12 group-hover:translate-x-8 group-hover:translate-y-8 transition-transform duration-500"></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom CTA - Enhanced */}
+        <div className="mt-20 text-center fade-in-section">
+          <div className="relative overflow-hidden bg-gradient-to-br from-[#5a7458] via-[#6b8468] to-[#7a9477] rounded-3xl p-10 md:p-14 shadow-2xl border border-white/20">
+            {/* Decorative elements */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 left-0 w-48 h-48 bg-[#fefcea]/10 rounded-full blur-2xl"></div>
+            
+            <div className="relative z-10">
+              <div className="inline-block mb-4">
+                <span className="text-5xl">💡</span>
+              </div>
+              <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                ¿No sabés cuál es el servicio ideal para vos?
+              </h3>
+              <p className="text-white/90 mb-8 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+                Agendá una sesión gratuita de 15 minutos y conversemos sobre tus necesidades. Sin compromiso.
+              </p>
+              <a
+                href="https://wa.me/message/VPS3R5LKA4QNJ1"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 bg-white text-[#5a7458] font-bold py-4 px-10 rounded-xl hover:shadow-2xl transform hover:scale-105 hover:-translate-y-1 transition-all duration-500 group"
+              >
+                <svg className="w-6 h-6 animate-pulse-slow" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654z"/>
+                </svg>
+                <span className="text-lg">Agendar Sesión Gratuita</span>
+                <svg className="w-5 h-5 transform group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       </div>

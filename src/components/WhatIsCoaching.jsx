@@ -44,25 +44,6 @@ const WhatIsCoaching = () => {
     },
   ];
 
-  const inspirationalQuotes = [
-    {
-      quote: 'La empatía no exige coincidencia, exige presencia.',
-      author: '',
-    },
-    {
-      quote: 'No todo tiene que florecer al mismo tiempo. Paciencia con los procesos.',
-      author: '',
-    },
-    {
-      quote: '¿Qué cosas en tu vida ya no funcionan?',
-      author: '',
-    },
-    {
-      quote: 'Yo soy porque nosotros somos.',
-      author: 'Ubuntu',
-    },
-  ];
-
   return (
     <section 
       id="coaching" 
@@ -94,28 +75,6 @@ const WhatIsCoaching = () => {
               <p className="text-gray-700 leading-relaxed">{aspect.description}</p>
             </div>
           ))}
-        </div>
-
-        {/* Inspirational Quotes Section */}
-        <div className="fade-in-section">
-          <h3 className="text-3xl font-bold text-primary text-center mb-8">
-            Reflexiones para el camino
-          </h3>
-          <div className="grid md:grid-cols-2 gap-6">
-            {inspirationalQuotes.map((item, index) => (
-              <div 
-                key={index}
-                className="bg-gradient-to-br from-secondary-light/30 to-neutral-beige rounded-xl p-8 shadow-md hover:shadow-lg transition-shadow"
-              >
-                <blockquote className="text-lg md:text-xl text-primary-dark italic font-medium mb-3">
-                  "{item.quote}"
-                </blockquote>
-                {item.author && (
-                  <p className="text-secondary font-semibold text-right">— {item.author}</p>
-                )}
-              </div>
-            ))}
-          </div>
         </div>
 
         {/* Call to Action */}

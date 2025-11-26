@@ -26,64 +26,119 @@ const Hero = () => {
     <section 
       id="home" 
       ref={sectionRef}
-      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-neutral-cream via-neutral-beige to-neutral-yellow relative overflow-hidden pt-20"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-28 md:pt-32"
+      style={{
+        background: 'linear-gradient(135deg, #fefcea 0%, #e8f0e4 25%, #d4e5d0 50%, #7a9477 75%, #5a7458 100%)'
+      }}
     >
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-20 left-10 w-64 h-64 bg-secondary rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary rounded-full blur-3xl"></div>
+      {/* Animated Background Elements - Elegant and Subtle */}
+      <div className="absolute inset-0">
+        {/* Soft overlay for depth */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-black/5"></div>
+        
+        {/* Elegant floating orbs - very subtle */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
+          {/* Large soft glow top-right */}
+          <div className="absolute -top-32 -right-32 w-[600px] h-[600px] bg-white/20 rounded-full blur-3xl animate-float-slow"></div>
+          
+          {/* Medium glow bottom-left */}
+          <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-[#5a7458]/10 rounded-full blur-3xl animate-float-slower"></div>
+          
+          {/* Accent glow center */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-[#fefcea]/30 rounded-full blur-2xl animate-pulse-slow"></div>
+        </div>
+        
+        {/* Subtle shimmer overlay */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer"></div>
+        </div>
       </div>
 
-      <div className="container-custom px-6 md:px-12 lg:px-20 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Main Title */}
-          <h1 className="fade-in-section text-5xl md:text-6xl lg:text-7xl font-bold text-primary mb-6 animate-fade-in">
-            Coaching de Raíz
-          </h1>
-
-          {/* Subtitle */}
-          <p className="fade-in-section text-xl md:text-2xl text-primary-dark mb-8 leading-relaxed font-body italic">
-            "Así como una planta necesita raíces sanas para florecer, las personas necesitamos mirar hacia adentro para transformar nuestra forma de ser, liderar y vincularnos."
-          </p>
-
-          {/* Divider */}
-          <div className="fade-in-section w-24 h-1 bg-gradient-to-r from-secondary to-accent-lime mx-auto mb-10"></div>
-
-          {/* CTAs */}
-          <div className="fade-in-section flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button 
-              variant="primary" 
-              href="https://wa.me/message/VPS3R5LKA4QNJ1"
-              className="text-lg w-full sm:w-auto"
-            >
-              Agenda una sesión gratuita de 15 min
-            </Button>
-            <Button 
-              variant="secondary" 
-              href="#about"
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="text-lg w-full sm:w-auto"
-            >
-              Conoce más sobre mí
-            </Button>
+      <div className="container-custom px-4 sm:px-6 md:px-12 lg:px-20 relative z-10">
+        <div className="max-w-6xl mx-auto">
+          {/* Content above the image card */}
+          <div className="text-center mb-6 md:mb-8 mt-12 md:mt-16 lg:mt-20">
+            {/* Premium Badge with elegant animation */}
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#5a7458] to-[#7a9477] text-white px-6 py-2.5 rounded-full text-sm font-semibold mb-6 shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105">
+              <span className="w-2 h-2 bg-white rounded-full animate-pulse-slow"></span>
+              Coach Ontológica Certificada
+            </div>
+            {/* Main Title with Gradient Effect */}
+            <h1 className="fade-in-section">
+              <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold bg-gradient-to-r from-[#5a7458] via-[#7a9477] to-[#5a7458] bg-clip-text text-transparent animate-fade-in leading-tight drop-shadow-sm">
+                Lucía Vallejo
+              </span>
+              
+            </h1>
           </div>
 
-          {/* Scroll indicator */}
-          <div className="fade-in-section mt-16 animate-bounce">
-            <svg 
-              className="w-6 h-6 mx-auto text-secondary" 
-              fill="none" 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              strokeWidth="2" 
-              viewBox="0 0 24 24" 
-              stroke="currentColor"
-            >
-              <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-            </svg>
+          {/* Hero Card with Image - Enhanced */}
+          <div 
+            className="backdrop-blur-md bg-white/30 rounded-3xl shadow-2xl border border-white/40 p-4 md:p-6 lg:p-8 text-center transform hover:scale-[1.01] transition-all duration-700 relative overflow-hidden min-h-[400px] md:min-h-[480px] lg:min-h-[560px] hover:shadow-[0_20px_60px_rgba(90,116,88,0.3)]"
+            style={{
+              backgroundImage: "url('/imagenes/hero.jpg')",
+              backgroundSize: 'contain',
+              backgroundPosition: 'center top',
+              backgroundRepeat: 'no-repeat'
+            }}
+          >
+            {/* Subtle inner glow */}
+            <div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-[#5a7458]/5 via-transparent to-transparent pointer-events-none"></div>
+
+            {/* Content with higher z-index */}
+            <div className="relative z-10">
+
+
+
+
+            </div>
+
+            {/* Quote at bottom with slide-up animation - Enhanced */}
+            <div className="absolute bottom-4 md:bottom-6 lg:bottom-8 left-4 right-4 fade-in-section">
+              <div className="bg-gradient-to-r from-[#5a7458]/50 via-[#5a7458]/40 to-[#5a7458]/50 backdrop-blur-sm rounded-2xl px-4 py-3 md:px-6 md:py-4 border border-white/20 shadow-xl">
+                <p className="text-sm sm:text-base md:text-lg text-white leading-relaxed font-body italic text-center transform translate-y-8 opacity-0 animate-slide-up-delayed drop-shadow-md">
+                  <span className="text-xl text-[#fefcea] font-serif">"</span>
+                  Así como una planta necesita raíces sanas para florecer, las personas necesitamos mirar hacia adentro para transformar nuestra forma de ser, liderar y vincularnos.
+                  <span className="text-xl text-[#fefcea] font-serif">"</span>
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+
+
+          {/* Enhanced CTAs - Outside the card */}
+          <div className="fade-in-section mt-6 md:mt-8 lg:mt-10 px-4 sm:px-0">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
+              {/* Primary CTA - Enhanced */}
+              <Button 
+                variant="primary" 
+                href="https://wa.me/message/VPS3R5LKA4QNJ1"
+                className="w-full sm:w-auto text-base sm:text-lg md:text-xl font-bold px-6 sm:px-8 md:px-12 py-3 sm:py-4 md:py-5 shadow-2xl hover:shadow-[0_15px_40px_rgba(90,116,88,0.4)] transform hover:scale-105 hover:-translate-y-1 active:scale-95 transition-all duration-500 relative overflow-hidden group max-w-sm sm:max-w-md md:max-w-lg"
+              >
+                <span className="relative z-10 flex items-center justify-center gap-2 sm:gap-3">
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0 animate-pulse-slow" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654z"/>
+                  </svg>
+                  <span className="text-sm sm:text-base md:text-lg lg:text-xl">Agenda tu sesión gratuita de 15 min</span>
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-white/30 via-white/20 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+              </Button>
+              
+              {/* Secondary CTA - Enhanced */}
+              <Button 
+                variant="secondary" 
+                href="#about"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="w-full sm:w-auto text-sm sm:text-base md:text-lg px-6 sm:px-8 md:px-10 py-2.5 sm:py-3 md:py-4 hover:shadow-xl hover:bg-[#5a7458] hover:text-white hover:border-[#5a7458] transform hover:-translate-y-1 transition-all duration-500 max-w-xs sm:max-w-sm md:max-w-md"
+              >
+                Conoce más sobre mí
+              </Button>
+            </div>
           </div>
         </div>
       </div>
