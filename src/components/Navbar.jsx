@@ -8,11 +8,11 @@ const Navbar = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
 
   const navLinks = [
-    { name: 'Inicio', href: '#home' },
-    { name: '¿Quién soy?', href: '#about' },
-    { name: 'Servicios', href: '#services' },
+    { name: 'Inicio', href: '#inicio' },
+    { name: '¿Quién soy?', href: '#sobre-mi' },
+    { name: 'Servicios', href: '#servicios' },
     { name: '¿Qué es Coaching?', href: '#coaching' },
-    { name: 'Contacto', href: '#contact' },
+    { name: 'Contacto', href: '#contacto' },
   ];
 
   useEffect(() => {
@@ -67,6 +67,8 @@ const Navbar = () => {
 
   return (
     <nav 
+      role="navigation"
+      aria-label="Menú principal de navegación"
       className={`fixed w-full z-50 transition-all duration-500 navbar-blur ${
         isScrolled 
           ? 'navbar-glassmorphism shadow-2xl py-2 md:py-3' 
@@ -80,9 +82,10 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           {/* Logo with Image and Text - Mejorado */}
           <a 
-            href="#home" 
-            onClick={(e) => scrollToSection(e, '#home')}
+            href="#inicio" 
+            onClick={(e) => scrollToSection(e, '#inicio')}
             className="flex items-center gap-3 group relative"
+            aria-label="Volver al inicio - Lucía Vallejo Coach Ontológica"
           >
             {/* Efecto de background hover */}
             <div className="absolute -inset-2 bg-gradient-to-r from-secondary-light/20 to-accent-lime/20 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 blur-sm"></div>
@@ -93,7 +96,11 @@ const Navbar = () => {
             }`}>
               <img 
                 src="/logos/logocoaching.svg" 
-                alt="Coaching de Raíz Logo" 
+                alt="Coaching de Raíz - Lucía Vallejo Coach Ontológica Empresarial" 
+                title="Coaching de Raíz Logo"
+                width="80"
+                height="80"
+                loading="eager"
                 className="w-full h-full object-contain logo-hover-effect"
                 onError={(e) => {
                   e.target.style.display = 'none';

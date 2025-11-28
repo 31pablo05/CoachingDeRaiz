@@ -43,7 +43,11 @@ const ServiceCard = ({ title, description, price, featured, ctaText = "Agendá u
           >
             <img 
               src={image}
-              alt={title}
+              alt={`${title} - Servicio de coaching ontológico empresarial de Lucía Vallejo`}
+              title={title}
+              width="600"
+              height="600"
+              loading="lazy"
               className="w-full h-full object-contain cursor-pointer hover:opacity-90 transition-opacity duration-300"
             />
           </div>
@@ -130,7 +134,11 @@ const ServiceCard = ({ title, description, price, featured, ctaText = "Agendá u
           {/* Expanded Image */}
           <img 
             src={image}
-            alt={title}
+            alt={`${title} - Vista ampliada del servicio de coaching`}
+            title={title}
+            width="1200"
+            height="1200"
+            loading="lazy"
             className="max-w-[95vw] max-h-[95vh] w-auto h-auto object-contain rounded-lg shadow-2xl animate-scale-in"
             onClick={(e) => e.stopPropagation()}
           />

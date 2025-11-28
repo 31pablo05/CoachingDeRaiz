@@ -94,9 +94,10 @@ const Services = () => {
 
   return (
     <section 
-      id="services" 
+      id="servicios" 
       ref={sectionRef}
       className="relative overflow-hidden py-20 md:py-28"
+      aria-label="Servicios de coaching ejecutivo, coaching de equipos y transformación organizacional"
       style={{
         background: 'linear-gradient(180deg, #fefcea 0%, #f8faf5 30%, #e8f0e4 70%, #d4e5d0 100%)'
       }}
@@ -113,8 +114,8 @@ const Services = () => {
           <span className="inline-block text-[#5a7458] font-semibold text-sm uppercase tracking-wider mb-3 px-4 py-1 bg-[#5a7458]/10 rounded-full">
             Coaching Organizacional
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-[#5a7458] via-[#7a9477] to-[#5a7458] bg-clip-text text-transparent mb-6">
-            Transformación que Genera Resultados
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-[#5a7458] via-[#7a9477] to-[#5a7458] bg-clip-text text-transparent mb-6" itemProp="serviceType">
+            Servicios de Coaching Ontológico Empresarial
           </h2>
           <div className="w-32 h-1 bg-gradient-to-r from-transparent via-[#5a7458] to-transparent mx-auto mb-6"></div>
           <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">

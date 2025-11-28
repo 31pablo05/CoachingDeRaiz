@@ -75,9 +75,10 @@ const About = () => {
 
   return (
     <section 
-      id="about" 
+      id="sobre-mi" 
       ref={sectionRef}
       className="bg-gradient-to-b from-white via-neutral-cream/30 to-white relative overflow-x-hidden py-16 md:py-24"
+      aria-label="Sobre Lucía Vallejo - Perfil profesional y trayectoria"
     >
       {/* Animated Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
@@ -91,8 +92,8 @@ const About = () => {
           <span className="inline-block text-secondary font-semibold text-sm uppercase tracking-wider mb-2 px-4 py-1 bg-secondary/10 rounded-full">
             Conoce a tu Coach
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-primary mt-4 mb-3">
-            ¿Quién soy?
+          <h2 className="text-4xl md:text-5xl font-bold text-primary mt-4 mb-3" itemProp="headline">
+            Sobre Mí - Lucía Vallejo
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-secondary via-accent-lime to-secondary mx-auto rounded-full"></div>
         </div>
@@ -111,7 +112,12 @@ const About = () => {
               <div className="relative bg-white rounded-2xl overflow-hidden shadow-2xl aspect-square transform group-hover:scale-[1.02] transition-all duration-500">
                 <img 
                   src="/imagenes/lucia3.png" 
-                  alt="Lucía Vallejo - Coach Ontológica"
+                  alt="Lucía Vallejo - Ingeniera Civil, Project Manager y Coach Ontológica Empresarial certificada por ECORE Newfield Consulting"
+                  title="Lucía Vallejo - Coach Ontológica Empresarial"
+                  width="800"
+                  height="800"
+                  loading="eager"
+                  itemProp="image"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 
@@ -156,10 +162,10 @@ const About = () => {
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4">
               <Button 
                 variant="primary" 
-                href="#contact"
+                href="#contacto"
                 onClick={(e) => {
                   e.preventDefault();
-                  document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+                  document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' });
                 }}
                 className="w-full sm:w-auto transform hover:scale-105 hover:shadow-2xl transition-all duration-300 text-sm md:text-base"
               >
@@ -167,10 +173,10 @@ const About = () => {
               </Button>
               <Button 
                 variant="secondary" 
-                href="#services"
+                href="#servicios"
                 onClick={(e) => {
                   e.preventDefault();
-                  document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
+                  document.getElementById('servicios').scrollIntoView({ behavior: 'smooth' });
                 }}
                 className="w-full sm:w-auto transform hover:scale-105 transition-all duration-300 text-sm md:text-base"
               >
@@ -237,7 +243,11 @@ const About = () => {
                   >
                     <img
                       src={image}
-                      alt={`Presentación ${index + 1} - Lucía Vallejo`}
+                      alt={`Presentación de Lucía Vallejo sobre coaching ontológico y transformación organizacional - Slide ${index + 1}`}
+                      title={`Mi historia y propósito - Lucía Vallejo Coach ${index + 1}`}
+                      width="1200"
+                      height="800"
+                      loading={index === 0 ? 'eager' : 'lazy'}
                       className="w-full h-full object-contain"
                     />
                   </div>

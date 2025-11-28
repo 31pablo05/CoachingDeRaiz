@@ -243,7 +243,7 @@ const Footer = () => {
                   Lucía Vallejo - Coach Ontológica Empresarial
                 </p>
                 <div className="text-accent-lime/60 text-sm mt-1 hover:text-accent-lime transition-colors duration-300">
-                  ✨ Transformación • Liderazgo • Resultados
+                  Transformación • Liderazgo • Resultados
                 </div>
               </div>
             </div>

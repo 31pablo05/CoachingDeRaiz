@@ -24,9 +24,10 @@ const Hero = () => {
 
   return (
     <section 
-      id="home" 
+      id="inicio" 
       ref={sectionRef}
       className="min-h-screen flex items-center justify-center relative overflow-hidden pt-28 md:pt-32"
+      aria-label="Sección principal - Lucía Vallejo Coach Ontológica"
       style={{
         background: 'linear-gradient(135deg, #fefcea 0%, #e8f0e4 25%, #d4e5d0 50%, #7a9477 75%, #5a7458 100%)'
       }}
@@ -64,9 +65,9 @@ const Hero = () => {
               Coach Ontológica Certificada
             </div>
             {/* Main Title with Gradient Effect */}
-            <h1 className="fade-in-section">
-              <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold bg-gradient-to-r from-[#5a7458] via-[#7a9477] to-[#5a7458] bg-clip-text text-transparent animate-fade-in leading-tight drop-shadow-sm">
-                Lucía Vallejo
+            <h1 className="fade-in-section" role="banner">
+              <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold bg-gradient-to-r from-[#5a7458] via-[#7a9477] to-[#5a7458] bg-clip-text text-transparent animate-fade-in leading-tight drop-shadow-sm" itemProp="name">
+                Lucía Vallejo - Coach Ontológica Empresarial
               </span>
               
             </h1>
@@ -75,6 +76,8 @@ const Hero = () => {
           {/* Hero Card with Image - Enhanced */}
           <div 
             className="backdrop-blur-md bg-white/30 rounded-2xl md:rounded-3xl shadow-2xl border border-white/40 p-3 sm:p-4 md:p-6 lg:p-8 text-center transform hover:scale-[1.01] transition-all duration-700 relative overflow-hidden min-h-[350px] sm:min-h-[400px] md:min-h-[480px] lg:min-h-[560px] hover:shadow-[0_20px_60px_rgba(90,116,88,0.3)]"
+            role="img"
+            aria-label="Lucía Vallejo - Coach Ontológica Empresarial en sesión de coaching"
             style={{
               backgroundImage: "url('/imagenes/hero.jpg')",
               backgroundSize: 'contain',
@@ -129,10 +132,10 @@ const Hero = () => {
               {/* Secondary CTA - Enhanced */}
               <Button 
                 variant="secondary" 
-                href="#about"
+                href="#sobre-mi"
                 onClick={(e) => {
                   e.preventDefault();
-                  document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+                  document.getElementById('sobre-mi').scrollIntoView({ behavior: 'smooth' });
                 }}
                 className="w-full sm:w-auto text-sm md:text-base lg:text-lg px-4 sm:px-6 md:px-8 lg:px-10 py-2.5 md:py-3 lg:py-4 hover:shadow-xl hover:bg-[#5a7458] hover:text-white hover:border-[#5a7458] transform hover:-translate-y-1 transition-all duration-500"
               >

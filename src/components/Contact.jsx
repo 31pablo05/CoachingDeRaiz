@@ -84,9 +84,12 @@ const Contact = () => {
 
   return (
     <section 
-      id="contact" 
+      id="contacto" 
       ref={sectionRef}
       className="section-padding bg-gradient-to-br from-neutral-beige via-neutral-cream to-neutral-yellow"
+      aria-label="Formulario de contacto - Agendar sesión de coaching"
+      itemScope
+      itemType="https://schema.org/ContactPage"
     >
       <div className="container-custom">
         {/* Header */}

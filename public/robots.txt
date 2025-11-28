@@ -1,0 +1,36 @@
+# robots.txt para Coaching de Raíz
+# https://coachingderaiz.vercel.app/
+
+# Permitir a todos los robots el acceso completo al sitio
+User-agent: *
+Allow: /
+
+# Permitir específicamente a los principales buscadores
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Bloquear solo archivos innecesarios para SEO
+Disallow: /src/
+Disallow: /*.jsx$
+Disallow: /*.css$
+Disallow: /*.js$
+
+# Permitir acceso a recursos importantes
+Allow: /imagenes/
+Allow: /logos/
+Allow: /videos/
+
+# Sitemap
+Sitemap: https://coachingderaiz.vercel.app/sitemap.xml
+
+# Configuración de rastreo
+Crawl-delay: 0
