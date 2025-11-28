@@ -2,8 +2,55 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/logos/logocoaching.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Preconnect to external domains for faster resource loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Preload critical fonts with font-display swap -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" media="print" onload="this.media='all'; this.onload=null;" />
+    
+    <!-- Fallback for no-JS -->
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" />
+    </noscript>
+    
+    <!-- Critical CSS inline for above-the-fold content -->
+    <style>
+      /* Critical styles for initial render */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        color: #235649;
+        background-color: #fefcea;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      
+      #root {
+        min-height: 100vh;
+      }
+      
+      /* Prevent layout shift */
+      .fade-in-section {
+        will-change: opacity, transform;
+      }
+      
+      /* Critical hero styles */
+      h1, h2, h3 {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-weight: 700;
+      }
+    </style>
+    
+    <link rel="icon" type="image/svg+xml" href="/logos/logocoaching.svg" />
     
     <!-- Primary Meta Tags -->
     <title>Lucía Vallejo | Coach Ontológica Empresarial - Coaching Ejecutivo y de Equipos en Argentina</title>
@@ -246,7 +293,42 @@
     <title>Coaching de Raíz - Lucía Vallejo | Coach Ontológica Empresarial</title>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <!-- Loading indicator to improve perceived performance -->
+    <div id="root">
+      <div style="
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: 'Inter', sans-serif;
+        color: #235649;
+        text-align: center;
+        opacity: 0;
+        animation: fadeIn 0.3s ease-in 0.5s forwards;
+      ">
+        <div style="
+          width: 40px;
+          height: 40px;
+          border: 4px solid #e8f0e4;
+          border-top-color: #235649;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+          margin: 0 auto 16px;
+        "></div>
+        <p style="font-size: 14px; font-weight: 600;">Coaching de Raíz</p>
+      </div>
+    </div>
+    
+    <style>
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      @keyframes fadeIn {
+        to { opacity: 1; }
+      }
+    </style>
+    
+    <!-- Defer non-critical JavaScript -->
+    <script type="module" src="/src/main.jsx" defer></script>
   </body>
 </html>
