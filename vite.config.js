@@ -13,6 +13,17 @@ export default defineConfig({
       gzipSize: true,
       brotliSize: true,
     }),
+    // Plugin para hacer el CSS no bloqueante
+    {
+      name: 'non-blocking-css',
+      transformIndexHtml(html) {
+        // Convert CSS links to non-blocking preload
+        return html.replace(
+          /<link rel="stylesheet" crossorigin href="([^"]+\.css)">/g,
+          '<link rel="preload" as="style" href="$1" onload="this.onload=null;this.rel=\'stylesheet\'" crossorigin><noscript><link rel="stylesheet" href="$1" crossorigin></noscript>'
+        );
+      },
+    },
   ].filter(Boolean),
   
   build: {
@@ -94,8 +105,8 @@ export default defineConfig({
     // Report compressed size
     reportCompressedSize: true,
     
-    // Optimize asset inlining threshold
-    assetsInlineLimit: 4096, // 4kb - inline smaller assets as base64
+    // Keep images and fonts separate, allow small assets to be inlined
+    assetsInlineLimit: 4096, // 4KB threshold
   },
   
   // Optimize dependencies pre-bundling

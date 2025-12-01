@@ -28,41 +28,68 @@
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" />
     </noscript>
     
-    <!-- Critical CSS inline for above-the-fold content -->
+    <!-- MASSIVE Critical CSS inline - Complete above-the-fold styles to eliminate render blocking -->
     <style>
-      /* Critical styles for initial render */
-      * {
+      /* === BASE RESET === */
+      *, *::before, *::after {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
       
+      html {
+        -webkit-text-size-adjust: 100%;
+        line-height: 1.5;
+      }
+      
       body {
-        font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
         color: #235649;
         background: linear-gradient(135deg, #fefcea 0%, #e8f0e4 25%, #d4e5d0 50%, #7a9477 75%, #5a7458 100%);
+        background-attachment: fixed;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         overflow-x: hidden;
+        min-height: 100vh;
       }
       
       #root {
         min-height: 100vh;
+        position: relative;
       }
       
-      /* Prevent layout shift */
-      .fade-in-section {
-        will-change: opacity, transform;
-      }
-      
-      /* Critical hero styles */
-      h1, h2, h3 {
+      /* === TYPOGRAPHY === */
+      h1, h2, h3, h4, h5, h6 {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         font-weight: 700;
         line-height: 1.2;
+        color: #235649;
+        margin: 0;
       }
       
-      /* Critical navbar skeleton */
+      h1 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        letter-spacing: -0.025em;
+      }
+      
+      h2 {
+        font-size: 2rem;
+        font-weight: 700;
+      }
+      
+      h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+      
+      p {
+        line-height: 1.75;
+        margin: 0;
+      }
+      
+      /* === NAVBAR === */
       nav {
         position: fixed;
         width: 100%;
@@ -70,29 +97,141 @@
         z-index: 50;
         background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
         padding: 1rem 0;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        transition: all 0.3s ease;
       }
       
-      /* Hero section skeleton */
-      section:first-of-type {
+      nav .container-custom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-weight: 700;
+        font-size: 1.25rem;
+        color: #235649;
+        text-decoration: none;
+      }
+      
+      .nav-links {
+        display: none;
+        gap: 2rem;
+        list-style: none;
+      }
+      
+      .nav-links a {
+        color: #235649;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s ease;
+      }
+      
+      .nav-links a:hover {
+        color: #7a9477;
+      }
+      
+      /* === HERO SECTION === */
+      section#inicio {
         min-height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
         padding-top: 7rem;
+        padding-bottom: 4rem;
         position: relative;
         overflow: hidden;
       }
       
-      /* Critical container */
-      .container-custom {
-        max-width: 1280px;
-        margin: 0 auto;
-        padding: 0 1rem;
+      /* Hero background effects */
+      .hero-bg-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom right, rgba(255,255,255,0.4), transparent, rgba(0,0,0,0.05));
+        pointer-events: none;
       }
       
-      /* Critical button styles */
+      /* === CONTAINER === */
+      .container-custom {
+        max-width: 1280px;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      
+      /* === GRID SYSTEM === */
+      .grid {
+        display: grid;
+      }
+      
+      .grid-cols-1 {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+      }
+      
+      .gap-8 {
+        gap: 2rem;
+      }
+      
+      .gap-6 {
+        gap: 1.5rem;
+      }
+      
+      .gap-4 {
+        gap: 1rem;
+      }
+      
+      /* === FLEX UTILITIES === */
+      .flex {
+        display: flex;
+      }
+      
+      .items-center {
+        align-items: center;
+      }
+      
+      .justify-center {
+        justify-content: center;
+      }
+      
+      .flex-col {
+        flex-direction: column;
+      }
+      
+      /* === HERO CARD === */
+      .hero-card {
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 1.5rem;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 10px 20px -5px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        padding: 1.5rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        min-height: 350px;
+        z-index: 10;
+      }
+      
+      .hero-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%);
+        pointer-events: none;
+      }
+      
+      /* === BUTTONS === */
       .btn-primary {
         background: linear-gradient(135deg, #5a7458, #7a9477);
         color: white;
@@ -101,39 +240,137 @@
         text-decoration: none;
         display: inline-flex;
         align-items: center;
+        justify-content: center;
         gap: 0.5rem;
         font-weight: 600;
+        font-size: 1rem;
         transition: all 0.3s ease;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        border: none;
+        cursor: pointer;
+        white-space: nowrap;
       }
       
       .btn-primary:hover {
         transform: translateY(-2px);
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
       }
       
-      /* Critical image styles */
+      .btn-primary:active {
+        transform: translateY(0);
+      }
+      
+      .btn-secondary {
+        background: white;
+        color: #5a7458;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.75rem;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        border: 2px solid #5a7458;
+      }
+      
+      .btn-secondary:hover {
+        background: #f8faf8;
+        transform: translateY(-2px);
+      }
+      
+      /* === IMAGES === */
       img {
         max-width: 100%;
         height: auto;
         display: block;
       }
       
-      /* Hero card skeleton */
-      .hero-card {
-        backdrop-filter: blur(16px);
-        background: rgba(255, 255, 255, 0.3);
-        border-radius: 1.5rem;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-        border: 1px solid rgba(255, 255, 255, 0.4);
-        padding: 1.5rem;
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-        min-height: 350px;
+      .rounded-full {
+        border-radius: 9999px;
       }
       
+      .rounded-3xl {
+        border-radius: 1.5rem;
+      }
+      
+      /* === SPACING === */
+      .mb-2 { margin-bottom: 0.5rem; }
+      .mb-4 { margin-bottom: 1rem; }
+      .mb-6 { margin-bottom: 1.5rem; }
+      .mb-8 { margin-bottom: 2rem; }
+      .mt-4 { margin-top: 1rem; }
+      .mt-6 { margin-top: 1.5rem; }
+      .mt-8 { margin-top: 2rem; }
+      
+      .p-4 { padding: 1rem; }
+      .p-6 { padding: 1.5rem; }
+      .p-8 { padding: 2rem; }
+      
+      .px-4 { padding-left: 1rem; padding-right: 1rem; }
+      .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+      .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+      
+      /* === TEXT UTILITIES === */
+      .text-center { text-align: center; }
+      .text-white { color: white; }
+      .font-bold { font-weight: 700; }
+      .font-semibold { font-weight: 600; }
+      
+      /* === ANIMATIONS === */
+      .fade-in-section {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+        will-change: opacity, transform;
+      }
+      
+      .fade-in-section.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      @keyframes float-slow {
+        0%, 100% { transform: translate(0, 0); }
+        50% { transform: translate(30px, 30px); }
+      }
+      
+      @keyframes pulse-slow {
+        0%, 100% { opacity: 0.3; }
+        50% { opacity: 0.6; }
+      }
+      
+      .animate-float-slow {
+        animation: float-slow 20s ease-in-out infinite;
+      }
+      
+      .animate-pulse-slow {
+        animation: pulse-slow 6s ease-in-out infinite;
+      }
+      
+      /* === LOADING SPINNER === */
+      .loading-spinner {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+      }
+      
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      
+      @keyframes fadeIn {
+        to { opacity: 1; }
+      }
+      
+      /* === RESPONSIVE BREAKPOINTS === */
       @media (min-width: 640px) {
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2.25rem; }
         .hero-card {
           min-height: 400px;
           padding: 2rem;
@@ -141,33 +378,56 @@
       }
       
       @media (min-width: 768px) {
+        h1 { font-size: 3.75rem; }
         .hero-card {
           min-height: 480px;
           border-radius: 2rem;
           padding: 3rem;
         }
         .container-custom {
-          padding: 0 3rem;
+          padding-left: 3rem;
+          padding-right: 3rem;
+        }
+        .nav-links {
+          display: flex;
+        }
+        .grid-cols-1 {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        section#inicio {
+          padding-top: 8rem;
         }
       }
       
       @media (min-width: 1024px) {
+        h1 { font-size: 4.5rem; }
         .hero-card {
           min-height: 560px;
           padding: 4rem;
         }
         .container-custom {
-          padding: 0 5rem;
+          padding-left: 5rem;
+          padding-right: 5rem;
         }
       }
       
-      /* Loading indicator */
-      .loading-spinner {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 9999;
+      /* === ACCESSIBILITY === */
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+      }
+      
+      /* === PREVENT LAYOUT SHIFT === */
+      * {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
     </style>
     
@@ -444,6 +704,21 @@
         to { opacity: 1; }
       }
     </style>
+    
+    <!-- Non-blocking CSS loader fallback -->
+    <script>
+      // Ensure CSS loads even if preload fails
+      (function() {
+        var links = document.querySelectorAll('link[rel="preload"][as="style"]');
+        links.forEach(function(link) {
+          setTimeout(function() {
+            if (link.rel !== 'stylesheet') {
+              link.rel = 'stylesheet';
+            }
+          }, 0);
+        });
+      })();
+    </script>
     
     <!-- Vite will inject the appropriate script tags during build -->
     <script type="module" src="/src/main.jsx"></script>
