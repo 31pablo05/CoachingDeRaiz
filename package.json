@@ -7,6 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "build:analyze": "ANALYZE=true vite build",
+    "bundle-analysis": "node scripts/analyze-bundle.js",
+    "build:check": "npm run build && npm run bundle-analysis",
     "lint": "eslint .",
     "preview": "vite preview",
     "preview:build": "vite build && vite preview"

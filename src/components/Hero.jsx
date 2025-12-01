@@ -77,9 +77,21 @@ const Hero = () => {
           <div 
             className="backdrop-blur-md bg-white/30 rounded-2xl md:rounded-3xl shadow-2xl border border-white/40 p-3 sm:p-4 md:p-6 lg:p-8 text-center transform hover:scale-[1.01] transition-all duration-700 relative overflow-hidden min-h-[350px] sm:min-h-[400px] md:min-h-[480px] lg:min-h-[560px] hover:shadow-[0_20px_60px_rgba(90,116,88,0.3)]"
           >
-            {/* LCP Image - Prioridad máxima para Core Web Vitals */}
+            {/* LCP Image - Responsiva para diferentes tamaños de pantalla */}
             <img 
               src="/imagenes/hero.webp"
+              srcSet={`
+                /imagenes/hero-400w.webp 400w,
+                /imagenes/hero-600w.webp 600w,
+                /imagenes/hero-800w.webp 800w,
+                /imagenes/hero.webp 1200w
+              `}
+              sizes={`
+                (max-width: 640px) 400px,
+                (max-width: 768px) 600px,
+                (max-width: 1024px) 800px,
+                1200px
+              `}
               alt="Lucía Vallejo - Coach Ontológica Empresarial en sesión de coaching"
               title="Lucía Vallejo Coach Ontológica - Transformación y Liderazgo"
               width="1200"

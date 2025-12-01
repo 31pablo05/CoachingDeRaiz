@@ -11,8 +11,13 @@
     <!-- DNS Prefetch para Vercel analytics y otros servicios -->
     <link rel="dns-prefetch" href="https://vercel.live" />
     
+    <!-- Preload critical assets for parallel download -->
+    <link rel="modulepreload" href="/src/main.jsx" />
+    
     <!-- Preload LCP image for optimal Core Web Vitals -->
-    <link rel="preload" as="image" href="/imagenes/hero.webp" fetchpriority="high" type="image/webp" imagesrcset="/imagenes/hero.webp 1200w" imagesizes="100vw" />
+    <link rel="preload" as="image" href="/imagenes/hero.webp" fetchpriority="high" type="image/webp" 
+          imagesrcset="/imagenes/hero-400w.webp 400w, /imagenes/hero-600w.webp 600w, /imagenes/hero-800w.webp 800w, /imagenes/hero.webp 1200w" 
+          imagesizes="(max-width: 640px) 400px, (max-width: 768px) 600px, (max-width: 1024px) 800px, 1200px" />
     
     <!-- Preload critical fonts with font-display swap -->
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" />
@@ -66,6 +71,7 @@
         background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(10px);
         padding: 1rem 0;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
       }
       
       /* Hero section skeleton */
@@ -75,26 +81,93 @@
         align-items: center;
         justify-content: center;
         padding-top: 7rem;
+        position: relative;
+        overflow: hidden;
       }
       
-      /* Image optimization */
+      /* Critical container */
+      .container-custom {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+      
+      /* Critical button styles */
+      .btn-primary {
+        background: linear-gradient(135deg, #5a7458, #7a9477);
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.75rem;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      }
+      
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      }
+      
+      /* Critical image styles */
       img {
         max-width: 100%;
         height: auto;
         display: block;
       }
       
-      /* Button base styles */
-      button, a {
-        cursor: pointer;
-        text-decoration: none;
-        transition: all 0.3s ease;
+      /* Hero card skeleton */
+      .hero-card {
+        backdrop-filter: blur(16px);
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 1.5rem;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        padding: 1.5rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        min-height: 350px;
       }
       
-      /* Container base */
-      .container-custom {
-        max-width: 1280px;
-        margin: 0 auto;
+      @media (min-width: 640px) {
+        .hero-card {
+          min-height: 400px;
+          padding: 2rem;
+        }
+      }
+      
+      @media (min-width: 768px) {
+        .hero-card {
+          min-height: 480px;
+          border-radius: 2rem;
+          padding: 3rem;
+        }
+        .container-custom {
+          padding: 0 3rem;
+        }
+      }
+      
+      @media (min-width: 1024px) {
+        .hero-card {
+          min-height: 560px;
+          padding: 4rem;
+        }
+        .container-custom {
+          padding: 0 5rem;
+        }
+      }
+      
+      /* Loading indicator */
+      .loading-spinner {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
       }
     </style>
     
@@ -343,11 +416,7 @@
   <body>
     <!-- Loading indicator to improve perceived performance -->
     <div id="root">
-      <div style="
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+      <div class="loading-spinner" style="
         font-family: 'Inter', sans-serif;
         color: #235649;
         text-align: center;
@@ -376,7 +445,7 @@
       }
     </style>
     
-    <!-- Defer non-critical JavaScript -->
-    <script type="module" src="/src/main.jsx" defer></script>
+    <!-- Vite will inject the appropriate script tags during build -->
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

@@ -33,21 +33,48 @@ export default defineConfig({
     // Optimize chunk splitting for better caching and parallel loading
     rollupOptions: {
       output: {
-        // Manual chunks para optimizar caching
+        // Manual chunks para optimizar caching y reducir tamaño inicial
         manualChunks(id) {
-          // Vendor chunks
+          // Core React chunks
           if (id.includes('node_modules')) {
-            if (id.includes('react') || id.includes('react-dom')) {
-              return 'react-vendor';
+            if (id.includes('react-dom')) {
+              return 'react-dom';
             }
-            // Otros vendors en un chunk separado
+            if (id.includes('react')) {
+              return 'react';
+            }
+            // Large libraries in separate chunks
+            if (id.includes('framer-motion')) {
+              return 'framer-motion';
+            }
+            if (id.includes('swiper')) {
+              return 'swiper';
+            }
+            if (id.includes('react-icons')) {
+              return 'react-icons';
+            }
+            // Other vendors
             return 'vendor';
+          }
+          
+          // App chunks by feature
+          if (id.includes('/components/About')) {
+            return 'about';
+          }
+          if (id.includes('/components/Services')) {
+            return 'services';
+          }
+          if (id.includes('/components/Contact')) {
+            return 'contact';
           }
         },
         // Nombres de archivo con hash para cache busting
         chunkFileNames: 'assets/[name]-[hash].js',
         entryFileNames: 'assets/[name]-[hash].js',
         assetFileNames: 'assets/[name]-[hash].[ext]',
+        
+        // Configuración adicional para chunks pequeños
+        experimentalMinChunkSize: 0, // Allow small chunks for better code splitting
       },
     },
     
@@ -55,7 +82,7 @@ export default defineConfig({
     target: 'es2015',
     
     // Increase chunk size warning limit
-    chunkSizeWarningLimit: 1000,
+    chunkSizeWarningLimit: 500, // Lower limit to encourage smaller chunks
     
     // Enable CSS code splitting
     cssCodeSplit: true,

@@ -112,6 +112,16 @@ const About = () => {
               <div className="relative bg-white rounded-2xl overflow-hidden shadow-2xl aspect-square transform group-hover:scale-[1.02] transition-all duration-500">
                 <img 
                   src="/imagenes/lucia3.webp" 
+                  srcSet={`
+                    /imagenes/lucia3-300w.webp 300w,
+                    /imagenes/lucia3-500w.webp 500w,
+                    /imagenes/lucia3.webp 800w
+                  `}
+                  sizes={`
+                    (max-width: 640px) 300px,
+                    (max-width: 768px) 500px,
+                    800px
+                  `}
                   alt="Lucía Vallejo - Ingeniera Civil, Project Manager y Coach Ontológica Empresarial certificada por ECORE Newfield Consulting"
                   title="Lucía Vallejo - Coach Ontológica Empresarial"
                   width="800"
@@ -246,9 +256,21 @@ const About = () => {
                   >
                     <img
                       src={image}
+                      srcSet={`
+                        ${image.replace('.webp', '-400w.webp')} 400w,
+                        ${image.replace('.webp', '-600w.webp')} 600w,
+                        ${image.replace('.webp', '-800w.webp')} 800w,
+                        ${image} 1200w
+                      `}
+                      sizes={`
+                        (max-width: 640px) 400px,
+                        (max-width: 768px) 600px,
+                        (max-width: 1024px) 800px,
+                        1200px
+                      `}
                       alt={`Presentación de Lucía Vallejo sobre coaching ontológico y transformación organizacional - Slide ${index + 1}`}
                       title={`Mi historia y propósito - Lucía Vallejo Coach ${index + 1}`}
-                      width="800"
+                      width="1200"
                       height="800"
                       loading={index === 0 ? 'eager' : 'lazy'}
                       decoding="async"

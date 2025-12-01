@@ -1,12 +1,9 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import About from './components/About';
-import Services from './components/Services';
-import WhatIsCoaching from './components/WhatIsCoaching';
-import Contact from './components/Contact';
 import Footer from './components/Footer';
 import WhatsAppFloat from './components/WhatsAppFloat';
+import { LazyAbout, LazyServices, LazyWhatIsCoaching, LazyContact } from './components/LazyComponents';
 import './App.css';
 
 function App() {
@@ -15,10 +12,16 @@ function App() {
       <Navbar />
       <main>
         <Hero />
-        <About />
-        <Services />
-        <WhatIsCoaching />
-        <Contact />
+        <Suspense fallback={
+          <div className="flex justify-center items-center py-16">
+            <div className="animate-pulse text-verde-claro">Cargando...</div>
+          </div>
+        }>
+          <LazyAbout />
+          <LazyServices />
+          <LazyWhatIsCoaching />
+          <LazyContact />
+        </Suspense>
       </main>
       <Footer />
       <WhatsAppFloat />
