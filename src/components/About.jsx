@@ -111,7 +111,7 @@ const About = () => {
               {/* Main image container */}
               <div className="relative bg-white rounded-2xl overflow-hidden shadow-2xl aspect-square transform group-hover:scale-[1.02] transition-all duration-500">
                 <img 
-                  src="/imagenes/lucia3.png" 
+                  src="/imagenes/lucia3.webp" 
                   alt="Lucía Vallejo - Ingeniera Civil, Project Manager y Coach Ontológica Empresarial certificada por ECORE Newfield Consulting"
                   title="Lucía Vallejo - Coach Ontológica Empresarial"
                   width="800"

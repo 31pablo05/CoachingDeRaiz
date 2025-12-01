@@ -79,7 +79,7 @@ const Hero = () => {
             role="img"
             aria-label="Lucía Vallejo - Coach Ontológica Empresarial en sesión de coaching"
             style={{
-              backgroundImage: "url('/imagenes/hero.jpg')",
+              backgroundImage: "url('/imagenes/hero.webp')",
               backgroundSize: 'contain',
               backgroundPosition: 'center top',
               backgroundRepeat: 'no-repeat',
