@@ -73,19 +73,24 @@ const Hero = () => {
             </h1>
           </div>
 
-          {/* Hero Card with Image - Enhanced */}
+          {/* Hero Card with Image - Enhanced - LCP Optimizado */}
           <div 
             className="backdrop-blur-md bg-white/30 rounded-2xl md:rounded-3xl shadow-2xl border border-white/40 p-3 sm:p-4 md:p-6 lg:p-8 text-center transform hover:scale-[1.01] transition-all duration-700 relative overflow-hidden min-h-[350px] sm:min-h-[400px] md:min-h-[480px] lg:min-h-[560px] hover:shadow-[0_20px_60px_rgba(90,116,88,0.3)]"
-            role="img"
-            aria-label="Lucía Vallejo - Coach Ontológica Empresarial en sesión de coaching"
-            style={{
-              backgroundImage: "url('/imagenes/hero.webp')",
-              backgroundSize: 'contain',
-              backgroundPosition: 'center top',
-              backgroundRepeat: 'no-repeat',
-              contentVisibility: 'auto'
-            }}
           >
+            {/* LCP Image - Prioridad máxima para Core Web Vitals */}
+            <img 
+              src="/imagenes/hero.webp"
+              alt="Lucía Vallejo - Coach Ontológica Empresarial en sesión de coaching"
+              title="Lucía Vallejo Coach Ontológica - Transformación y Liderazgo"
+              width="1200"
+              height="800"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+              className="absolute inset-0 w-full h-full object-contain object-top rounded-2xl md:rounded-3xl"
+              style={{ contentVisibility: 'auto' }}
+            />
+
             {/* Subtle inner glow */}
             <div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-[#5a7458]/5 via-transparent to-transparent pointer-events-none"></div>
 
