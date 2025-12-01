@@ -82,7 +82,8 @@ const Hero = () => {
               backgroundImage: "url('/imagenes/hero.jpg')",
               backgroundSize: 'contain',
               backgroundPosition: 'center top',
-              backgroundRepeat: 'no-repeat'
+              backgroundRepeat: 'no-repeat',
+              contentVisibility: 'auto'
             }}
           >
             {/* Subtle inner glow */}

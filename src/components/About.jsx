@@ -117,8 +117,11 @@ const About = () => {
                   width="800"
                   height="800"
                   loading="eager"
+                  decoding="async"
+                  fetchpriority="high"
                   itemProp="image"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  style={{ contentVisibility: 'auto' }}
                 />
                 
                 {/* Overlay gradient on hover */}
@@ -245,10 +248,12 @@ const About = () => {
                       src={image}
                       alt={`Presentación de Lucía Vallejo sobre coaching ontológico y transformación organizacional - Slide ${index + 1}`}
                       title={`Mi historia y propósito - Lucía Vallejo Coach ${index + 1}`}
-                      width="1200"
+                      width="800"
                       height="800"
                       loading={index === 0 ? 'eager' : 'lazy'}
+                      decoding="async"
                       className="w-full h-full object-contain"
+                      style={{ contentVisibility: 'auto' }}
                     />
                   </div>
                 ))}
