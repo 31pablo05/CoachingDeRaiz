@@ -46,6 +46,10 @@ const About = () => {
     setCurrentSlide((prev) => (prev + 1) % presentationImages.length);
   };
 
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + presentationImages.length) % presentationImages.length);
+  };
+
   const goToSlide = (index) => {
     setCurrentSlide(index);
   };
@@ -80,11 +84,8 @@ const About = () => {
       className="bg-gradient-to-b from-white via-neutral-cream/30 to-white relative overflow-x-hidden py-16 md:py-24"
       aria-label="Sobre Lucía Vallejo - Perfil profesional y trayectoria"
     >
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 right-10 w-72 h-72 bg-secondary/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-40 left-10 w-96 h-96 bg-accent-lime/5 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
-      </div>
+      {/* Animated Background Elements - Optimized */}
+      <div className="absolute inset-0 pointer-events-none about-background-orbs"></div>
 
       <div className="relative z-10">
         {/* Section Title with Animation */}
@@ -101,34 +102,14 @@ const About = () => {
         <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center mb-20 container-custom px-6 md:px-12 lg:px-20">
           {/* Enhanced Image Section with Hover Effects */}
           <div className="fade-in-section">
-            <div className="relative group">
-              {/* Animated background gradient */}
-              <div className="absolute inset-0 bg-gradient-to-br from-secondary-light via-secondary to-accent-lime/30 rounded-2xl transform rotate-3 group-hover:rotate-6 transition-transform duration-500"></div>
-              
-              {/* Glowing effect on hover */}
-              <div className="absolute inset-0 bg-gradient-to-br from-accent-lime/20 to-secondary/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              
-              {/* Main image container */}
+            <div className="relative group about-image-card">
+              {/* Main image container - overlays handled by CSS pseudo-elements */}
               <div className="relative bg-white rounded-2xl overflow-hidden shadow-2xl aspect-square transform group-hover:scale-[1.02] transition-all duration-500">
                 <img 
                   src="/imagenes/lucia3.webp" 
-                  srcSet={`
-                    /imagenes/lucia3-300w.webp 300w,
-                    /imagenes/lucia3-500w.webp 500w,
-                    /imagenes/lucia3.webp 800w
-                  `}
-                  sizes={`
-                    (max-width: 640px) 300px,
-                    (max-width: 768px) 500px,
-                    800px
-                  `}
                   alt="Lucía Vallejo - Ingeniera Civil, Project Manager y Coach Ontológica Empresarial certificada por ECORE Newfield Consulting"
                   title="Lucía Vallejo - Coach Ontológica Empresarial"
-                  width="800"
-                  height="800"
                   loading="eager"
-                  decoding="async"
-                  fetchpriority="high"
                   itemProp="image"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   style={{ contentVisibility: 'auto' }}
@@ -245,6 +226,42 @@ const About = () => {
           <div className="relative w-full md:container-custom md:max-w-6xl md:mx-auto md:px-12 lg:px-20">
             {/* Carousel Container */}
             <div className="relative overflow-hidden md:rounded-2xl shadow-2xl bg-white">
+              {/* Previous Button */}
+              <button
+                onClick={prevSlide}
+                className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white text-primary rounded-full p-2 md:p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group"
+                aria-label="Imagen anterior"
+              >
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  strokeWidth={2} 
+                  stroke="currentColor" 
+                  className="w-5 h-5 md:w-6 md:h-6 group-hover:scale-110 transition-transform"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                </svg>
+              </button>
+
+              {/* Next Button */}
+              <button
+                onClick={nextSlide}
+                className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white text-primary rounded-full p-2 md:p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group"
+                aria-label="Imagen siguiente"
+              >
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  strokeWidth={2} 
+                  stroke="currentColor" 
+                  className="w-5 h-5 md:w-6 md:h-6 group-hover:scale-110 transition-transform"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                </svg>
+              </button>
+
               {/* Images */}
               <div className="relative w-full min-h-[500px] sm:min-h-[600px] md:min-h-[700px] lg:min-h-[800px]">
                 {presentationImages.map((image, index) => (
@@ -256,24 +273,9 @@ const About = () => {
                   >
                     <img
                       src={image}
-                      srcSet={`
-                        ${image.replace('.webp', '-400w.webp')} 400w,
-                        ${image.replace('.webp', '-600w.webp')} 600w,
-                        ${image.replace('.webp', '-800w.webp')} 800w,
-                        ${image} 1200w
-                      `}
-                      sizes={`
-                        (max-width: 640px) 400px,
-                        (max-width: 768px) 600px,
-                        (max-width: 1024px) 800px,
-                        1200px
-                      `}
                       alt={`Presentación de Lucía Vallejo sobre coaching ontológico y transformación organizacional - Slide ${index + 1}`}
                       title={`Mi historia y propósito - Lucía Vallejo Coach ${index + 1}`}
-                      width="1200"
-                      height="800"
                       loading={index === 0 ? 'eager' : 'lazy'}
-                      decoding="async"
                       className="w-full h-full object-contain"
                       style={{ contentVisibility: 'auto' }}
                     />

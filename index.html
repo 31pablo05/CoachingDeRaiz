@@ -15,9 +15,7 @@
     <link rel="modulepreload" href="/src/main.jsx" />
     
     <!-- Preload LCP image for optimal Core Web Vitals -->
-    <link rel="preload" as="image" href="/imagenes/hero.webp" fetchpriority="high" type="image/webp" 
-          imagesrcset="/imagenes/hero-400w.webp 400w, /imagenes/hero-600w.webp 600w, /imagenes/hero-800w.webp 800w, /imagenes/hero.webp 1200w" 
-          imagesizes="(max-width: 640px) 400px, (max-width: 768px) 600px, (max-width: 1024px) 800px, 1200px" />
+    <link rel="preload" as="image" href="/imagenes/hero.webp" fetchpriority="high" type="image/webp" />
     
     <!-- Preload critical fonts with font-display swap -->
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" />
@@ -87,53 +85,6 @@
       p {
         line-height: 1.75;
         margin: 0;
-      }
-      
-      /* === NAVBAR === */
-      nav {
-        position: fixed;
-        width: 100%;
-        top: 0;
-        z-index: 50;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        padding: 1rem 0;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        transition: all 0.3s ease;
-      }
-      
-      nav .container-custom {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-      
-      .logo {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        font-weight: 700;
-        font-size: 1.25rem;
-        color: #235649;
-        text-decoration: none;
-      }
-      
-      .nav-links {
-        display: none;
-        gap: 2rem;
-        list-style: none;
-      }
-      
-      .nav-links a {
-        color: #235649;
-        text-decoration: none;
-        font-weight: 600;
-        transition: color 0.3s ease;
-      }
-      
-      .nav-links a:hover {
-        color: #7a9477;
       }
       
       /* === HERO SECTION === */
@@ -388,9 +339,6 @@
           padding-left: 3rem;
           padding-right: 3rem;
         }
-        .nav-links {
-          display: flex;
-        }
         .grid-cols-1 {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
@@ -430,8 +378,9 @@
         -moz-osx-font-smoothing: grayscale;
       }
     </style>
-    
-    <link rel="icon" type="image/svg+xml" href="/logos/logocoaching.svg" />
+
+      <!-- Link al CSS principal para que Vite lo reemplace -->
+        <link rel="icon" type="image/svg+xml" href="/logos/logocoaching.svg" />
     
     <!-- Primary Meta Tags -->
     <title>Lucía Vallejo | Coach Ontológica Empresarial - Coaching Ejecutivo y de Equipos en Argentina</title>
@@ -704,22 +653,7 @@
         to { opacity: 1; }
       }
     </style>
-    
-    <!-- Non-blocking CSS loader fallback -->
-    <script>
-      // Ensure CSS loads even if preload fails
-      (function() {
-        var links = document.querySelectorAll('link[rel="preload"][as="style"]');
-        links.forEach(function(link) {
-          setTimeout(function() {
-            if (link.rel !== 'stylesheet') {
-              link.rel = 'stylesheet';
-            }
-          }, 0);
-        });
-      })();
-    </script>
-    
+
     <!-- Vite will inject the appropriate script tags during build -->
     <script type="module" src="/src/main.jsx"></script>
   </body>

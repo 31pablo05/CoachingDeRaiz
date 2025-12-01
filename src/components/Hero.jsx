@@ -32,27 +32,10 @@ const Hero = () => {
         background: 'linear-gradient(135deg, #fefcea 0%, #e8f0e4 25%, #d4e5d0 50%, #7a9477 75%, #5a7458 100%)'
       }}
     >
-      {/* Animated Background Elements - Elegant and Subtle */}
-      <div className="absolute inset-0">
-        {/* Soft overlay for depth */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-black/5"></div>
-        
-        {/* Elegant floating orbs - very subtle */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
-          {/* Large soft glow top-right */}
-          <div className="absolute -top-32 -right-32 w-[600px] h-[600px] bg-white/20 rounded-full blur-3xl animate-float-slow"></div>
-          
-          {/* Medium glow bottom-left */}
-          <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-[#5a7458]/10 rounded-full blur-3xl animate-float-slower"></div>
-          
-          {/* Accent glow center */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-[#fefcea]/30 rounded-full blur-2xl animate-pulse-slow"></div>
-        </div>
-        
-        {/* Subtle shimmer overlay */}
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer"></div>
-        </div>
+      {/* Animated Background Elements - Optimized (reduced DOM depth) */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-black/5">
+        {/* Floating orbs combined - uses pseudo-elements via CSS instead of multiple divs */}
+        <div className="absolute inset-0 hero-background-orbs"></div>
       </div>
 
       <div className="container-custom px-4 sm:px-6 md:px-12 lg:px-20 relative z-10">
@@ -77,28 +60,13 @@ const Hero = () => {
           <div 
             className="backdrop-blur-md bg-white/30 rounded-2xl md:rounded-3xl shadow-2xl border border-white/40 p-3 sm:p-4 md:p-6 lg:p-8 text-center transform hover:scale-[1.01] transition-all duration-700 relative overflow-hidden min-h-[350px] sm:min-h-[400px] md:min-h-[480px] lg:min-h-[560px] hover:shadow-[0_20px_60px_rgba(90,116,88,0.3)]"
           >
-            {/* LCP Image - Responsiva para diferentes tamaños de pantalla */}
+            {/* LCP Image */}
             <img 
               src="/imagenes/hero.webp"
-              srcSet={`
-                /imagenes/hero-400w.webp 400w,
-                /imagenes/hero-600w.webp 600w,
-                /imagenes/hero-800w.webp 800w,
-                /imagenes/hero.webp 1200w
-              `}
-              sizes={`
-                (max-width: 640px) 400px,
-                (max-width: 768px) 600px,
-                (max-width: 1024px) 800px,
-                1200px
-              `}
               alt="Lucía Vallejo - Coach Ontológica Empresarial en sesión de coaching"
               title="Lucía Vallejo Coach Ontológica - Transformación y Liderazgo"
-              width="1200"
-              height="800"
               loading="eager"
               fetchpriority="high"
-              decoding="async"
               className="absolute inset-0 w-full h-full object-contain object-top rounded-2xl md:rounded-3xl"
               style={{ contentVisibility: 'auto' }}
             />

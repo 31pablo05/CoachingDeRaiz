@@ -57,4 +57,170 @@
   .bg-gradient-primary {
     @apply bg-gradient-to-br from-primary to-primary-deeper;
   }
+  
+  /* Hero background orbs using pseudo-elements - reduces DOM nodes */
+  .hero-background-orbs::before {
+    content: '';
+    position: absolute;
+    top: -8rem;
+    right: -8rem;
+    width: 600px;
+    height: 600px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    filter: blur(96px);
+    animation: float-slow 20s ease-in-out infinite;
+  }
+  
+  .hero-background-orbs::after {
+    content: '';
+    position: absolute;
+    bottom: -10rem;
+    left: -10rem;
+    width: 500px;
+    height: 500px;
+    background: rgba(90, 116, 88, 0.1);
+    border-radius: 50%;
+    filter: blur(96px);
+    animation: float-slower 25s ease-in-out infinite;
+  }
+  
+  @keyframes float-slow {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(30px, 30px); }
+  }
+  
+  @keyframes float-slower {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-30px, -30px); }
+  }
+  
+  /* Coaching section background orbs */
+  .coaching-background-orbs::before {
+    content: '';
+    position: absolute;
+    top: 5rem;
+    right: 2.5rem;
+    width: 384px;
+    height: 384px;
+    background: rgba(90, 116, 88, 0.05);
+    border-radius: 50%;
+    filter: blur(96px);
+    animation: float-slow 20s ease-in-out infinite;
+  }
+  
+  .coaching-background-orbs::after {
+    content: '';
+    position: absolute;
+    bottom: 10rem;
+    left: 2.5rem;
+    width: 320px;
+    height: 320px;
+    background: rgba(122, 148, 119, 0.05);
+    border-radius: 50%;
+    filter: blur(96px);
+    animation: float-slower 25s ease-in-out infinite;
+  }
+  
+  /* About section background orbs */
+  .about-background-orbs::before {
+    content: '';
+    position: absolute;
+    top: 5rem;
+    right: 2.5rem;
+    width: 288px;
+    height: 288px;
+    background: rgba(90, 116, 88, 0.05);
+    border-radius: 50%;
+    filter: blur(96px);
+    animation: pulse 3s ease-in-out infinite;
+  }
+  
+  .about-background-orbs::after {
+    content: '';
+    position: absolute;
+    bottom: 10rem;
+    left: 2.5rem;
+    width: 384px;
+    height: 384px;
+    background: rgba(165, 185, 145, 0.05);
+    border-radius: 50%;
+    filter: blur(96px);
+    animation: pulse 3s ease-in-out 1s infinite;
+  }
+  
+  /* About image card decorative overlays using pseudo-elements */
+  .about-image-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom right, rgb(122, 148, 119), rgb(90, 116, 88), rgba(165, 185, 145, 0.3));
+    border-radius: 1rem;
+    transform: rotate(3deg);
+    transition: transform 0.5s;
+    z-index: -1;
+  }
+  
+  .about-image-card:hover::before {
+    transform: rotate(6deg);
+  }
+  
+  .about-image-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom right, rgba(165, 185, 145, 0.2), rgba(90, 116, 88, 0.2));
+    border-radius: 1rem;
+    filter: blur(24px);
+    opacity: 0;
+    transition: opacity 0.5s;
+    z-index: -1;
+  }
+  
+  .about-image-card:hover::after {
+    opacity: 1;
+  }
+  
+  /* Footer background orbs and pattern */
+  .footer-background-orbs::before {
+    content: '';
+    position: absolute;
+    bottom: 8rem;
+    right: 5rem;
+    width: 384px;
+    height: 384px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 50%;
+    filter: blur(96px);
+    animation: float-slower 25s ease-in-out infinite;
+  }
+  
+  .footer-background-orbs::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(165, 185, 145, 0.03) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: pulse-slow 6s ease-in-out infinite;
+  }
+  
+  /* Footer logo glow effect using pseudo-element */
+  .footer-logo-glow::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(165, 185, 145, 0.2);
+    border-radius: 50%;
+    filter: blur(24px);
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  
+  .group:hover .footer-logo-glow::after {
+    opacity: 1;
+  }
 }

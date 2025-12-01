@@ -41,11 +41,8 @@ const WhatIsCoaching = () => {
         background: 'linear-gradient(180deg, #ffffff 0%, #fefcea 30%, #f8faf5 70%, #e8f0e4 100%)'
       }}
     >
-      {/* Elegant Background Elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 right-10 w-96 h-96 bg-[#5a7458]/5 rounded-full blur-3xl animate-float-slow"></div>
-        <div className="absolute bottom-40 left-10 w-80 h-80 bg-[#7a9477]/5 rounded-full blur-3xl animate-float-slower"></div>
-      </div>
+      {/* Elegant Background Elements - Optimized */}
+      <div className="absolute inset-0 pointer-events-none coaching-background-orbs"></div>
 
       <div className="container-custom relative z-10">
         {/* Header */}

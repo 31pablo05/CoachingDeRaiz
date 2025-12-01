@@ -16,13 +16,16 @@ export default defineConfig({
     // Plugin para hacer el CSS no bloqueante
     {
       name: 'non-blocking-css',
-      transformIndexHtml(html) {
-        // Convert CSS links to non-blocking preload
-        return html.replace(
-          /<link rel="stylesheet" crossorigin href="([^"]+\.css)">/g,
-          '<link rel="preload" as="style" href="$1" onload="this.onload=null;this.rel=\'stylesheet\'" crossorigin><noscript><link rel="stylesheet" href="$1" crossorigin></noscript>'
-        );
-      },
+      transformIndexHtml: {
+        order: 'post',
+        handler(html) {
+          // Convert CSS links to non-blocking preload
+          return html.replace(
+            /<link rel="stylesheet" crossorigin href="([^"]+\.css)">/g,
+            '<link rel="preload" as="style" href="$1" onload="this.onload=null;this.rel=\'stylesheet\'" crossorigin><noscript><link rel="stylesheet" href="$1" crossorigin></noscript>'
+          );
+        }
+      }
     },
   ].filter(Boolean),
   

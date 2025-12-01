@@ -80,30 +80,20 @@ const Footer = () => {
 
   return (
     <footer ref={footerRef} className="relative bg-gradient-to-br from-primary via-primary-deeper to-primary-dark text-white overflow-hidden">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        {/* Floating Orbs with Glow - Más sutiles */}
-        <div className="absolute bottom-32 right-20 w-96 h-96 bg-white/3 rounded-full blur-3xl animate-float-slower"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-radial from-accent-lime/3 to-transparent rounded-full animate-pulse-slow"></div>
-        
-        {/* Subtle Pattern Overlay */}
-        <div className="absolute inset-0 opacity-[0.02]" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-        }}></div>
-      </div>
+      {/* Animated Background Elements - Optimized */}
+      <div className="absolute inset-0 pointer-events-none footer-background-orbs"></div>
 
       <div className="container-custom px-6 md:px-12 lg:px-20 py-6 md:py-8 relative z-10">
         <div className="grid md:grid-cols-3 gap-6 md:gap-8 mb-6 md:mb-8">
           {/* Enhanced Brand Section */}
           <div className="space-y-3 md:space-y-4 group footer-animate opacity-0">
             <div className="flex items-center gap-4 mb-3 md:mb-4">
-              <div className="relative">
+              <div className="relative footer-logo-glow">
                 <img 
                   src="/logos/logocoaching.svg" 
                   alt="Coaching de Raíz" 
                   className="h-16 w-16 group-hover:scale-110 group-hover:rotate-6 transition-all duration-700 drop-shadow-lg footer-glow-pulse" 
                 />
-                <div className="absolute inset-0 bg-accent-lime/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
               <div>
                 <h3 className="text-3xl font-bold bg-gradient-to-r from-white via-accent-lime/80 to-white bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-500">
