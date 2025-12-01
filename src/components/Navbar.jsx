@@ -19,32 +19,49 @@ const Navbar = () => {
     // Animación de entrada
     const timer = setTimeout(() => setIsLoaded(true), 100);
 
+    let rafId = null;
+    let lastScrollY = 0;
+
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setIsScrolled(scrollY > 20);
+      // Cancelar frame anterior si existe
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+      }
 
-      // Calcular progreso del scroll
-      const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = documentHeight > 0 ? (scrollY / documentHeight) * 100 : 0;
-      setScrollProgress(Math.min(progress, 100));
+      // Batch todas las lecturas del DOM en un solo frame
+      rafId = requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
+        
+        // Solo actualizar si cambió significativamente (reduce renders)
+        if (Math.abs(scrollY - lastScrollY) > 5) {
+          lastScrollY = scrollY;
+          setIsScrolled(scrollY > 20);
 
-      // Detect active section
-      const sections = navLinks.map(link => link.href.substring(1));
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 100 && rect.bottom >= 100) {
-            setActiveSection(section);
-            break;
+          // Calcular progreso del scroll - batch con otras lecturas
+          const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const progress = documentHeight > 0 ? (scrollY / documentHeight) * 100 : 0;
+          setScrollProgress(Math.min(progress, 100));
+
+          // Detect active section - optimizado
+          const sections = navLinks.map(link => link.href.substring(1));
+          for (const section of sections) {
+            const element = document.getElementById(section);
+            if (element) {
+              const rect = element.getBoundingClientRect();
+              if (rect.top <= 100 && rect.bottom >= 100) {
+                setActiveSection(section);
+                break;
+              }
+            }
           }
         }
-      }
+      });
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      if (rafId) cancelAnimationFrame(rafId);
       clearTimeout(timer);
     };
   }, []);
@@ -53,13 +70,16 @@ const Navbar = () => {
     e.preventDefault();
     const element = document.querySelector(href);
     if (element) {
-      const offset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      // Batch todas las lecturas del DOM juntas
+      requestAnimationFrame(() => {
+        const offset = 80;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
       });
       setIsMobileMenuOpen(false);
     }
