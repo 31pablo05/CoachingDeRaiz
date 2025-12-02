@@ -36,6 +36,51 @@
           "value": "public, max-age=31536000, immutable"
         }
       ]
+    },
+    {
+      "source": "/imagenes/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/logos/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/home",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/inicio",
+      "destination": "/#inicio",
+      "permanent": true
+    },
+    {
+      "source": "/sobre-mi",
+      "destination": "/#sobre-mi",
+      "permanent": true
+    },
+    {
+      "source": "/servicios",
+      "destination": "/#servicios",
+      "permanent": true
+    },
+    {
+      "source": "/contacto",
+      "destination": "/#contacto",
+      "permanent": true
     }
   ],
   "rewrites": [

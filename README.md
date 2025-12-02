@@ -13,7 +13,8 @@
 
 Sitio web profesional desarrollado para **Lucía Vallejo**, Ingeniera Civil, Project Manager y Coach Ontológica Empresarial certificada. El sitio presenta sus servicios de coaching ejecutivo, coaching de equipos y transformación organizacional.
 
-**🔗 Sitio en producción:** [https://coachingderaiz.vercel.app/](https://coachingderaiz.vercel.app/)
+**🔗 Sitio en producción:** [https://www.coachingderaiz.com/](https://www.coachingderaiz.com/)  
+**🔗 Dominio alternativo:** [https://coachingderaiz.vercel.app/](https://coachingderaiz.vercel.app/) (redirige al principal)
 
 ---
 

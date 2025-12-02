@@ -1,5 +1,5 @@
 # robots.txt para Coaching de Raíz
-# https://coachingderaiz.vercel.app/
+# https://www.coachingderaiz.com/
 
 # Permitir a todos los robots el acceso completo al sitio
 User-agent: *
@@ -30,7 +30,7 @@ Allow: /logos/
 Allow: /videos/
 
 # Sitemap
-Sitemap: https://coachingderaiz.vercel.app/sitemap.xml
+Sitemap: https://www.coachingderaiz.com/sitemap.xml
 
 # Configuración de rastreo
 Crawl-delay: 0
