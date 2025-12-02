@@ -207,7 +207,7 @@ const About = () => {
             </div>
 
             {/* Left Side Certifications - Academic */}
-            <div className="absolute left-0 -translate-x-[15%] -translate-y-[125%] md:left-8 md:translate-x-0 md:-translate-y-[120%] lg:left-0 top-1/2 lg:-translate-x-[50%] lg:-translate-y-[130%] z-10 space-y-2 md:space-y-4 w-[28%] md:w-[35%] lg:w-[28%]">
+            <div className="absolute left-0 -translate-x-[15%] -translate-y-[140%] md:left-8 md:translate-x-0 md:-translate-y-[120%] lg:left-0 top-1/2 lg:-translate-x-[50%] lg:-translate-y-[130%] z-10 space-y-2 md:space-y-4 w-[28%] md:w-[35%] lg:w-[28%]">
               {/* Ingeniera Civil */}
               <div className="card text-center group hover:scale-105 hover:shadow-2xl transition-all duration-500 relative overflow-hidden p-1.5 md:p-6">
                 <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-accent-lime/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -240,7 +240,7 @@ const About = () => {
             </div>
 
             {/* Right Side Certifications - Professional */}
-            <div className="absolute right-0 md:right-0 lg:right-0 top-1/2 -translate-y-1/2 translate-x-[15%] -translate-y-[130%] md:translate-x-[35%] md:-translate-y-[120%] lg:translate-x-[50%] lg:-translate-y-[130%] z-10 space-y-1.5 md:space-y-4 w-[28%] md:w-[35%] lg:w-[28%]">
+            <div className="absolute right-0 md:right-0 lg:right-0 top-1/2 -translate-y-1/2 translate-x-[15%] -translate-y-[145%] md:translate-x-[35%] md:-translate-y-[120%] lg:translate-x-[50%] lg:-translate-y-[130%] z-10 space-y-1.5 md:space-y-4 w-[28%] md:w-[35%] lg:w-[28%]">
               {/* Coach Ontológica */}
               <div className="card text-center group hover:scale-105 hover:shadow-2xl transition-all duration-500 relative overflow-hidden p-1 md:p-6">
                 <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-accent-lime/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
