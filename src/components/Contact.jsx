@@ -86,12 +86,12 @@ const Contact = () => {
     <section 
       id="contacto" 
       ref={sectionRef}
-      className="section-padding bg-gradient-to-br from-neutral-beige via-neutral-cream to-neutral-yellow"
+      className="py-16 md:py-24 bg-gradient-to-br from-neutral-beige via-neutral-cream to-neutral-yellow"
       aria-label="Formulario de contacto - Agendar sesión de coaching"
       itemScope
       itemType="https://schema.org/ContactPage"
     >
-      <div className="container-custom">
+      <div className="container-custom px-6 md:px-12 lg:px-20">
         {/* Header */}
         <div className="text-center mb-8 sm:mb-10 md:mb-12 fade-in-section">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-3 sm:mb-4">
