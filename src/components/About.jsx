@@ -182,51 +182,107 @@ const About = () => {
 
         {/* Enhanced Certifications Grid with Stagger Animation */}
         <div className="fade-in-section container-custom px-6 md:px-12 lg:px-20">
-          <div className="text-center mb-12">
-            <span className="inline-block text-secondary font-semibold text-sm uppercase tracking-wider mb-2 px-4 py-1 bg-secondary/10 rounded-full">
+          <div className="text-center mb-0 md:mb-12">
+            <span className="inline-block text-secondary font-semibold text-sm uppercase tracking-wider mb-1 px-4 py-1 bg-secondary/10 rounded-full">
               Mi Trayectoria
             </span>
-            <h3 className="text-3xl md:text-4xl font-bold text-primary mt-4">
+            <h3 className="text-3xl md:text-4xl font-bold text-primary mt-4 md:mt-4">
               Formación y Experiencia
             </h3>
           </div>
           
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {certifications.map((cert, index) => (
-              <div 
-                key={index}
-                className="card text-center group hover:scale-105 hover:shadow-2xl transition-all duration-500 relative overflow-hidden"
-                style={{animationDelay: `${index * 100}ms`}}
-              >
-                {/* Hover gradient background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-accent-lime/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
-                <div className="relative z-10">
-                  <div className="text-5xl mb-4 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
-                    {cert.icon}
-                  </div>
-                  <h4 className="font-bold text-primary mb-2 text-lg group-hover:text-secondary transition-colors duration-300">
-                    {cert.title}
-                  </h4>
-                  <p className="text-sm text-gray-600">{cert.institution}</p>
-                </div>
+          {/* Background Image */}
+          <div className="relative min-h-[700px] md:min-h-[900px] lg:min-h-[1100px] -mt-8 md:mt-0">
+            {/* Image container */}
+            <div className="absolute left-0 right-0 -mx-6 md:-mx-12 lg:-mx-20 flex items-end justify-center pointer-events-none top-[-25px] md:top-[0px]">
+              <div className="relative w-[75%] md:w-full h-[600px] md:h-[800px] lg:h-[1000px]">
+                <img
+                  src="/imagenes/LuciaVallejo-45.jpg"
+                  alt="Lucía Vallejo - Coach Profesional"
+                  className="w-full h-full object-contain scale-150 md:scale-125"
+                  loading="lazy"
+                  style={{ contentVisibility: 'auto' }}
+                />
+              </div>
+            </div>
 
-                {/* Decorative corner */}
+            {/* Left Side Certifications - Academic */}
+            <div className="absolute left-0 -translate-x-[15%] -translate-y-[125%] md:left-8 md:translate-x-0 md:-translate-y-[120%] lg:left-0 top-1/2 lg:-translate-x-[50%] lg:-translate-y-[130%] z-10 space-y-2 md:space-y-4 w-[28%] md:w-[35%] lg:w-[28%]">
+              {/* Ingeniera Civil */}
+              <div className="card text-center group hover:scale-105 hover:shadow-2xl transition-all duration-500 relative overflow-hidden p-1.5 md:p-6">
+                <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-accent-lime/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative z-10">
+                  <div className="text-xl md:text-4xl lg:text-5xl mb-1 md:mb-3 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
+                    🎓
+                  </div>
+                  <h4 className="font-bold text-primary mb-0.5 md:mb-2 text-[9px] leading-tight md:text-sm lg:text-lg group-hover:text-secondary transition-colors duration-300">
+                    Ingeniera Civil
+                  </h4>
+                  <p className="text-[8px] md:text-xs lg:text-sm text-gray-600 leading-tight">Universidad</p>
+                </div>
                 <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-accent-lime/20 to-transparent transform translate-x-8 -translate-y-8 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500 rounded-full"></div>
               </div>
-            ))}
+
+              {/* Especialista en Gestión */}
+              <div className="card text-center group hover:scale-105 hover:shadow-2xl transition-all duration-500 relative overflow-hidden p-1.5 md:p-6">
+                <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-accent-lime/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative z-10">
+                  <div className="text-xl md:text-4xl lg:text-5xl mb-1 md:mb-3 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
+                    📊
+                  </div>
+                  <h4 className="font-bold text-primary mb-0.5 md:mb-2 text-[9px] leading-tight md:text-sm lg:text-lg group-hover:text-secondary transition-colors duration-300">
+                    Especialista en Gestión de Proyectos
+                  </h4>
+                  <p className="text-[8px] md:text-xs lg:text-sm text-gray-600 leading-tight">UBA</p>
+                </div>
+                <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-accent-lime/20 to-transparent transform translate-x-8 -translate-y-8 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500 rounded-full"></div>
+              </div>
+            </div>
+
+            {/* Right Side Certifications - Professional */}
+            <div className="absolute right-0 md:right-0 lg:right-0 top-1/2 -translate-y-1/2 translate-x-[15%] -translate-y-[130%] md:translate-x-[35%] md:-translate-y-[120%] lg:translate-x-[50%] lg:-translate-y-[130%] z-10 space-y-1.5 md:space-y-4 w-[28%] md:w-[35%] lg:w-[28%]">
+              {/* Coach Ontológica */}
+              <div className="card text-center group hover:scale-105 hover:shadow-2xl transition-all duration-500 relative overflow-hidden p-1 md:p-6">
+                <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-accent-lime/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative z-10">
+                  <div className="text-lg md:text-4xl lg:text-5xl mb-0.5 md:mb-3 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
+                    🌱
+                  </div>
+                  <h4 className="font-bold text-primary mb-0 md:mb-2 text-[9px] leading-tight md:text-sm lg:text-lg group-hover:text-secondary transition-colors duration-300">
+                    Coach Ontológica Empresarial
+                  </h4>
+                  <p className="text-[7px] md:text-xs lg:text-sm text-gray-600 leading-tight">ECORE - Newfield Consulting / UTDT</p>
+                </div>
+                <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-accent-lime/20 to-transparent transform translate-x-8 -translate-y-8 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500 rounded-full"></div>
+              </div>
+
+              {/* Experiencia */}
+              <div className="card text-center group hover:scale-105 hover:shadow-2xl transition-all duration-500 relative overflow-hidden p-1 md:p-6">
+                <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-accent-lime/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative z-10">
+                  <div className="text-lg md:text-4xl lg:text-5xl mb-0.5 md:mb-3 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
+                    💼
+                  </div>
+                  <h4 className="font-bold text-primary mb-0 md:mb-2 text-[9px] leading-tight md:text-sm lg:text-lg group-hover:text-secondary transition-colors duration-300">
+                    +10 años de experiencia
+                  </h4>
+                  <p className="text-[7px] md:text-xs lg:text-sm text-gray-600 leading-tight">Liderazgo en empresas industriales y de energía</p>
+                </div>
+                <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-accent-lime/20 to-transparent transform translate-x-8 -translate-y-8 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500 rounded-full"></div>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Image Carousel Section - Full Width Auto-Loop */}
         <div className="mt-16 fade-in-section">
-          <h3 className="text-2xl font-bold text-primary text-center mb-8 container-custom px-6 md:px-12 lg:px-20">
-            Mi Historia y Propósito
-          </h3>
           <div className="relative w-full md:container-custom md:max-w-6xl md:mx-auto md:px-12 lg:px-20">
+            
             {/* Carousel Container */}
             <div className="relative overflow-hidden md:rounded-2xl shadow-2xl bg-white">
-              {/* Previous Button */}
+             <h3 className="text-2xl font-bold text-primary text-center mb-8 px-6 md:px-12 lg:px-20">
+              Mi Historia y Propósito
+            </h3> {/* Previous Button */}
               <button
                 onClick={prevSlide}
                 className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white text-primary rounded-full p-2 md:p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group"
