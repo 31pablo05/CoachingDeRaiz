@@ -168,14 +168,14 @@ const Services = () => {
             <div className="w-24 h-1 bg-gradient-to-r from-transparent via-[#7a9477] to-transparent mx-auto"></div>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8 md:items-start">
             {additionalInfo.map((info, index) => (
               <div 
                 key={index}
-                className="fade-in-section group"
+                className="fade-in-section group h-full"
                 style={{ animationDelay: `${(services.length + index) * 100}ms` }}
               >
-                <div className="relative overflow-hidden rounded-2xl shadow-2xl bg-white border border-[#5a7458]/10 transform hover:scale-[1.02] transition-all duration-500 hover:shadow-[0_20px_60px_rgba(90,116,88,0.2)] h-full">
+                <div className="relative overflow-hidden rounded-2xl shadow-2xl bg-white border border-[#5a7458]/10 transform hover:scale-[1.02] transition-all duration-500 hover:shadow-[0_20px_60px_rgba(90,116,88,0.2)] h-full flex flex-col">
                   
                   {/* Header with Icon and Title */}
                   <div className="bg-gradient-to-r from-[#5a7458] to-[#7a9477] p-6 text-white">
@@ -186,66 +186,70 @@ const Services = () => {
                   </div>
 
                   {/* Content */}
-                  <div className="p-6">
+                  <div className="p-6 flex-1 flex flex-col">
                     {/* Cómo Trabajamos */}
                     {info.subtitle && (
-                      <>
-                        <p className="font-semibold text-[#5a7458] mb-2">{info.subtitle}</p>
-                        {info.pillars && (
-                          <p className="text-sm text-[#7a9477] font-medium mb-4 italic">{info.pillars}</p>
-                        )}
-                        <p className="text-gray-700 mb-6 leading-relaxed">{info.description}</p>
-                        
-                        {info.features && (
-                          <div className="space-y-4">
-                            {info.features.map((feature, idx) => (
-                              <div key={idx} className="border-l-4 border-[#7a9477] pl-4">
-                                <h5 className="font-bold text-[#5a7458] text-sm mb-1">{feature.label}</h5>
-                                <p className="text-gray-600 text-sm leading-relaxed">{feature.desc}</p>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </>
+                      <div className="flex flex-col h-full">
+                        <div className="flex-1">
+                          <p className="font-semibold text-[#5a7458] mb-2">{info.subtitle}</p>
+                          {info.pillars && (
+                            <p className="text-sm text-[#7a9477] font-medium mb-4 italic">{info.pillars}</p>
+                          )}
+                          <p className="text-gray-700 mb-6 leading-relaxed">{info.description}</p>
+                          
+                          {info.features && (
+                            <div className="space-y-3">
+                              {info.features.map((feature, idx) => (
+                                <div key={idx} className="border-l-3 border-[#7a9477] pl-3 py-1">
+                                  <h5 className="font-bold text-[#5a7458] text-sm mb-0.5">{feature.label}</h5>
+                                  <p className="text-gray-600 text-xs leading-snug">{feature.desc}</p>
+                                </div>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      </div>
                     )}
 
                     {/* Propuesta de Inversión */}
                     {info.packages && (
-                      <>
-                        <p className="text-gray-700 mb-4 leading-relaxed">{info.subtitle}</p>
-                        <p className="text-gray-700 mb-6 leading-relaxed font-medium">{info.description}</p>
-                        
-                        <div className="bg-[#5a7458]/5 rounded-xl p-4 mb-6">
-                          <p className="font-semibold text-[#5a7458] mb-4">Nuestras propuestas estándar:</p>
-                          <div className="space-y-4">
-                            {info.packages.map((pkg, idx) => (
-                              <div key={idx} className="bg-white rounded-lg p-4 shadow-md border border-[#5a7458]/10">
-                                <div className="flex items-start gap-2 mb-2">
-                                  <span className="text-[#7a9477] font-bold">•</span>
-                                  <div>
-                                    <h5 className="font-bold text-[#5a7458]">{pkg.name}</h5>
-                                    {pkg.hours && <p className="text-sm text-[#7a9477] font-medium">{pkg.hours}</p>}
+                      <div className="flex flex-col h-full">
+                        <div className="flex-1">
+                          <p className="text-gray-700 mb-3 leading-relaxed text-sm">{info.subtitle}</p>
+                          <p className="text-gray-700 mb-4 leading-relaxed font-medium text-sm">{info.description}</p>
+                          
+                          <div className="bg-[#5a7458]/5 rounded-xl p-3 mb-4">
+                            <p className="font-semibold text-[#5a7458] mb-3 text-sm">Nuestras propuestas estándar:</p>
+                            <div className="space-y-3">
+                              {info.packages.map((pkg, idx) => (
+                                <div key={idx} className="bg-white rounded-lg p-3 shadow-md border border-[#5a7458]/10">
+                                  <div className="flex items-start gap-2 mb-1">
+                                    <span className="text-[#7a9477] font-bold text-sm">•</span>
+                                    <div>
+                                      <h5 className="font-bold text-[#5a7458] text-sm">{pkg.name}</h5>
+                                      {pkg.hours && <p className="text-xs text-[#7a9477] font-medium">{pkg.hours}</p>}
+                                    </div>
                                   </div>
+                                  <p className="text-gray-600 text-xs leading-relaxed ml-4">{pkg.desc}</p>
                                 </div>
-                                <p className="text-gray-600 text-sm leading-relaxed ml-4">{pkg.desc}</p>
-                              </div>
-                            ))}
+                              ))}
+                            </div>
                           </div>
                         </div>
 
-                        <div className="bg-gradient-to-r from-[#fefcea] to-[#e8f0e4] rounded-lg p-4 border border-[#7a9477]/20">
-                          <p className="text-gray-700 text-sm leading-relaxed italic">{info.cta}</p>
+                        <div className="bg-gradient-to-r from-[#fefcea] to-[#e8f0e4] rounded-lg p-3 border border-[#7a9477]/20 mt-auto">
+                          <p className="text-gray-700 text-xs leading-relaxed italic">{info.cta}</p>
                         </div>
-                      </>
+                      </div>
                     )}
 
                     {/* Por Qué Elegirnos */}
                     {info.reasons && (
-                      <div className="space-y-4">
+                      <div className="space-y-3 flex flex-col h-full">
                         {info.reasons.map((reason, idx) => (
-                          <div key={idx} className="flex items-start gap-3 p-4 bg-gradient-to-r from-[#5a7458]/5 to-[#7a9477]/5 rounded-lg border-l-4 border-[#7a9477] hover:shadow-md transition-shadow duration-300">
-                            <span className="text-[#7a9477] text-xl flex-shrink-0 mt-1">✓</span>
-                            <p className="text-gray-700 leading-relaxed">{reason}</p>
+                          <div key={idx} className="flex items-start gap-3 p-3 bg-gradient-to-r from-[#5a7458]/5 to-[#7a9477]/5 rounded-lg border-l-3 border-[#7a9477] hover:shadow-md transition-shadow duration-300 flex-1">
+                            <span className="text-[#7a9477] text-lg flex-shrink-0 mt-0.5">✓</span>
+                            <p className="text-gray-700 leading-relaxed text-sm">{reason}</p>
                           </div>
                         ))}
                       </div>
