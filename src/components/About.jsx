@@ -186,15 +186,15 @@ const About = () => {
             <span className="inline-block text-secondary font-semibold text-sm uppercase tracking-wider mb-1 px-4 py-1 bg-secondary/10 rounded-full">
               Mi Trayectoria
             </span>
-            <h3 className="text-3xl md:text-4xl font-bold text-primary mt-4 md:mt-4">
+            <h3 className="text-3xl md:text-4xl font-bold text-primary mt-2 md:mt-4">
               Formación y Experiencia
             </h3>
           </div>
           
           {/* Background Image */}
-          <div className="relative min-h-[700px] md:min-h-[900px] lg:min-h-[1100px] -mt-8 md:mt-0">
+          <div className="relative min-h-[700px] md:min-h-[900px] lg:min-h-[1100px] -mt-16 md:mt-0">
             {/* Image container */}
-            <div className="absolute left-0 right-0 -mx-6 md:-mx-12 lg:-mx-20 flex items-end justify-center pointer-events-none top-[-25px] md:top-[0px]">
+            <div className="absolute left-0 right-0 -mx-6 md:-mx-12 lg:-mx-20 flex items-end justify-center pointer-events-none top-[-45px] md:top-[120px]">
               <div className="relative w-[75%] md:w-full h-[600px] md:h-[800px] lg:h-[1000px]">
                 <img
                   src="/imagenes/LuciaVallejo-45.jpg"
@@ -207,7 +207,7 @@ const About = () => {
             </div>
 
             {/* Left Side Certifications - Academic */}
-            <div className="absolute left-0 -translate-x-[15%] -translate-y-[140%] md:left-8 md:translate-x-0 md:-translate-y-[120%] lg:left-0 top-1/2 lg:-translate-x-[50%] lg:-translate-y-[130%] z-10 space-y-2 md:space-y-4 w-[28%] md:w-[35%] lg:w-[28%]">
+            <div className="absolute left-0 -translate-x-[15%] -translate-y-[140%] md:left-8 md:translate-x-0 md:-translate-y-[120%] lg:left-0 top-1/2 lg:-translate-x-[50%] lg:-translate-y-[60%] z-10 space-y-2 md:space-y-4 w-[28%] md:w-[35%] lg:w-[28%]">
               {/* Ingeniera Civil */}
               <div className="card text-center group hover:scale-105 hover:shadow-2xl transition-all duration-500 relative overflow-hidden p-1.5 md:p-6">
                 <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-accent-lime/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -240,7 +240,7 @@ const About = () => {
             </div>
 
             {/* Right Side Certifications - Professional */}
-            <div className="absolute right-0 md:right-0 lg:right-0 top-1/2 -translate-y-1/2 translate-x-[15%] -translate-y-[145%] md:translate-x-[35%] md:-translate-y-[120%] lg:translate-x-[50%] lg:-translate-y-[130%] z-10 space-y-1.5 md:space-y-4 w-[28%] md:w-[35%] lg:w-[28%]">
+            <div className="absolute right-0 md:right-0 lg:right-0 top-1/2 -translate-y-1/2 translate-x-[15%] -translate-y-[145%] md:translate-x-[35%] md:-translate-y-[120%] lg:translate-x-[50%] lg:-translate-y-[60%] z-10 space-y-1.5 md:space-y-4 w-[28%] md:w-[35%] lg:w-[28%]">
               {/* Coach Ontológica */}
               <div className="card text-center group hover:scale-105 hover:shadow-2xl transition-all duration-500 relative overflow-hidden p-1 md:p-6">
                 <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-accent-lime/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -275,14 +275,19 @@ const About = () => {
         </div>
 
         {/* Image Carousel Section - Full Width Auto-Loop */}
-        <div className="mt-16 fade-in-section">
+        <div className="-mt-32 md:mt-16 fade-in-section">
           <div className="relative w-full md:container-custom md:max-w-6xl md:mx-auto md:px-12 lg:px-20">
             
             {/* Carousel Container */}
             <div className="relative overflow-hidden md:rounded-2xl shadow-2xl bg-white">
-             <h3 className="text-2xl font-bold text-primary text-center mb-8 px-6 md:px-12 lg:px-20">
-              Mi Historia y Propósito
-            </h3> {/* Previous Button */}
+              <div className="text-center pt-8 pb-4 px-6 md:px-12 lg:px-20">
+                <h3 className="text-3xl md:text-4xl font-bold text-primary">
+                  Mi Historia y Propósito
+                </h3>
+                <div className="w-24 h-1 bg-gradient-to-r from-secondary via-accent-lime to-secondary mx-auto rounded-full mt-3"></div>
+              </div>
+              
+              {/* Previous Button */}
               <button
                 onClick={prevSlide}
                 className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white text-primary rounded-full p-2 md:p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group"

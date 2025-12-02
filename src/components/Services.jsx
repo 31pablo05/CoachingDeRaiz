@@ -26,17 +26,40 @@ const Services = () => {
     {
       title: 'Coaching Ejecutivo',
       icon: '👔',
-      image: '/imagenes/serv1.png'
+      image: '/imagenes/coachingEjecutivo.PNG',
+      description: 'Acompañamos a líderes, mandos medios y equipos directivos en procesos de desarrollo de liderazgo, alineados con los objetivos estratégicos de la organización.',
+      results: [
+        'Mayor claridad en la toma de decisiones.',
+        'Comunicación más efectiva y feedback constructivo.',
+        'Liderazgos más presentes, empáticos y orientados a resultados.',
+        'Disminución de la sobrecarga y mejora del clima laboral.'
+      ],
+      methodology: 'Sesiones individuales de coaching, donde se acompaña al líder en sus desafíos reales y se potencia su capacidad de influencia y toma de decisiones.'
     },
     {
       title: 'Coaching de Equipos',
       icon: '👥',
-      image: '/imagenes/serv2.png'
+      image: '/imagenes/coachingEquipos.PNG',
+      description: 'Facilitamos espacios de conversación y aprendizaje compartido donde los equipos mejoran su coordinación, confianza y sentido de propósito común.',
+      results: [
+        'Mejor colaboración y sinergia entre áreas.',
+        'Mayor productividad y sentido de responsabilidad compartida.',
+        'Menos conflictos y más innovación.'
+      ],
+      methodology: 'Encuentros grupales y talleres de liderazgo, orientados a fortalecer la comunicación, la confianza y la colaboración entre pares.'
     },
     {
       title: 'Transformación Organizacional',
       icon: '🔄',
-      image: '/imagenes/serv3.png'
+      image: '/imagenes/descarga2.jpg',
+      description: 'Diseñamos intervenciones a medida para acompañar procesos de cambio, desarrollo de liderazgo o mejora del clima.',
+      approach: [
+        'Diagnóstico de clima y cultura.',
+        'Acompañamiento en gestión del cambio.',
+        'Talleres de liderazgo, comunicación y gestión emocional.',
+        'Seguimiento de impacto con indicadores cuantitativos y cualitativos.'
+      ],
+      methodology: 'Reuniones de alineación con RRHH o Dirección, para asegurar coherencia con los objetivos organizacionales y evaluar avances medibles.'
     },
     {
       title: 'Sesiones de Coaching Individual',
