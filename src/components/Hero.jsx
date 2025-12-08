@@ -50,7 +50,7 @@ const Hero = () => {
             {/* Main Title with Gradient Effect */}
             <h1 className="fade-in-section" role="banner">
               <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold bg-gradient-to-r from-[#5a7458] via-[#7a9477] to-[#5a7458] bg-clip-text text-transparent animate-fade-in leading-tight drop-shadow-sm" itemProp="name">
-                Coaching de Raiz
+                Coaching de Raíz
               </span>
               
             </h1>
