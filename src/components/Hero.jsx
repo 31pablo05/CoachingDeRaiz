@@ -50,7 +50,7 @@ const Hero = () => {
             {/* Main Title with Gradient Effect */}
             <h1 className="fade-in-section" role="banner">
               <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold bg-gradient-to-r from-[#5a7458] via-[#7a9477] to-[#5a7458] bg-clip-text text-transparent animate-fade-in leading-tight drop-shadow-sm" itemProp="name">
-                Lucía Vallejo - Coach Ontológica Empresarial
+                Coaching de Raiz
               </span>
               
             </h1>
@@ -125,7 +125,7 @@ const Hero = () => {
                 }}
                 className="w-full sm:w-auto text-sm md:text-base lg:text-lg px-4 sm:px-6 md:px-8 lg:px-10 py-2.5 md:py-3 lg:py-4 hover:shadow-xl hover:bg-[#5a7458] hover:text-white hover:border-[#5a7458] transform hover:-translate-y-1 transition-all duration-500"
               >
-                Conoce más sobre mí
+                Conoce más sobre nosotros
               </Button>
             </div>
           </div>

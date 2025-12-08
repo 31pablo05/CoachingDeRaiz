@@ -13,7 +13,7 @@ const ServiceCard = ({
   methodology,
   approach
 }) => {
-  const whatsappLink = "https://wa.me/message/VPS3R5LKA4QNJ1";
+  const calendlyLink = "https://calendly.com/yaninaluciavallejo/sesion-gratuita-para-conocernos";
   
   return (
     <div className={`group relative h-full bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border ${
@@ -141,12 +141,12 @@ const ServiceCard = ({
         {/* CTA Button */}
         <Button 
           variant={featured ? "primary" : "secondary"}
-          href={whatsappLink}
+          href={calendlyLink}
           className="w-full transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl text-xs md:text-sm py-2"
         >
           <span className="flex items-center justify-center gap-2">
             <svg className="w-3.5 h-3.5 md:w-4 md:h-4" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654z"/>
+              <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM9 14H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2zm-8 4H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2z"/>
             </svg>
             {ctaText}
           </span>

@@ -9,9 +9,9 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Inicio', href: '#inicio' },
-    { name: '¿Quién soy?', href: '#sobre-mi' },
-    { name: 'Servicios', href: '#servicios' },
     { name: '¿Qué es Coaching?', href: '#coaching' },
+    { name: 'Servicios', href: '#servicios' },
+    { name: '¿Quién soy?', href: '#sobre-mi' },
     { name: 'Contacto', href: '#contacto' },
   ];
 
@@ -137,7 +137,7 @@ const Navbar = () => {
               <span className={`font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent group-hover:from-secondary group-hover:to-accent-lime transition-all duration-500 ${
                 isScrolled ? 'text-lg sm:text-xl' : 'text-xl sm:text-2xl'
               }`}>
-                Lucía Vallejo
+                Coaching de Raiz
               </span>
               <span className={`text-secondary-text font-medium leading-tight group-hover:text-secondary transition-colors duration-300 ${
                 isScrolled 
