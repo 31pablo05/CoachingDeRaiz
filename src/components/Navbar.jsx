@@ -9,9 +9,9 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Inicio', href: '#inicio' },
-    { name: '¿Qué es Coaching?', href: '#coaching' },
     { name: 'Servicios', href: '#servicios' },
-    { name: '¿Quién soy?', href: '#sobre-mi' },
+    { name: '¿Qué es Coaching?', href: '#coaching' },
+    { name: 'Sobre mí', href: '#sobre-mi' },
     { name: 'Contacto', href: '#contacto' },
   ];
 
@@ -139,13 +139,9 @@ const Navbar = () => {
               }`}>
                 Coaching de Raíz
               </span>
-              <span className={`text-secondary-text font-medium leading-tight group-hover:text-secondary transition-colors duration-300 ${
-                isScrolled 
-                  ? 'text-xs hidden md:block' 
-                  : 'text-xs sm:text-sm'
-              }`}>
-                <div className="transform group-hover:translate-x-1 transition-transform duration-300">Ingeniera Civil, Project Manager</div>
-                <div className="transform group-hover:translate-x-1 transition-transform duration-300 delay-75">Coach Ontológico</div>
+              <span className={`text-secondary-text font-medium leading-tight group-hover:text-secondary transition-colors duration-300 text-xs`}>
+                <div className="transform group-hover:translate-x-1 transition-transform duration-300">Acompañamiento profesional para el</div>
+                <div className="transform group-hover:translate-x-1 transition-transform duration-300 delay-75">desarrollo de líderes, equipos y organizaciones</div>
               </span>
             </div>
           </a>
