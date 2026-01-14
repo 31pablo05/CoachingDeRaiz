@@ -67,7 +67,7 @@ const About = () => {
     },
     {
       icon: '🌱',
-      title: 'Coach Ontológica Empresarial',
+      title: 'Coach Ontológico Empresarial',
       institution: 'ECORE - Newfield Consulting / UTDT',
     },
     {
@@ -107,8 +107,8 @@ const About = () => {
               <div className="relative bg-white rounded-2xl overflow-hidden shadow-2xl aspect-square transform group-hover:scale-[1.02] transition-all duration-500">
                 <img 
                   src="/imagenes/lucia3.webp" 
-                  alt="Lucía Vallejo - Ingeniera Civil, Project Manager y Coach Ontológica Empresarial certificada por ECORE Newfield Consulting"
-                  title="Lucía Vallejo - Coach Ontológica Empresarial"
+                  alt="Lucía Vallejo - Ingeniera Civil, Project Manager y Coach Ontológico Empresarial certificado por ECORE Newfield Consulting"
+                  title="Lucía Vallejo - Coach Ontológico Empresarial"
                   loading="eager"
                   itemProp="image"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -249,7 +249,7 @@ const About = () => {
                     🌱
                   </div>
                   <h4 className="font-bold text-primary mb-0 md:mb-2 text-[9px] leading-tight md:text-sm lg:text-lg group-hover:text-secondary transition-colors duration-300">
-                    Coach Ontológica Empresarial
+                    Coach Ontológico Empresarial
                   </h4>
                   <p className="text-[7px] md:text-xs lg:text-sm text-gray-600 leading-tight">ECORE - Newfield Consulting / UTDT</p>
                 </div>

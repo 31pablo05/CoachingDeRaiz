@@ -42,14 +42,9 @@ const Hero = () => {
         <div className="max-w-6xl mx-auto">
           {/* Content above the image card */}
           <div className="text-center mb-6 md:mb-8 mt-12 md:mt-16 lg:mt-20">
-            {/* Premium Badge with elegant animation */}
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#5a7458] to-[#7a9477] text-white px-6 py-2.5 rounded-full text-sm font-semibold mb-6 shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105">
-              <span className="w-2 h-2 bg-white rounded-full animate-pulse-slow"></span>
-              Coach Ontológica Certificada
-            </div>
             {/* Main Title with Gradient Effect */}
-            <h1 className="fade-in-section" role="banner">
-              <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold bg-gradient-to-r from-[#5a7458] via-[#7a9477] to-[#5a7458] bg-clip-text text-transparent animate-fade-in leading-tight drop-shadow-sm" itemProp="name">
+            <h1 className="fade-in-section mb-8 md:mb-12 lg:mb-16" role="banner">
+              <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold bg-gradient-to-r from-[#5a7458] via-[#7a9477] to-[#5a7458] bg-clip-text text-transparent animate-fade-in leading-relaxed pb-2 drop-shadow-sm" itemProp="name">
                 Coaching de Raíz
               </span>
               

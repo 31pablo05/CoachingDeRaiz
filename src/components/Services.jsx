@@ -64,7 +64,7 @@ const Services = () => {
     {
       title: 'Sesiones de Coaching Individual',
       description: 'Será un encuentro en el que vas a poder detenerte, mirar hacia adentro y explorar lo que hoy te está haciendo ruido o querés transformar.',
-      price: '$45.000',
+      price: '$50.000',
       icon: '💬',
       ctaText: 'Agendar sesión',
     },
@@ -97,7 +97,6 @@ const Services = () => {
       title: 'Propuesta de Inversión',
       icon: '💰',
       subtitle: 'Cada propuesta se diseña a medida según el alcance, cantidad de participantes y objetivos del proceso.',
-      description: 'Buscamos que la inversión refleje el valor del acompañamiento y el impacto que genera en la organización.',
       packages: [
         { name: 'Paquete Inicial', hours: '10 horas mensuales', desc: 'Acompañamiento a líderes o equipos. Incluye sesiones, reuniones de seguimiento y diseño de plan de acción.' },
         { name: 'Sesión individual', desc: 'Coaching individual o sesión de equipo.' }
@@ -108,7 +107,7 @@ const Services = () => {
       title: 'Por Qué Elegirnos',
       icon: '⭐',
       reasons: [
-        'Combinamos mirada humana y pensamiento estructurado: la sensibilidad del coaching con la precisión de la ingeniería.',
+        'Integramos Coaching Ontológico Ejecutivo y Mentoría, combinando espacios de reflexión profunda con orientaciones prácticas aplicadas a tu realidad profesional.',
         'Nos enfocamos en impactar resultados, no solo en generar reflexión.',
         'Traducimos lo intangible del desarrollo humano en indicadores de negocio: retención, productividad, compromiso y calidad.'
       ]
@@ -142,7 +141,7 @@ const Services = () => {
           </h2>
           <div className="w-32 h-1 bg-gradient-to-r from-transparent via-[#5a7458] to-transparent mx-auto mb-6"></div>
           <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
-            Acompaño a líderes, equipos y profesionales a alcanzar sus objetivos fortaleciendo el liderazgo, la comunicación y la confianza.
+            Acompañamos a líderes, equipos y profesionales a alcanzar sus objetivos fortaleciendo el liderazgo, la comunicación y la confianza.
           </p>
         </div>
 
@@ -215,8 +214,7 @@ const Services = () => {
                     {info.packages && (
                       <div className="flex flex-col h-full">
                         <div className="flex-1">
-                          <p className="text-gray-700 mb-3 leading-relaxed text-sm">{info.subtitle}</p>
-                          <p className="text-gray-700 mb-4 leading-relaxed font-medium text-sm">{info.description}</p>
+                          <p className="text-gray-700 mb-4 leading-relaxed text-sm">Buscamos que la inversión refleje el valor del acompañamiento y el impacto que genera en la organización.</p>
                           
                           <div className="bg-[#5a7458]/5 rounded-xl p-3 mb-4">
                             <p className="font-semibold text-[#5a7458] mb-3 text-sm">Nuestras propuestas estándar:</p>

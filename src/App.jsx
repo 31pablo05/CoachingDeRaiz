@@ -17,9 +17,9 @@ function App() {
             <div className="animate-pulse text-verde-claro">Cargando...</div>
           </div>
         }>
-          <LazyAbout />
           <LazyServices />
           <LazyWhatIsCoaching />
+          <LazyAbout />
           <LazyContact />
         </Suspense>
       </main>
