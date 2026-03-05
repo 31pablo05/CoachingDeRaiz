@@ -64,7 +64,7 @@ const Services = () => {
     {
       title: 'Sesiones de Coaching Individual',
       description: 'Será un encuentro en el que vas a poder detenerte, mirar hacia adentro y explorar lo que hoy te está haciendo ruido o querés transformar.',
-      price: '$50.000',
+      consultPrice: true,
       icon: '💬',
       ctaText: 'Agendar sesión',
     },
