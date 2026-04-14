@@ -4,13 +4,26 @@ import '../../styles/global.css';
 import Navbar from '../../components/Navbar.jsx';
 import Footer from '../../components/Footer.jsx';
 import WhatsAppFloat from '../../components/WhatsAppFloat.jsx';
+import { sanityClient } from '../../lib/sanity';
+import { ALL_POSTS_QUERY } from '../../lib/queries';
+import BlogCard from '../../components/BlogCard.jsx';
+
+let posts = [];
+let error = null;
+
+try {
+  posts = await sanityClient.fetch(ALL_POSTS_QUERY);
+} catch (e) {
+  error = e.message;
+  console.error('Error fetching posts:', e);
+}
 
 const schema = {
   "@context": "https://schema.org",
   "@type": "Blog",
   "name": "Blog de Coaching Ontológico - Coaching de Raíz",
   "url": "https://www.coachingderaiz.com/blog/",
-  "description": "Artículos sobre coaching ontológico, liderazgo, equipos de trabajo y transformación organizacional escritos por Lucía Vallejo.",
+  "description": "Artículos sobre coaching ontológico, liderazgo, equipos y transformación organizacional por Lucía Vallejo.",
   "author": {
     "@type": "Person",
     "name": "Lucía Vallejo"
@@ -19,20 +32,89 @@ const schema = {
 ---
 
 <BaseLayout
-  title="Blog de Coaching Ontológico | Liderazgo y Equipos - Lucía Vallejo"
-  description="Artículos sobre coaching ontológico, liderazgo transformacional, coaching de equipos y desarrollo profesional. Contenido de Lucía Vallejo, Coach Ontológica Empresarial en Buenos Aires."
+  title="Blog | Coaching Ontológico, Liderazgo y Equipos - Lucía Vallejo"
+  description="Artículos sobre coaching ontológico, liderazgo transformacional y desarrollo de equipos. Reflexiones y herramientas prácticas de Lucía Vallejo, Coach Ontológica Empresarial en Buenos Aires."
   canonical="/blog/"
-  keywords="blog coaching ontológico, artículos liderazgo Argentina, coaching ejecutivo blog, desarrollo profesional Buenos Aires"
+  keywords="blog coaching ontológico, liderazgo equipos Argentina, coaching ejecutivo artículos, desarrollo profesional Buenos Aires"
   schema={schema}
 >
   <Navbar client:load />
-  <main class="min-h-screen">
-    <section class="py-20 px-4 text-center">
-      <h1 class="text-4xl font-bold mb-4">Blog de Coaching</h1>
-      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-        Próximamente: artículos sobre liderazgo, coaching ontológico y transformación organizacional.
+  <main class="min-h-screen" style="background: linear-gradient(180deg, #faf5ef 0%, #f0f5ec 100%);">
+
+    <!-- Header del blog -->
+    <section class="pt-28 pb-12 px-4 text-center">
+      <span class="inline-block text-[#5a7458] font-semibold text-xs uppercase tracking-widest mb-4 px-4 py-1.5 bg-[#5a7458]/10 rounded-full">
+        Blog
+      </span>
+      <h1 class="text-4xl md:text-5xl font-bold text-[#235649] mb-4">
+        Coaching & Liderazgo
+      </h1>
+      <p class="text-lg text-gray-500 max-w-xl mx-auto">
+        Reflexiones y herramientas para líderes, equipos y organizaciones
       </p>
     </section>
+
+    <!-- Contenido -->
+    <section class="max-w-6xl mx-auto px-4 pb-20">
+
+      {error && (
+        <div class="text-center py-20">
+          <p class="text-gray-400 text-lg">Error al cargar los artículos. Intentá más tarde.</p>
+        </div>
+      )}
+
+      {!error && posts.length === 0 && (
+        <div class="text-center py-20">
+          <div class="text-6xl mb-4">🌱</div>
+          <h2 class="text-2xl font-bold text-[#235649] mb-3">Próximamente</h2>
+          <p class="text-gray-500 max-w-md mx-auto">
+            Lucía está preparando artículos sobre coaching ontológico, liderazgo y transformación de equipos.
+          </p>
+          <a
+            href="/"
+            class="inline-block mt-6 bg-[#5a7458] text-white px-6 py-3 rounded-full text-sm font-semibold hover:bg-[#235649] transition-colors duration-300"
+          >
+            Volver al inicio
+          </a>
+        </div>
+      )}
+
+      {!error && posts.length > 0 && (
+        <div class="space-y-6">
+          <!-- Artículo destacado (el primero) -->
+          <BlogCard post={posts[0]} featured={true} client:load />
+
+          <!-- Grid del resto de artículos -->
+          {posts.length > 1 && (
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+              {posts.slice(1).map(post => (
+                <BlogCard post={post} client:load />
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+    </section>
+
+    <!-- CTA al final -->
+    <section class="bg-[#235649] py-16 px-4 text-center">
+      <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
+        ¿Querés transformar tu liderazgo?
+      </h2>
+      <p class="text-white/70 mb-6 max-w-md mx-auto">
+        Agendá una sesión gratuita de 15 minutos y conversemos sobre tus objetivos.
+      </p>
+      <a
+        href="https://api.whatsapp.com/send?phone=5491136677321&text=Hola! Me gustaría agendar una sesión gratuita de 15 minutos"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-block bg-[#7ad435] text-[#235649] font-bold px-8 py-4 rounded-full hover:bg-[#8fe040] transition-colors duration-300"
+      >
+        Agenda tu sesión gratuita
+      </a>
+    </section>
+
   </main>
   <Footer client:load />
   <WhatsAppFloat client:load />

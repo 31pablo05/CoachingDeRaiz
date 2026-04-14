@@ -1,0 +1,167 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/global.css';
+import Navbar from '../../components/Navbar.jsx';
+import Footer from '../../components/Footer.jsx';
+import WhatsAppFloat from '../../components/WhatsAppFloat.jsx';
+import { sanityClient, urlFor } from '../../lib/sanity';
+import { ALL_SLUGS_QUERY, POST_BY_SLUG_QUERY } from '../../lib/queries';
+import { PortableText } from '@portabletext/react';
+
+export async function getStaticPaths() {
+  try {
+    const slugs = await sanityClient.fetch(ALL_SLUGS_QUERY);
+    return slugs.map(({ slug }) => ({ params: { slug } }));
+  } catch {
+    // Sanity not configured yet — no static paths to generate
+    return [];
+  }
+}
+
+const { slug } = Astro.params;
+const post = await sanityClient.fetch(POST_BY_SLUG_QUERY, { slug });
+
+if (!post) {
+  return Astro.redirect('/blog/');
+}
+
+const imageUrl = post.mainImage
+  ? urlFor(post.mainImage).width(1200).height(630).url()
+  : '/imagenes/og-image.jpg';
+
+const date = new Date(post.publishedAt).toLocaleDateString('es-AR', {
+  year: 'numeric', month: 'long', day: 'numeric'
+});
+
+const categoryLabels = {
+  'liderazgo': 'Liderazgo',
+  'equipos': 'Equipos',
+  'coaching-ontologico': 'Coaching Ontológico',
+  'organizaciones': 'Organizaciones',
+  'desarrollo-personal': 'Desarrollo Personal',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": post.seoTitle || post.title,
+  "description": post.seoDescription || post.excerpt,
+  "image": imageUrl,
+  "author": {
+    "@type": "Person",
+    "name": "Lucía Vallejo",
+    "url": "https://www.coachingderaiz.com/sobre-mi/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Coaching de Raíz",
+    "url": "https://www.coachingderaiz.com"
+  },
+  "datePublished": post.publishedAt,
+  "url": `https://www.coachingderaiz.com/blog/${slug}/`
+};
+---
+
+<BaseLayout
+  title={`${post.seoTitle || post.title} | Blog Coaching de Raíz`}
+  description={post.seoDescription || post.excerpt}
+  canonical={`/blog/${slug}/`}
+  ogImage={imageUrl}
+  ogType="article"
+  schema={schema}
+>
+  <Navbar client:load />
+  <main class="min-h-screen" style="background: #faf5ef;">
+
+    <!-- Imagen de portada hero -->
+    <div class="relative h-72 md:h-96 overflow-hidden">
+      {post.mainImage ? (
+        <img
+          src={urlFor(post.mainImage).width(1400).height(600).url()}
+          alt={post.mainImage?.alt || post.title}
+          class="w-full h-full object-cover"
+        />
+      ) : (
+        <div class="w-full h-full bg-gradient-to-br from-[#5a7458] to-[#235649]"></div>
+      )}
+      <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+    </div>
+
+    <!-- Contenido del artículo -->
+    <article class="max-w-3xl mx-auto px-4 -mt-16 relative z-10 pb-20">
+
+      <!-- Card del artículo -->
+      <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+
+        <!-- Meta info -->
+        <div class="flex flex-wrap items-center gap-3 mb-6">
+          <span class="text-xs font-medium text-[#5a7458] bg-[#e8f0e4] px-3 py-1 rounded-full">
+            {categoryLabels[post.category] || post.category}
+          </span>
+          <span class="text-xs text-gray-400">{date}</span>
+          <span class="text-xs text-gray-400">·</span>
+          <span class="text-xs text-gray-400">{post.readTime} min de lectura</span>
+        </div>
+
+        <!-- Título -->
+        <h1 class="text-3xl md:text-4xl font-bold text-[#235649] mb-4 leading-tight">
+          {post.title}
+        </h1>
+
+        <!-- Excerpt -->
+        <p class="text-lg text-gray-500 mb-8 leading-relaxed border-l-4 border-[#5a7458]/30 pl-4">
+          {post.excerpt}
+        </p>
+
+        <!-- Autor -->
+        <div class="flex items-center gap-3 pb-8 mb-8 border-b border-[#5a7458]/10">
+          <div class="w-10 h-10 rounded-full bg-[#c8dbc4] flex items-center justify-center text-[#3B6D11] font-bold text-sm">
+            LV
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-[#235649]">Lucía Vallejo</p>
+            <p class="text-xs text-gray-400">Coach Ontológica Empresarial</p>
+          </div>
+        </div>
+
+        <!-- Cuerpo del artículo con estilos -->
+        <div class="prose prose-lg max-w-none
+          prose-headings:text-[#235649] prose-headings:font-bold
+          prose-h2:text-2xl prose-h2:mt-8 prose-h2:mb-4
+          prose-h3:text-xl prose-h3:mt-6 prose-h3:mb-3
+          prose-p:text-gray-600 prose-p:leading-relaxed prose-p:mb-4
+          prose-strong:text-[#235649]
+          prose-blockquote:border-l-4 prose-blockquote:border-[#5a7458]
+          prose-blockquote:bg-[#f0f5ec] prose-blockquote:py-2 prose-blockquote:px-4 prose-blockquote:rounded-r-lg
+          prose-blockquote:text-[#385f57] prose-blockquote:not-italic
+          prose-img:rounded-xl prose-img:shadow-md
+          prose-a:text-[#5a7458] prose-a:underline">
+          {post.body && <PortableText value={post.body} client:load />}
+        </div>
+
+      </div>
+
+      <!-- Navegación de vuelta -->
+      <div class="mt-8 flex justify-between items-center">
+        <a
+          href="/blog/"
+          class="flex items-center gap-2 text-[#5a7458] font-semibold text-sm hover:text-[#235649] transition-colors"
+        >
+          ← Volver al blog
+        </a>
+        <a
+          href="https://api.whatsapp.com/send?phone=5491136677321&text=Hola! Leí tu artículo y me gustaría agendar una sesión gratuita"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="bg-[#5a7458] text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-[#235649] transition-colors"
+        >
+          Agendar sesión gratuita
+        </a>
+      </div>
+
+    </article>
+
+  </main>
+  <Footer client:load />
+  <WhatsAppFloat client:load />
+</BaseLayout>

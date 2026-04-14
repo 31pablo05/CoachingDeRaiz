@@ -14,10 +14,6 @@ export default defineConfig({
       lastmod: new Date(),
       customPages: [
         'https://www.coachingderaiz.com/',
-        'https://www.coachingderaiz.com/servicios/',
-        'https://www.coachingderaiz.com/sobre-mi/',
-        'https://www.coachingderaiz.com/que-es-coaching/',
-        'https://www.coachingderaiz.com/contacto/',
         'https://www.coachingderaiz.com/blog/',
       ],
     }),
