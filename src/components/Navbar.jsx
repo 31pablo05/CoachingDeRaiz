@@ -8,19 +8,24 @@ const Navbar = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
 
   const navLinks = [
-    { name: 'Inicio', href: '/' },
-    { name: 'Servicios', href: '/servicios/' },
-    { name: '¿Qué es Coaching?', href: '/que-es-coaching/' },
-    { name: 'Sobre mí', href: '/sobre-mi/' },
-    { name: 'Contacto', href: '/contacto/' },
+    { name: 'Inicio', href: '#inicio' },
+    { name: 'Servicios', href: '#servicios' },
+    { name: '¿Qué es Coaching?', href: '#coaching' },
+    { name: 'Sobre mí', href: '#sobre-mi' },
+    { name: 'Contacto', href: '#contacto' },
   ];
 
   useEffect(() => {
     // Animación de entrada
     const timer = setTimeout(() => setIsLoaded(true), 100);
 
-    // Determinar sección activa por pathname
-    setActiveSection(window.location.pathname);
+    // Determinar sección activa por hash
+    const updateActiveFromHash = () => {
+      const hash = window.location.hash.replace('#', '') || 'inicio';
+      setActiveSection(hash);
+    };
+    updateActiveFromHash();
+    window.addEventListener('hashchange', updateActiveFromHash);
 
     let rafId = null;
     let lastScrollY = 0;
@@ -44,6 +49,7 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('hashchange', updateActiveFromHash);
       if (rafId) cancelAnimationFrame(rafId);
       clearTimeout(timer);
     };
@@ -119,7 +125,7 @@ const Navbar = () => {
                 href={link.href}
                 style={{ animationDelay: `${(index + 1) * 100}ms` }}
                 className={`font-medium transition-all duration-300 relative pb-1 group ${
-                  activeSection === link.href
+                  activeSection === link.href.replace('#', '')
                     ? 'text-secondary'
                     : 'text-primary hover:text-secondary'
                 } ${
@@ -130,7 +136,7 @@ const Navbar = () => {
                 {/* Underline animado mejorado */}
                 <span 
                   className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-secondary to-accent-lime transition-all duration-300 ${
-                    activeSection === link.href ? 'w-full' : 'w-0 group-hover:w-full'
+                    activeSection === link.href.replace('#', '') ? 'w-full' : 'w-0 group-hover:w-full'
                   }`}
                 ></span>
                 {/* Efecto de glow en hover */}
@@ -214,7 +220,7 @@ const Navbar = () => {
                   transform: isMobileMenuOpen ? 'translateY(0)' : 'translateY(-20px)'
                 }}
                 className={`font-medium py-4 px-6 rounded-xl transition-all duration-500 relative overflow-hidden group ${
-                  activeSection === link.href
+                  activeSection === link.href.replace('#', '')
                     ? 'bg-gradient-to-r from-secondary-light/80 to-accent-lime/20 text-primary font-semibold shadow-lg border-l-4 border-secondary'
                     : 'text-primary hover:bg-gradient-to-r hover:from-secondary-light/40 hover:to-accent-lime/10 active:scale-95'
                 } ${
