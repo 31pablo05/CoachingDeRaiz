@@ -7,13 +7,13 @@ const Navbar = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
 
-  const navLinks = [
-    { name: 'Inicio', href: '#inicio' },
-    { name: 'Servicios', href: '#servicios' },
-    { name: '¿Qué es Coaching?', href: '#coaching' },
-    { name: 'Sobre mí', href: '#sobre-mi' },
-    { name: 'Contacto', href: '#contacto' },
-  ];
+ const navLinks = [
+  { name: 'Inicio', href: '#inicio' },
+  { name: 'Servicios', href: '#servicios' },
+  { name: '¿Qué es Coaching?', href: '#que-es-coaching' },
+  { name: 'Sobre mí', href: '#sobre-mi' },
+  { name: 'Contacto', href: '#contacto' },
+];
 
   useEffect(() => {
     // Animación de entrada
