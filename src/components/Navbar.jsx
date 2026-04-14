@@ -8,11 +8,11 @@ const Navbar = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
 
  const navLinks = [
-  { name: 'Inicio', href: '#inicio' },
-  { name: 'Servicios', href: '#servicios' },
-  { name: '¿Qué es Coaching?', href: '#que-es-coaching' },
-  { name: 'Sobre mí', href: '#sobre-mi' },
-  { name: 'Contacto', href: '#contacto' },
+  { name: 'Inicio', href: '/#inicio' },
+  { name: 'Servicios', href: '/#servicios' },
+  { name: '¿Qué es Coaching?', href: '/#que-es-coaching' },
+  { name: 'Sobre mí', href: '/#sobre-mi' },
+  { name: 'Contacto', href: '/#contacto' },
   { name: 'Blog', href: '/blog/' },
 ];
 
@@ -126,7 +126,7 @@ const Navbar = () => {
                 href={link.href}
                 style={{ animationDelay: `${(index + 1) * 100}ms` }}
                 className={`font-medium transition-all duration-300 relative pb-1 group ${
-                  activeSection === link.href.replace('#', '')
+                  activeSection === link.href.replace('/#', '').replace('#', '')
                     ? 'text-secondary'
                     : 'text-primary hover:text-secondary'
                 } ${
@@ -137,7 +137,7 @@ const Navbar = () => {
                 {/* Underline animado mejorado */}
                 <span 
                   className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-secondary to-accent-lime transition-all duration-300 ${
-                    activeSection === link.href.replace('#', '') ? 'w-full' : 'w-0 group-hover:w-full'
+                    activeSection === link.href.replace('/#', '').replace('#', '') ? 'w-full' : 'w-0 group-hover:w-full'
                   }`}
                 ></span>
                 {/* Efecto de glow en hover */}
@@ -221,7 +221,7 @@ const Navbar = () => {
                   transform: isMobileMenuOpen ? 'translateY(0)' : 'translateY(-20px)'
                 }}
                 className={`font-medium py-4 px-6 rounded-xl transition-all duration-500 relative overflow-hidden group ${
-                  activeSection === link.href.replace('#', '')
+                  activeSection === link.href.replace('/#', '').replace('#', '')
                     ? 'bg-gradient-to-r from-secondary-light/80 to-accent-lime/20 text-primary font-semibold shadow-lg border-l-4 border-secondary'
                     : 'text-primary hover:bg-gradient-to-r hover:from-secondary-light/40 hover:to-accent-lime/10 active:scale-95'
                 } ${
