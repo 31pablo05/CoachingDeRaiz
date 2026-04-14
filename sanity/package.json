@@ -1,0 +1,17 @@
+{
+  "name": "coaching-de-raiz-studio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "sanity dev",
+    "build": "sanity build",
+    "deploy": "sanity deploy"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sanity": "^3.65.0",
+    "@sanity/vision": "^3.65.0"
+  }
+}
