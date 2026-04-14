@@ -8,52 +8,35 @@ const Navbar = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
 
   const navLinks = [
-    { name: 'Inicio', href: '#inicio' },
-    { name: 'Servicios', href: '#servicios' },
-    { name: '¿Qué es Coaching?', href: '#coaching' },
-    { name: 'Sobre mí', href: '#sobre-mi' },
-    { name: 'Contacto', href: '#contacto' },
+    { name: 'Inicio', href: '/' },
+    { name: 'Servicios', href: '/servicios/' },
+    { name: '¿Qué es Coaching?', href: '/que-es-coaching/' },
+    { name: 'Sobre mí', href: '/sobre-mi/' },
+    { name: 'Contacto', href: '/contacto/' },
   ];
 
   useEffect(() => {
     // Animación de entrada
     const timer = setTimeout(() => setIsLoaded(true), 100);
 
+    // Determinar sección activa por pathname
+    setActiveSection(window.location.pathname);
+
     let rafId = null;
     let lastScrollY = 0;
 
     const handleScroll = () => {
-      // Cancelar frame anterior si existe
       if (rafId) {
         cancelAnimationFrame(rafId);
       }
-
-      // Batch todas las lecturas del DOM en un solo frame
       rafId = requestAnimationFrame(() => {
         const scrollY = window.scrollY;
-        
-        // Solo actualizar si cambió significativamente (reduce renders)
         if (Math.abs(scrollY - lastScrollY) > 5) {
           lastScrollY = scrollY;
           setIsScrolled(scrollY > 20);
-
-          // Calcular progreso del scroll - batch con otras lecturas
           const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
           const progress = documentHeight > 0 ? (scrollY / documentHeight) * 100 : 0;
           setScrollProgress(Math.min(progress, 100));
-
-          // Detect active section - optimizado
-          const sections = navLinks.map(link => link.href.substring(1));
-          for (const section of sections) {
-            const element = document.getElementById(section);
-            if (element) {
-              const rect = element.getBoundingClientRect();
-              if (rect.top <= 100 && rect.bottom >= 100) {
-                setActiveSection(section);
-                break;
-              }
-            }
-          }
         }
       });
     };
@@ -66,24 +49,7 @@ const Navbar = () => {
     };
   }, []);
 
-  const scrollToSection = (e, href) => {
-    e.preventDefault();
-    const element = document.querySelector(href);
-    if (element) {
-      // Batch todas las lecturas del DOM juntas
-      requestAnimationFrame(() => {
-        const offset = 80;
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - offset;
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-      });
-      setIsMobileMenuOpen(false);
-    }
-  };
 
   return (
     <nav 
@@ -102,8 +68,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           {/* Logo with Image and Text - Mejorado */}
           <a 
-            href="#inicio" 
-            onClick={(e) => scrollToSection(e, '#inicio')}
+            href="/"
             className="flex items-center gap-3 group relative"
             aria-label="Volver al inicio - Lucía Vallejo Coach Ontológica"
           >
@@ -152,10 +117,9 @@ const Navbar = () => {
               <a
                 key={link.href}
                 href={link.href}
-                onClick={(e) => scrollToSection(e, link.href)}
                 style={{ animationDelay: `${(index + 1) * 100}ms` }}
                 className={`font-medium transition-all duration-300 relative pb-1 group ${
-                  activeSection === link.href.substring(1)
+                  activeSection === link.href
                     ? 'text-secondary'
                     : 'text-primary hover:text-secondary'
                 } ${
@@ -166,7 +130,7 @@ const Navbar = () => {
                 {/* Underline animado mejorado */}
                 <span 
                   className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-secondary to-accent-lime transition-all duration-300 ${
-                    activeSection === link.href.substring(1) ? 'w-full' : 'w-0 group-hover:w-full'
+                    activeSection === link.href ? 'w-full' : 'w-0 group-hover:w-full'
                   }`}
                 ></span>
                 {/* Efecto de glow en hover */}
@@ -244,13 +208,13 @@ const Navbar = () => {
               <a
                 key={link.href}
                 href={link.href}
-                onClick={(e) => scrollToSection(e, link.href)}
+                onClick={() => setIsMobileMenuOpen(false)}
                 style={{ 
                   animationDelay: `${index * 100}ms`,
                   transform: isMobileMenuOpen ? 'translateY(0)' : 'translateY(-20px)'
                 }}
                 className={`font-medium py-4 px-6 rounded-xl transition-all duration-500 relative overflow-hidden group ${
-                  activeSection === link.href.substring(1)
+                  activeSection === link.href
                     ? 'bg-gradient-to-r from-secondary-light/80 to-accent-lime/20 text-primary font-semibold shadow-lg border-l-4 border-secondary'
                     : 'text-primary hover:bg-gradient-to-r hover:from-secondary-light/40 hover:to-accent-lime/10 active:scale-95'
                 } ${

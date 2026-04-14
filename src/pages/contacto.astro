@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/global.css';
+import Navbar from '../components/Navbar.jsx';
+import Contact from '../components/Contact.jsx';
+import Footer from '../components/Footer.jsx';
+import WhatsAppFloat from '../components/WhatsAppFloat.jsx';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contacto - Coaching de Raíz",
+  "url": "https://www.coachingderaiz.com/contacto/",
+  "mainEntity": {
+    "@type": "Person",
+    "name": "Lucía Vallejo",
+    "telephone": "+54-9-11-3667-7321",
+    "email": "luciavallejo@coachingderaiz.com",
+    "url": "https://www.coachingderaiz.com"
+  }
+};
+---
+
+<BaseLayout
+  title="Contacto | Sesión Gratuita de Coaching - Lucía Vallejo"
+  description="Agendá tu sesión gratuita de 15 minutos con Lucía Vallejo, Coach Ontológica en Buenos Aires. Contacto por WhatsApp, email o formulario. Sin compromiso."
+  canonical="/contacto/"
+  keywords="sesión gratuita coaching Buenos Aires, contacto coach ontológica, agendar coaching ejecutivo Argentina"
+  schema={schema}
+>
+  <Navbar client:load />
+  <main>
+    <Contact client:load />
+  </main>
+  <Footer client:load />
+  <WhatsAppFloat client:load />
+</BaseLayout>

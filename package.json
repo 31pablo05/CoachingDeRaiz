@@ -4,16 +4,17 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "build:analyze": "ANALYZE=true vite build",
-    "bundle-analysis": "node scripts/analyze-bundle.js",
-    "build:check": "npm run build && npm run bundle-analysis",
-    "lint": "eslint .",
-    "preview": "vite preview",
-    "preview:build": "vite build && vite preview"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "lint": "eslint ."
   },
   "dependencies": {
+    "@astrojs/react": "^5.0.3",
+    "@astrojs/sitemap": "^3.7.2",
+    "@astrojs/tailwind": "^6.0.2",
+    "astro": "^5.18.1",
     "framer-motion": "^10.18.0",
     "lucide-react": "^0.536.0",
     "react": "^18.3.1",

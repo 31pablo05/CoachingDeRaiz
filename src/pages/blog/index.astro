@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/global.css';
+import Navbar from '../../components/Navbar.jsx';
+import Footer from '../../components/Footer.jsx';
+import WhatsAppFloat from '../../components/WhatsAppFloat.jsx';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Blog de Coaching Ontológico - Coaching de Raíz",
+  "url": "https://www.coachingderaiz.com/blog/",
+  "description": "Artículos sobre coaching ontológico, liderazgo, equipos de trabajo y transformación organizacional escritos por Lucía Vallejo.",
+  "author": {
+    "@type": "Person",
+    "name": "Lucía Vallejo"
+  }
+};
+---
+
+<BaseLayout
+  title="Blog de Coaching Ontológico | Liderazgo y Equipos - Lucía Vallejo"
+  description="Artículos sobre coaching ontológico, liderazgo transformacional, coaching de equipos y desarrollo profesional. Contenido de Lucía Vallejo, Coach Ontológica Empresarial en Buenos Aires."
+  canonical="/blog/"
+  keywords="blog coaching ontológico, artículos liderazgo Argentina, coaching ejecutivo blog, desarrollo profesional Buenos Aires"
+  schema={schema}
+>
+  <Navbar client:load />
+  <main class="min-h-screen">
+    <section class="py-20 px-4 text-center">
+      <h1 class="text-4xl font-bold mb-4">Blog de Coaching</h1>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+        Próximamente: artículos sobre liderazgo, coaching ontológico y transformación organizacional.
+      </p>
+    </section>
+  </main>
+  <Footer client:load />
+  <WhatsAppFloat client:load />
+</BaseLayout>

@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/global.css';
+import Navbar from '../components/Navbar.jsx';
+import Services from '../components/Services.jsx';
+import Footer from '../components/Footer.jsx';
+import WhatsAppFloat from '../components/WhatsAppFloat.jsx';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Servicios de Coaching - Lucía Vallejo",
+  "url": "https://www.coachingderaiz.com/servicios/",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@type": "Service",
+        "name": "Coaching Ejecutivo Individual",
+        "description": "Proceso de coaching ontológico para líderes, directivos y gerentes que buscan transformar su liderazgo y potenciar sus resultados.",
+        "provider": { "@type": "Person", "name": "Lucía Vallejo" },
+        "areaServed": "Buenos Aires, Argentina"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@type": "Service",
+        "name": "Coaching de Equipos",
+        "description": "Acompañamiento a equipos de trabajo para mejorar la comunicación, el liderazgo compartido y los resultados colectivos.",
+        "provider": { "@type": "Person", "name": "Lucía Vallejo" },
+        "areaServed": "Buenos Aires, Argentina"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@type": "Service",
+        "name": "Transformación Organizacional",
+        "description": "Consultoría y coaching para organizaciones que buscan transformar su cultura, liderazgo y procesos.",
+        "provider": { "@type": "Person", "name": "Lucía Vallejo" },
+        "areaServed": "Buenos Aires, Argentina"
+      }
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Servicios de Coaching Ontológico | Ejecutivo, Equipos y Organizacional - Lucía Vallejo"
+  description="Servicios de coaching ontológico para líderes y organizaciones: Coaching Ejecutivo Individual, Coaching de Equipos y Transformación Organizacional. Buenos Aires, Argentina. Primera sesión gratuita."
+  canonical="/servicios/"
+  keywords="coaching ejecutivo Buenos Aires, coaching de equipos Argentina, transformación organizacional, coaching ontológico líderes, coach empresarial Buenos Aires"
+  schema={schema}
+>
+  <Navbar client:load />
+  <main>
+    <Services client:load />
+  </main>
+  <Footer client:load />
+  <WhatsAppFloat client:load />
+</BaseLayout>

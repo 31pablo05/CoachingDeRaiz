@@ -1,36 +1,8 @@
-# robots.txt para Coaching de Raíz
-# https://www.coachingderaiz.com/
-
-# Permitir a todos los robots el acceso completo al sitio
-User-agent: *
+﻿User-agent: *
 Allow: /
 
-# Permitir específicamente a los principales buscadores
-User-agent: Googlebot
-Allow: /
+Sitemap: https://www.coachingderaiz.com/sitemap-index.xml
 
-User-agent: Googlebot-Image
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Slurp
-Allow: /
-
-# Bloquear solo archivos innecesarios para SEO
-Disallow: /src/
-Disallow: /*.jsx$
-Disallow: /*.css$
-Disallow: /*.js$
-
-# Permitir acceso a recursos importantes
-Allow: /imagenes/
-Allow: /logos/
-Allow: /videos/
-
-# Sitemap
-Sitemap: https://www.coachingderaiz.com/sitemap.xml
-
-# Configuración de rastreo
-Crawl-delay: 0
+# Bloquear rutas innecesarias
+Disallow: /_assets/
+Disallow: /404

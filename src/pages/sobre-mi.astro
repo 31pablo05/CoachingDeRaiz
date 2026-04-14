@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/global.css';
+import Navbar from '../components/Navbar.jsx';
+import About from '../components/About.jsx';
+import Footer from '../components/Footer.jsx';
+import WhatsAppFloat from '../components/WhatsAppFloat.jsx';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Lucía Vallejo",
+  "jobTitle": "Coach Ontológica Empresarial",
+  "description": "Lucía Vallejo es Coach Ontológica Empresarial, Ingeniera Civil y Project Manager. Acompaña a líderes, equipos y organizaciones en Buenos Aires, Argentina.",
+  "url": "https://www.coachingderaiz.com/sobre-mi/",
+  "image": "https://www.coachingderaiz.com/imagenes/lucia-vallejo.jpg",
+  "email": "luciavallejo@coachingderaiz.com",
+  "telephone": "+54-9-11-3667-7321",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Buenos Aires",
+    "addressCountry": "AR"
+  },
+  "sameAs": [
+    "https://www.instagram.com/coachingderaiz/",
+    "https://www.linkedin.com/in/luc%C3%ADavallejo/"
+  ],
+  "alumniOf": [],
+  "knowsAbout": [
+    "Coaching Ontológico",
+    "Coaching Ejecutivo",
+    "Liderazgo",
+    "Transformación Organizacional",
+    "Ingeniería Civil",
+    "Project Management"
+  ]
+};
+---
+
+<BaseLayout
+  title="Sobre Mí | Lucía Vallejo - Coach Ontológica Empresarial e Ingeniera Civil"
+  description="Conocé a Lucía Vallejo: Coach Ontológica Empresarial, Ingeniera Civil y Project Manager de Buenos Aires. Certificada internacionalmente, acompaña líderes y equipos a transformar su forma de ser y liderar."
+  canonical="/sobre-mi/"
+  keywords="Lucía Vallejo coach, coach ontológica Buenos Aires, coach ejecutiva certificada Argentina, coaching ontológico empresarial"
+  schema={schema}
+>
+  <Navbar client:load />
+  <main>
+    <About client:load />
+  </main>
+  <Footer client:load />
+  <WhatsAppFloat client:load />
+</BaseLayout>

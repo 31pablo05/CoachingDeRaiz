@@ -53,30 +53,12 @@ const Footer = () => {
   ];
 
   const quickLinks = [
-    { name: 'Inicio', href: '#home' },
-    { name: '¿Quién soy?', href: '#about' },
-    { name: 'Servicios', href: '#services' },
-    { name: '¿Qué es Coaching?', href: '#coaching' },
-    { name: 'Contacto', href: '#contact' },
+    { name: 'Inicio', href: '/' },
+    { name: '¿Quién soy?', href: '/sobre-mi/' },
+    { name: 'Servicios', href: '/servicios/' },
+    { name: '¿Qué es Coaching?', href: '/que-es-coaching/' },
+    { name: 'Contacto', href: '/contacto/' },
   ];
-
-  const scrollToSection = (e, href) => {
-    e.preventDefault();
-    const element = document.querySelector(href);
-    if (element) {
-      // Batch lecturas del DOM con requestAnimationFrame
-      requestAnimationFrame(() => {
-        const offset = 80;
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-      });
-    }
-  };
 
   return (
     <footer ref={footerRef} className="relative bg-gradient-to-br from-primary via-primary-deeper to-primary-dark text-white overflow-hidden">
@@ -131,7 +113,6 @@ const Footer = () => {
                      style={{animationDelay: `${index * 100}ms`}}>
                   <a
                     href={link.href}
-                    onClick={(e) => scrollToSection(e, link.href)}
                     className="group/link flex items-center gap-3 text-white/80 hover:text-white py-2 px-3 rounded-lg hover:bg-white/10 hover:backdrop-blur-sm border border-transparent hover:border-white/20 transition-all duration-300 relative overflow-hidden"
                   >
                     <div className="w-2 h-2 bg-accent-lime/60 rounded-full group-hover/link:bg-accent-lime group-hover/link:scale-150 transition-all duration-300 footer-glow-pulse"></div>

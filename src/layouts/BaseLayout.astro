@@ -1,0 +1,122 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  ogImage?: string;
+  ogType?: string;
+  schema?: object;
+  keywords?: string;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage = '/imagenes/og-image.jpg',
+  ogType = 'website',
+  schema,
+  keywords,
+} = Astro.props;
+
+const siteName = 'Coaching de Raíz - Lucía Vallejo';
+const fullCanonical = `https://www.coachingderaiz.com${canonical}`;
+---
+
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO Primary -->
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  {keywords && <meta name="keywords" content={keywords} />}
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="author" content="Lucía Vallejo" />
+  <meta name="language" content="Spanish" />
+  <meta name="geo.region" content="AR-C" />
+  <meta name="geo.placename" content="Buenos Aires, Argentina" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href={fullCanonical} />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content={ogType} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={fullCanonical} />
+  <meta property="og:image" content={`https://www.coachingderaiz.com${ogImage}`} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content={siteName} />
+  <meta property="og:locale" content="es_AR" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={`https://www.coachingderaiz.com${ogImage}`} />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/logos/favicon.png" />
+  <link rel="apple-touch-icon" href="/logos/apple-touch-icon.png" />
+
+  <!-- Preconnect para performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Schema.org JSON-LD por página -->
+  {schema && (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  )}
+
+  <!-- Schema global del sitio -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Coaching de Raíz",
+    "url": "https://www.coachingderaiz.com",
+    "logo": "https://www.coachingderaiz.com/logos/logo.png",
+    "description": "Coaching ontológico ejecutivo y de equipos para líderes y organizaciones en Buenos Aires, Argentina. Transformación personal y profesional con Lucía Vallejo.",
+    "founder": {
+      "@type": "Person",
+      "name": "Lucía Vallejo",
+      "jobTitle": "Coach Ontológica Empresarial",
+      "url": "https://www.coachingderaiz.com/sobre-mi/",
+      "sameAs": [
+        "https://www.instagram.com/coachingderaiz/",
+        "https://www.linkedin.com/in/luc%C3%ADavallejo/"
+      ]
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Buenos Aires",
+      "addressCountry": "AR"
+    },
+    "telephone": "+54-9-11-3667-7321",
+    "email": "luciavallejo@coachingderaiz.com",
+    "areaServed": ["Buenos Aires", "Argentina"],
+    "serviceType": [
+      "Coaching Ontológico",
+      "Coaching Ejecutivo",
+      "Coaching de Equipos",
+      "Transformación Organizacional"
+    ],
+    "priceRange": "$$",
+    "openingHours": "Mo-Fr 09:00-18:00",
+    "sameAs": [
+      "https://www.instagram.com/coachingderaiz/",
+      "https://www.linkedin.com/in/luc%C3%ADavallejo/"
+    ]
+  }
+  </script>
+
+  <slot name="head" />
+</head>
+<body>
+  <slot />
+</body>
+</html>
