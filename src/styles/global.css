@@ -48,3 +48,433 @@
     transform: translateY(0);
   }
 }
+
+/* ============================================
+   APP.CSS — Animations & Component Styles
+   ============================================ */
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+/* Keyframes */
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounceIn {
+  0% { opacity: 0; transform: scale(0.8) translateY(20px); }
+  60% { opacity: 1; transform: scale(1.05) translateY(-5px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  100% { transform: translateX(200%) rotate(45deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes fadeInHero {
+  from { opacity: 0; transform: translateY(40px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes gradientPulse {
+  0%, 100% { background-position: 0% 50%; transform: scale(1); }
+  50% { background-position: 100% 50%; transform: scale(1.02); }
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes slideUpDelayed {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -30px) scale(1.1); }
+}
+
+@keyframes float-slower {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-40px, 40px) scale(1.15); }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes footerSlideUp {
+  from { opacity: 0; transform: translateY(50px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes footerFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes footerGlowPulse {
+  0%, 100% { filter: drop-shadow(0 0 10px rgba(122, 212, 53, 0.3)); }
+  50% { filter: drop-shadow(0 0 20px rgba(122, 212, 53, 0.6)); }
+}
+
+@keyframes footerShimmerWave {
+  0% { transform: translateX(-100%) skewX(-15deg); }
+  100% { transform: translateX(200%) skewX(-15deg); }
+}
+
+@keyframes footerBounceIn {
+  0% { opacity: 0; transform: scale(0.8) translateY(20px); }
+  60% { opacity: 1; transform: scale(1.05) translateY(-5px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes whatsappFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes whatsappPulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.1); opacity: 1; }
+}
+
+@keyframes whatsappBounce {
+  0% { transform: scale(0.8) translateY(20px); opacity: 0; }
+  60% { transform: scale(1.1) translateY(-5px); opacity: 1; }
+  100% { transform: scale(1) translateY(0px); opacity: 1; }
+}
+
+/* Animation utility classes */
+.animate-slide-down { animation: slideDown 0.5s ease-out forwards; }
+.animate-slide-up { animation: slideUp 0.4s ease-out forwards; }
+.animate-fade-in-down { animation: fadeInDown 0.6s ease-out forwards; }
+.animate-bounce-in { animation: bounceIn 0.8s ease-out forwards; }
+.animate-pulse-slow { animation: pulse-slow 4s ease-in-out infinite; }
+.animate-shimmer { animation: shimmer 8s ease-in-out infinite; }
+.animate-fade-in { animation: fade-in 0.2s ease-out forwards; }
+.animate-scale-in { animation: scale-in 0.3s ease-out forwards; }
+.animate-slide-up-delayed { animation: slideUpDelayed 1s ease-out 1.5s forwards; }
+.animate-float-slow { animation: float-slow 20s ease-in-out infinite; }
+.animate-float-slower { animation: float-slower 25s ease-in-out infinite; }
+
+/* Navbar effects */
+.navbar-blur {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.navbar-glassmorphism {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.logo-hover-effect {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo-hover-effect:hover {
+  transform: scale(1.1) rotate(3deg);
+}
+
+.glow-effect {
+  box-shadow: 0 0 20px rgba(86, 133, 78, 0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+.glow-effect:hover {
+  box-shadow: 0 0 30px rgba(122, 212, 53, 0.5);
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-backdrop {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+}
+
+/* Hero */
+.hero-fade-in { animation: fadeInHero 1s ease-out forwards; }
+.hero-gradient-pulse { background-size: 400% 400%; animation: gradientPulse 4s ease-in-out infinite; }
+.hero-float { animation: floatUp 3s ease-in-out infinite; }
+
+.hero-glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-glass-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25), 0 0 30px rgba(122, 212, 53, 0.15);
+}
+
+.hero-text-gradient {
+  background: linear-gradient(135deg, #235649, #56854e, #7ad435);
+  background-size: 300% 300%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientPulse 3s ease-in-out infinite;
+}
+
+.hero-floating-element { animation: floatUp 6s ease-in-out infinite; }
+.hero-floating-element:nth-child(2) { animation-delay: -2s; }
+.hero-floating-element:nth-child(3) { animation-delay: -4s; }
+
+/* Footer */
+.bg-gradient-radial { background: radial-gradient(circle, var(--tw-gradient-stops)); }
+.footer-slide-up { animation: footerSlideUp 0.8s ease-out forwards; }
+.footer-fade-in { animation: footerFadeIn 0.6s ease-in-out forwards; }
+.footer-glow-pulse { animation: footerGlowPulse 3s ease-in-out infinite; }
+.footer-shimmer-wave { animation: footerShimmerWave 2s ease-in-out; }
+.footer-bounce-in { animation: footerBounceIn 1s ease-out forwards; }
+
+.footer-card-hover {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.footer-card-hover:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 30px rgba(122, 212, 53, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.footer-stagger-1 { animation-delay: 0.1s; }
+.footer-stagger-2 { animation-delay: 0.2s; }
+.footer-stagger-3 { animation-delay: 0.3s; }
+.footer-stagger-4 { animation-delay: 0.4s; }
+.footer-stagger-5 { animation-delay: 0.5s; }
+
+/* WhatsApp */
+.whatsapp-float { animation: whatsappFloat 4s ease-in-out infinite; }
+.whatsapp-pulse { animation: whatsappPulse 2s ease-in-out infinite; }
+.whatsapp-bounce { animation: whatsappBounce 0.8s ease-out forwards; }
+
+.whatsapp-glow {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.whatsapp-glow:hover {
+  filter: drop-shadow(0 0 15px rgba(37, 211, 102, 0.6));
+}
+
+.whatsapp-glow::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: conic-gradient(from 0deg, #25D366, #1db954, #25D366);
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.whatsapp-glow:hover::before {
+  opacity: 0.3;
+}
+
+/* ============================================
+   INDEX.CSS — Utility pseudo-element orbs
+   ============================================ */
+
+.text-gradient {
+  background: linear-gradient(to right, #56854e, #7ad435);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-background-orbs::before {
+  content: '';
+  position: absolute;
+  top: -8rem;
+  right: -8rem;
+  width: 600px;
+  height: 600px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  filter: blur(96px);
+  animation: float-slow 20s ease-in-out infinite;
+}
+
+.hero-background-orbs::after {
+  content: '';
+  position: absolute;
+  bottom: -10rem;
+  left: -10rem;
+  width: 500px;
+  height: 500px;
+  background: rgba(90, 116, 88, 0.1);
+  border-radius: 50%;
+  filter: blur(96px);
+  animation: float-slower 25s ease-in-out infinite;
+}
+
+.coaching-background-orbs::before {
+  content: '';
+  position: absolute;
+  top: 5rem;
+  right: 2.5rem;
+  width: 384px;
+  height: 384px;
+  background: rgba(90, 116, 88, 0.05);
+  border-radius: 50%;
+  filter: blur(96px);
+  animation: float-slow 20s ease-in-out infinite;
+}
+
+.coaching-background-orbs::after {
+  content: '';
+  position: absolute;
+  bottom: 10rem;
+  left: 2.5rem;
+  width: 320px;
+  height: 320px;
+  background: rgba(122, 148, 119, 0.05);
+  border-radius: 50%;
+  filter: blur(96px);
+  animation: float-slower 25s ease-in-out infinite;
+}
+
+.about-background-orbs::before {
+  content: '';
+  position: absolute;
+  top: 5rem;
+  right: 2.5rem;
+  width: 288px;
+  height: 288px;
+  background: rgba(90, 116, 88, 0.05);
+  border-radius: 50%;
+  filter: blur(96px);
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.about-background-orbs::after {
+  content: '';
+  position: absolute;
+  bottom: 10rem;
+  left: 2.5rem;
+  width: 384px;
+  height: 384px;
+  background: rgba(165, 185, 145, 0.05);
+  border-radius: 50%;
+  filter: blur(96px);
+  animation: pulse 3s ease-in-out 1s infinite;
+}
+
+.about-image-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom right, rgb(122, 148, 119), rgb(90, 116, 88), rgba(165, 185, 145, 0.3));
+  border-radius: 1rem;
+  transform: rotate(3deg);
+  transition: transform 0.5s;
+  z-index: -1;
+}
+
+.about-image-card:hover::before {
+  transform: rotate(6deg);
+}
+
+.about-image-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom right, rgba(165, 185, 145, 0.2), rgba(90, 116, 88, 0.2));
+  border-radius: 1rem;
+  filter: blur(24px);
+  opacity: 0;
+  transition: opacity 0.5s;
+  z-index: -1;
+}
+
+.about-image-card:hover::after {
+  opacity: 1;
+}
+
+.footer-background-orbs::before {
+  content: '';
+  position: absolute;
+  bottom: 8rem;
+  right: 5rem;
+  width: 384px;
+  height: 384px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 50%;
+  filter: blur(96px);
+  animation: float-slower 25s ease-in-out infinite;
+}
+
+.footer-background-orbs::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(165, 185, 145, 0.03) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: pulse-slow 6s ease-in-out infinite;
+}
+
+.footer-logo-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(165, 185, 145, 0.2);
+  border-radius: 50%;
+  filter: blur(24px);
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.group:hover .footer-logo-glow::after {
+  opacity: 1;
+}
+
