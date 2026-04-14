@@ -58,6 +58,7 @@ const Footer = () => {
     { name: 'Servicios', href: '/servicios/' },
     { name: '¿Qué es Coaching?', href: '/que-es-coaching/' },
     { name: 'Contacto', href: '/contacto/' },
+    { name: 'Blog', href: '/blog/' },
   ];
 
   return (

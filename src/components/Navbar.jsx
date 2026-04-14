@@ -13,6 +13,7 @@ const Navbar = () => {
   { name: '¿Qué es Coaching?', href: '#que-es-coaching' },
   { name: 'Sobre mí', href: '#sobre-mi' },
   { name: 'Contacto', href: '#contacto' },
+  { name: 'Blog', href: '/blog/' },
 ];
 
   useEffect(() => {
