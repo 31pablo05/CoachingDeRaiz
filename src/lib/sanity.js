@@ -7,7 +7,7 @@ import imageUrlBuilder from '@sanity/image-url'
 // Dataset: normalmente es "production"
 // ============================================
 export const sanityClient = createClient({
-  projectId: 'reemplazar-con-project-id',   // ← REEMPLAZAR con el Project ID de Sanity
+  projectId: 'gt2hwif0',                    // ← Project ID de Coaching de Raíz
   dataset: 'production',                    // ← REEMPLAZAR si el dataset tiene otro nombre
   useCdn: true,
   apiVersion: '2024-01-01',

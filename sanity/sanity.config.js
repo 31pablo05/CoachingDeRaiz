@@ -8,7 +8,7 @@ import { schemaTypes } from './schemaTypes'
 export default defineConfig({
   name: 'coaching-de-raiz',
   title: 'Coaching de Raíz — Panel de Contenido',
-  projectId: 'reemplazar-con-project-id',   // ← REEMPLAZAR
+  projectId: 'gt2hwif0',                    // ← Project ID de Coaching de Raíz
   dataset: 'production',                    // ← REEMPLAZAR si corresponde
   plugins: [structureTool()],
   schema: { types: schemaTypes },
