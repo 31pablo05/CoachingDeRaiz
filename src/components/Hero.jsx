@@ -53,9 +53,6 @@ const Hero = () => {
                 Coaching de Raíz
               </span>
 
-              {/* Decorative divider */}
-              <span className="block mx-auto mt-5 w-16 h-1 rounded-full bg-gradient-to-r from-[#5a7458] to-[#7ad435] opacity-70"></span>
-
             </h1>
           </div>
 
