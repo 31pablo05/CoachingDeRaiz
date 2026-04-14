@@ -44,10 +44,18 @@ const Hero = () => {
           <div className="text-center mb-6 md:mb-8 mt-12 md:mt-16 lg:mt-20">
             {/* Main Title with Gradient Effect */}
             <h1 className="fade-in-section mb-8 md:mb-12 lg:mb-16" role="banner">
-              <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold bg-gradient-to-r from-[#5a7458] via-[#7a9477] to-[#5a7458] bg-clip-text text-transparent animate-fade-in leading-relaxed pb-2 drop-shadow-sm" itemProp="name">
+
+              {/* Main title — py-4 prevents descender clipping from bg-clip-text */}
+              <span
+                className="block text-5xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold bg-gradient-to-r from-[#235649] via-[#5a7458] to-[#7ad435] bg-clip-text text-transparent animate-fade-in py-4 leading-[1.1] drop-shadow-sm"
+                itemProp="name"
+              >
                 Coaching de Raíz
               </span>
-              
+
+              {/* Decorative divider */}
+              <span className="block mx-auto mt-5 w-16 h-1 rounded-full bg-gradient-to-r from-[#5a7458] to-[#7ad435] opacity-70"></span>
+
             </h1>
           </div>
 
