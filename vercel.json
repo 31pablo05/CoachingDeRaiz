@@ -2,18 +2,37 @@
   "cleanUrls": true,
   "trailingSlash": true,
   "redirects": [
-    {"source": "/(.*)", "has": [{"type": "host", "value": "coachingderaiz.com"}], "destination": "https://www.coachingderaiz.com/$1", "permanent": true},
-    {"source": "/servicios", "destination": "/#servicios", "permanent": true},
-    {"source": "/servicios/", "destination": "/#servicios", "permanent": true},
-    {"source": "/sobre-mi", "destination": "/#sobre-mi", "permanent": true},
-    {"source": "/sobre-mi/", "destination": "/#sobre-mi", "permanent": true},
-    {"source": "/que-es-coaching", "destination": "/#coaching", "permanent": true},
-    {"source": "/que-es-coaching/", "destination": "/#coaching", "permanent": true},
-    {"source": "/contacto", "destination": "/#contacto", "permanent": true},
-    {"source": "/contacto/", "destination": "/#contacto", "permanent": true}
+    {
+      "source": "/(.*)",
+      "has": [{"type": "host", "value": "coachingderaiz.com"}],
+      "destination": "https://www.coachingderaiz.com/$1",
+      "permanent": true
+    },
+    {"source": "/servicios", "destination": "/", "permanent": true},
+    {"source": "/servicios/", "destination": "/", "permanent": true},
+    {"source": "/sobre-mi", "destination": "/", "permanent": true},
+    {"source": "/sobre-mi/", "destination": "/", "permanent": true},
+    {"source": "/que-es-coaching", "destination": "/", "permanent": true},
+    {"source": "/que-es-coaching/", "destination": "/", "permanent": true},
+    {"source": "/contacto", "destination": "/", "permanent": true},
+    {"source": "/contacto/", "destination": "/", "permanent": true}
   ],
   "headers": [
-    {"source": "/(.*)", "headers": [{"key": "X-Content-Type-Options", "value": "nosniff"}, {"key": "X-Frame-Options", "value": "DENY"}, {"key": "X-XSS-Protection", "value": "1; mode=block"}, {"key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload"}]},
-    {"source": "/(.*)\\.(jpg|jpeg|png|gif|webp|svg|ico|woff|woff2)", "headers": [{"key": "Cache-Control", "value": "public, max-age=31536000, immutable"}]}
+    {
+      "source": "/(.*)",
+      "headers": [
+        {"key": "X-Content-Type-Options", "value": "nosniff"},
+        {"key": "X-Frame-Options", "value": "DENY"},
+        {"key": "X-XSS-Protection", "value": "1; mode=block"},
+        {"key": "Strict-Transport-Security", 
+         "value": "max-age=63072000; includeSubDomains; preload"}
+      ]
+    },
+    {
+      "source": "/(.*)\\.(jpg|jpeg|png|gif|webp|svg|ico|woff|woff2)",
+      "headers": [
+        {"key": "Cache-Control", "value": "public, max-age=31536000, immutable"}
+      ]
+    }
   ]
 }
