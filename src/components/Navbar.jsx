@@ -33,6 +33,7 @@ const Navbar = () => {
     };
     updateActiveFromHash();
     window.addEventListener('hashchange', updateActiveFromHash);
+    window.addEventListener('popstate', updateActiveFromHash);
 
     let rafId = null;
     let lastScrollY = 0;
@@ -57,6 +58,7 @@ const Navbar = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('hashchange', updateActiveFromHash);
+      window.removeEventListener('popstate', updateActiveFromHash);
       if (rafId) cancelAnimationFrame(rafId);
       clearTimeout(timer);
     };
@@ -222,7 +224,19 @@ const Navbar = () => {
               <a
                 key={link.href}
                 href={link.href}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  // Force active state update after menu closes
+                  setTimeout(() => {
+                    const hash = window.location.hash.replace('#', '') || 'inicio';
+                    const pathname = window.location.pathname;
+                    if (pathname.startsWith('/blog')) {
+                      setActiveSection('/blog/');
+                    } else {
+                      setActiveSection(hash);
+                    }
+                  }, 100);
+                }}
                 style={{ 
                   animationDelay: `${index * 100}ms`,
                   transform: isMobileMenuOpen ? 'translateY(0)' : 'translateY(-20px)'

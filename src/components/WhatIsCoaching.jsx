@@ -34,7 +34,7 @@ const WhatIsCoaching = () => {
 
   return (
     <section 
-      id="coaching" 
+      id="que-es-coaching" 
       ref={sectionRef}
       className="section-padding relative overflow-hidden"
       style={{

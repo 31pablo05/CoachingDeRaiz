@@ -478,4 +478,15 @@ main {
   opacity: 1;
 }
 
+/* Scroll offset for fixed navbar on all screen sizes */
+section[id] {
+  scroll-margin-top: 80px;
+}
+
+@media (max-width: 768px) {
+  section[id] {
+    scroll-margin-top: 70px;
+  }
+}
+
 
