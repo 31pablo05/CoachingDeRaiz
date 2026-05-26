@@ -23,113 +23,74 @@ const Hero = () => {
   }, []);
 
   return (
-    <section 
-      id="inicio" 
+    <section
+      id="inicio"
       ref={sectionRef}
-      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-28 md:pt-32"
+      className="h-screen min-h-[600px] flex items-center justify-center relative overflow-hidden"
       aria-label="Sección principal - Lucía Vallejo Coach Ontológica"
-      style={{
-        background: 'linear-gradient(135deg, #fefcea 0%, #e8f0e4 25%, #d4e5d0 50%, #7a9477 75%, #5a7458 100%)'
-      }}
     >
-      {/* Animated Background Elements - Optimized (reduced DOM depth) */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-black/5">
-        {/* Floating orbs combined - uses pseudo-elements via CSS instead of multiple divs */}
-        <div className="absolute inset-0 hero-background-orbs"></div>
-      </div>
+      {/* Background images — desktop y mobile */}
+      <picture className="absolute inset-0 w-full h-full">
+        <source media="(max-width: 768px)" srcSet="/imagenes/hero-mobile.jpg" />
+        <img
+          src="/imagenes/hero-desktop.jpg"
+          alt=""
+          className="w-full h-full object-cover object-center"
+          loading="eager"
+          fetchPriority="high"
+          aria-hidden="true"
+        />
+      </picture>
 
-      <div className="container-custom px-4 sm:px-6 md:px-12 lg:px-20 relative z-10">
-        <div className="max-w-6xl mx-auto">
-          {/* Content above the image card */}
-          <div className="text-center mb-6 md:mb-8 mt-12 md:mt-16 lg:mt-20">
-            {/* Main Title with Gradient Effect */}
-            <h1 className="fade-in-section mb-8 md:mb-12 lg:mb-16" role="banner">
+      {/* Overlay degradado para legibilidad */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/25 to-black/70 pointer-events-none"></div>
 
-              {/* Main title — py-4 prevents descender clipping from bg-clip-text */}
-              <span
-                className="block text-5xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold bg-gradient-to-r from-[#235649] via-[#5a7458] to-[#7ad435] bg-clip-text text-transparent animate-fade-in py-4 leading-[1.1] drop-shadow-sm"
-                itemProp="name"
-              >
-                Coaching de Raíz
-              </span>
+      {/* Contenido centrado */}
+      <div className="relative z-10 container-custom px-4 sm:px-6 md:px-12 lg:px-20 pt-24 md:pt-28 pb-10 md:pb-20 text-center">
 
-            </h1>
-          </div>
+        {/* Título principal */}
+        <h1
+          className="fade-in-section text-5xl sm:text-6xl md:text-7xl xl:text-8xl font-extrabold text-white mb-4 leading-tight drop-shadow-xl"
+          itemProp="name"
+        >
+          Coaching de Raíz
+        </h1>
 
-          {/* Hero Card with Image - Enhanced - LCP Optimizado */}
-          <div 
-            className="backdrop-blur-md bg-white/30 rounded-2xl md:rounded-3xl shadow-2xl border border-white/40 p-3 sm:p-4 md:p-6 lg:p-8 text-center transform hover:scale-[1.01] transition-all duration-700 relative overflow-hidden min-h-[350px] sm:min-h-[400px] md:min-h-[480px] lg:min-h-[560px] hover:shadow-[0_20px_60px_rgba(90,116,88,0.3)]"
-          >
-            {/* LCP Image */}
-            <img 
-              src="/imagenes/hero.webp"
-              alt="Lucía Vallejo - Coach Ontológica Empresarial en sesión de coaching"
-              title="Lucía Vallejo Coach Ontológica - Transformación y Liderazgo"
-              loading="eager"
-              fetchpriority="high"
-              className="absolute inset-0 w-full h-full object-contain object-top rounded-2xl md:rounded-3xl"
-              style={{ contentVisibility: 'auto' }}
-            />
+        {/* Tagline */}
+        <p className="fade-in-section text-lg sm:text-xl md:text-2xl text-white font-medium mb-6 tracking-wide drop-shadow-lg">
+          Acompañamiento profesional para el desarrollo de líderes, equipos y organizaciones
+        </p>
 
-            {/* Subtle inner glow */}
-            <div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-[#5a7458]/5 via-transparent to-transparent pointer-events-none"></div>
-
-            {/* Content with higher z-index */}
-            <div className="relative z-10">
-
-
-
-
-            </div>
-
-            {/* Quote at bottom with slide-up animation - Enhanced */}
-            <div className="absolute bottom-3 sm:bottom-4 md:bottom-6 lg:bottom-8 left-3 right-3 sm:left-4 sm:right-4 fade-in-section">
-              <div className="bg-gradient-to-r from-[#5a7458]/50 via-[#5a7458]/40 to-[#5a7458]/50 backdrop-blur-sm rounded-xl md:rounded-2xl px-3 py-2 sm:px-4 sm:py-3 md:px-6 md:py-4 border border-white/20 shadow-xl">
-                <p className="text-xs sm:text-sm md:text-base lg:text-lg text-white leading-relaxed font-body italic text-center transform translate-y-8 opacity-0 animate-slide-up-delayed drop-shadow-md">
-                  <span className="text-base sm:text-lg md:text-xl text-[#fefcea] font-serif">“</span>
-                  Así como una planta necesita raíces sanas para florecer, las personas necesitamos mirar hacia adentro para transformar nuestra forma de ser, liderar y vincularnos.
-                  <span className="text-base sm:text-lg md:text-xl text-[#fefcea] font-serif">”</span>
-                </p>
-              </div>
-            </div>
-
-          </div>
-
-
-
-          {/* Enhanced CTAs - Outside the card */}
-          <div className="fade-in-section mt-6 md:mt-8 lg:mt-10 px-4 sm:px-6">
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-stretch sm:items-center">
-              {/* Primary CTA - Enhanced */}
-              <Button 
-                variant="primary" 
-                href="https://api.whatsapp.com/send?phone=5491136677321&text=Hola! Me gustaría agendar una sesión gratuita de 15 minutos"
-                className="w-full sm:w-auto text-sm md:text-base lg:text-lg font-bold px-4 sm:px-6 md:px-8 lg:px-12 py-3 md:py-4 lg:py-5 shadow-2xl hover:shadow-[0_15px_40px_rgba(90,116,88,0.4)] transform hover:scale-105 hover:-translate-y-1 active:scale-95 transition-all duration-500 relative overflow-hidden group"
-              >
-                <span className="relative z-10 flex items-center justify-center gap-2">
-                  <svg className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 flex-shrink-0 animate-pulse-slow" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654z"/>
-                  </svg>
-                  <span className="text-xs sm:text-sm md:text-base lg:text-lg leading-tight">Agenda tu sesión gratuita de 15 min</span>
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-white/30 via-white/20 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-              </Button>
-              
-              {/* Secondary CTA - Enhanced */}
-              <Button 
-                variant="secondary" 
-                href="#sobre-mi"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.getElementById('sobre-mi').scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="w-full sm:w-auto text-sm md:text-base lg:text-lg px-4 sm:px-6 md:px-8 lg:px-10 py-2.5 md:py-3 lg:py-4 hover:shadow-xl hover:bg-[#5a7458] hover:text-white hover:border-[#5a7458] transform hover:-translate-y-1 transition-all duration-500"
-              >
-                Conoce más sobre nosotros
-              </Button>
-            </div>
-          </div>
+        {/* Frases */}
+        <div className="fade-in-section mb-8 md:mb-12 space-y-4">
+          <p className="text-lg sm:text-xl md:text-2xl text-white font-serif italic drop-shadow-lg mx-auto leading-relaxed whitespace-nowrap">
+            "Para florecer, primero hay que enraizar"
+          </p>
+          <p className="text-base sm:text-lg md:text-xl text-white max-w-2xl mx-auto leading-relaxed drop-shadow-lg">
+            "Así como una planta necesita raíces sanas para florecer, las personas
+            necesitamos mirar hacia adentro para transformar nuestra forma de ser,
+            liderar y vincularnos."
+          </p>
         </div>
+
+        {/* CTAs */}
+        <div className="fade-in-section flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <Button
+            variant="primary"
+            href="https://api.whatsapp.com/send?phone=5491136677321&text=Hola! Quiero agendar una sesión gratuita"
+            className="hero-button-primary"
+          >
+            💬 Agenda tu sesión gratuita de 15 min
+          </Button>
+          <Button
+            variant="secondary"
+            href="/#sobre-mi"
+            className="bg-white/10 backdrop-blur-sm border border-white/40 text-white hover:bg-white/20"
+          >
+            Conocé más sobre nosotros
+          </Button>
+        </div>
+
       </div>
     </section>
   );
