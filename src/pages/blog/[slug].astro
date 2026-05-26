@@ -73,25 +73,22 @@ const schema = {
   <Navbar client:load />
   <main class="min-h-screen" style="background: #faf5ef;">
 
-    <!-- Imagen de portada hero -->
-    <div class="relative h-72 md:h-96 overflow-hidden">
-      {post.mainImage ? (
-        <img
-          src={urlFor(post.mainImage).width(1400).height(600).url()}
-          alt={post.mainImage?.alt || post.title}
-          class="w-full h-full object-cover"
-        />
-      ) : (
-        <div class="w-full h-full bg-gradient-to-br from-[#5a7458] to-[#235649]"></div>
-      )}
-      <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-    </div>
-
     <!-- Contenido del artículo -->
-    <article class="max-w-3xl mx-auto px-4 -mt-16 relative z-10 pb-20">
+    <article class="max-w-4xl mx-auto px-4 pt-32 pb-20">
 
       <!-- Card del artículo -->
-      <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+      <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 lg:bg-transparent lg:shadow-none lg:p-0">
+
+        <!-- Imagen de portada contenida -->
+        {post.mainImage && (
+          <div class="mb-8 rounded-xl overflow-hidden max-w-md mx-auto">
+            <img
+              src={urlFor(post.mainImage).width(600).height(800).url()}
+              alt={post.mainImage?.alt || post.title}
+              class="w-full h-auto object-cover object-top"
+            />
+          </div>
+        )}
 
         <!-- Meta info -->
         <div class="flex flex-wrap items-center gap-3 mb-6">

@@ -11,7 +11,7 @@ const categoryLabels = {
 
 const BlogCard = ({ post, featured = false }) => {
   const imageUrl = post.mainImage
-    ? urlFor(post.mainImage).width(featured ? 800 : 600).height(featured ? 480 : 320).url()
+    ? urlFor(post.mainImage).width(featured ? 800 : 600).height(featured ? 750 : 400).url()
     : null
 
   const date = new Date(post.publishedAt).toLocaleDateString('es-AR', {
@@ -29,7 +29,7 @@ const BlogCard = ({ post, featured = false }) => {
             <img
               src={imageUrl}
               alt={post.mainImage?.alt || post.title}
-              className="w-full h-56 lg:h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              className="w-full h-72 sm:h-80 lg:h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
             />
           ) : (
             <div className="w-full h-56 lg:h-full bg-gradient-to-br from-[#5a7458] to-[#7a9477] flex items-center justify-center">
@@ -75,12 +75,12 @@ const BlogCard = ({ post, featured = false }) => {
       href={`/blog/${post.slug.current}/`}
       className="group block bg-white rounded-2xl overflow-hidden border border-[#5a7458]/15 hover:border-[#5a7458]/40 hover:shadow-xl hover:-translate-y-1 transition-all duration-500"
     >
-      <div className="overflow-hidden h-48">
+      <div className="overflow-hidden h-52">
         {imageUrl ? (
           <img
             src={imageUrl}
             alt={post.mainImage?.alt || post.title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
           />
         ) : (
           <div className="w-full h-full bg-gradient-to-br from-[#a8c4a0] to-[#7a9477] flex items-center justify-center">

@@ -22,6 +22,12 @@ const Navbar = () => {
 
     // Determinar sección activa por hash
     const updateActiveFromHash = () => {
+      const pathname = window.location.pathname;
+      // If we are on a blog page, set blog as active
+      if (pathname.startsWith('/blog')) {
+        setActiveSection('/blog/');
+        return;
+      }
       const hash = window.location.hash.replace('#', '') || 'inicio';
       setActiveSection(hash);
     };
@@ -126,7 +132,8 @@ const Navbar = () => {
                 href={link.href}
                 style={{ animationDelay: `${(index + 1) * 100}ms` }}
                 className={`font-medium transition-all duration-300 relative pb-1 group ${
-                  activeSection === link.href.replace('/#', '').replace('#', '')
+                  activeSection === link.href.replace('/#', '').replace('#', '') ||
+                  activeSection === link.href
                     ? 'text-secondary'
                     : 'text-primary hover:text-secondary'
                 } ${
@@ -221,7 +228,8 @@ const Navbar = () => {
                   transform: isMobileMenuOpen ? 'translateY(0)' : 'translateY(-20px)'
                 }}
                 className={`font-medium py-4 px-6 rounded-xl transition-all duration-500 relative overflow-hidden group ${
-                  activeSection === link.href.replace('/#', '').replace('#', '')
+                  activeSection === link.href.replace('/#', '').replace('#', '') ||
+                  activeSection === link.href
                     ? 'bg-gradient-to-r from-secondary-light/80 to-accent-lime/20 text-primary font-semibold shadow-lg border-l-4 border-secondary'
                     : 'text-primary hover:bg-gradient-to-r hover:from-secondary-light/40 hover:to-accent-lime/10 active:scale-95'
                 } ${
