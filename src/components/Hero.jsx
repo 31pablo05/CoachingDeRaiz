@@ -51,6 +51,7 @@ const Hero = () => {
         {/* Título principal */}
         <h1
           className="fade-in-section text-5xl sm:text-6xl md:text-7xl xl:text-8xl font-extrabold text-white mb-4 leading-tight drop-shadow-xl"
+          style={{ WebkitFontSmoothing: 'auto', MozOsxFontSmoothing: 'auto' }}
           itemProp="name"
         >
           Coaching de Raíz
