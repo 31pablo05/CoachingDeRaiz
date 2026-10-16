@@ -1,0 +1,16 @@
+Proyecto: web de Lucía Vallejo (Coaching de Raíz), coach ontológica empresarial en Buenos Aires. Stack: Astro + React + Tailwind CSS + Sanity (blog) + Vercel.
+
+Estamos reorientando la web hacia empresas y organizaciones y llevando todo al estilo visual de una landing nueva (verde bosque, terracota y crema, títulos serif elegantes).
+
+Reglas:
+- Respondé siempre en español rioplatense.
+- No toques archivos ni secciones que no se mencionen en el prompt.
+- No agregues librerías externas sin consultarme.
+- Estilos solo con Tailwind y variables CSS globales del proyecto. Sin estilos inline.
+- Mobile first. Todo tiene que verse bien en celular: mucha gente va a entrar desde el QR de la tarjeta de presentación.
+- Accesibilidad: buen contraste, foco visible en links y botones, respetar prefers-reduced-motion.
+- Ya no existe la sesión gratuita de 15 minutos. No uses las palabras "gratis", "gratuita", "sin cargo" ni "sin costo" en ningún texto, y no uses Calendly en ningún lado.
+- Todos los botones de contacto principales apuntan al mismo link de WhatsApp (+54 9 11 3667-7321) con el mismo mensaje prearmado. Ese link y ese mensaje tienen que estar definidos en un solo lugar del proyecto y reutilizarse.
+- El texto de cada sección tiene que quedar fácil de editar: contenido separado del markup cuando sea una lista (tarjetas, casos, testimonios, logos).
+- No romper nada del blog con Sanity ni el webhook de Vercel.
+- Anclas de sección (ids) exactas: inicio, sobre-mi, servicios, formatos, casos, que-es-coaching, contacto.
