@@ -1,7 +1,7 @@
 /**
  * Contenido de la sección Casos.
  *
- * Estos tres listados se pueden reemplazar por documentos de Sanity
+ * Estos dos listados se pueden reemplazar por documentos de Sanity
  * sin cambiar el componente, siempre que cada ítem conserve esta forma:
  *
  * cases[]
@@ -15,17 +15,10 @@
  *   logo      null | { src, alt } si es null, la tarjeta no muestra logo
  *
  * logos[]
- *   id, name, src
- *   src null muestra el texto (espacio para completar).
+ *   id, name, src     name se usa como texto alternativo
+ *   dark   opcional    tarjeta verde para logos claros (texto blanco)
+ *   zoom   opcional    amplía logos con mucho margen transparente en el PNG
  *   Array vacío: el bloque de empresas no se muestra.
- *
- * testimonials[]
- *   id, quote, name, role, company
- *   logo  null | { src, alt }
- *   Array vacío: el bloque de testimonios no se muestra.
- *
- * Los logos y testimonios de abajo son de ejemplo. Reemplazar los textos
- * "Logo empresa" y "COMPLETAR" por el contenido real.
  */
 
 export const cases = [
@@ -96,37 +89,7 @@ export const cases = [
 ];
 
 export const logos = [
-  { id: 'logo-1', name: 'Logo empresa', src: null },
-  { id: 'logo-2', name: 'Logo empresa', src: null },
-  { id: 'logo-3', name: 'Logo empresa', src: null },
-  { id: 'logo-4', name: 'Logo empresa', src: null },
-  { id: 'logo-5', name: 'Logo empresa', src: null },
-  { id: 'logo-6', name: 'Logo empresa', src: null },
-];
-
-export const testimonials = [
-  {
-    id: 'testimonio-1',
-    quote: 'COMPLETAR',
-    name: 'COMPLETAR',
-    role: 'COMPLETAR',
-    company: 'COMPLETAR',
-    logo: null,
-  },
-  {
-    id: 'testimonio-2',
-    quote: 'COMPLETAR',
-    name: 'COMPLETAR',
-    role: 'COMPLETAR',
-    company: 'COMPLETAR',
-    logo: null,
-  },
-  {
-    id: 'testimonio-3',
-    quote: 'COMPLETAR',
-    name: 'COMPLETAR',
-    role: 'COMPLETAR',
-    company: 'COMPLETAR',
-    logo: null,
-  },
+  { id: 'envases-avalos', name: 'Envases Avalos', src: '/logos/empresa1.png' },
+  { id: 'basf', name: 'BASF', src: '/logos/empresa2.png' },
+  { id: 'grumont', name: 'Grumont Construcciones', src: '/logos/empresa3.png', dark: true, zoom: true },
 ];
