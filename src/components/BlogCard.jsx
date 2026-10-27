@@ -21,7 +21,7 @@ const BlogCard = ({ post }) => {
   return (
     <a
       href={`/blog/${post.slug.current}/`}
-      className="group flex flex-col bg-white rounded-2xl overflow-hidden border border-[#5a7458]/15 hover:border-[#5a7458]/40 hover:shadow-xl hover:-translate-y-1 transition-all duration-500"
+      className="group flex h-full flex-col overflow-hidden rounded-[28px] border border-crema-dark bg-white shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-soft-lg"
     >
       {/* Imagen */}
       <div className="overflow-hidden h-64 flex-shrink-0">
@@ -32,8 +32,8 @@ const BlogCard = ({ post }) => {
             className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
           />
         ) : (
-          <div className="w-full h-full bg-gradient-to-br from-[#a8c4a0] to-[#7a9477] flex items-center justify-center">
-            <span className="text-white/50 text-4xl">🌱</span>
+          <div className="flex h-full w-full items-center justify-center bg-crema">
+            <span className="font-heading text-3xl text-bosque/40" aria-hidden="true">CDR</span>
           </div>
         )}
       </div>
@@ -41,29 +41,26 @@ const BlogCard = ({ post }) => {
       {/* Contenido */}
       <div className="flex flex-col flex-1 p-5">
         {/* Categoría */}
-        <span className="text-xs font-medium text-[#5a7458] bg-[#e8f0e4] px-3 py-1 rounded-full self-start mb-3">
+        <span className="chip mb-3 self-start">
           {categoryLabels[post.category] || post.category}
         </span>
 
-        {/* Título */}
-        <h2 className="text-base font-bold text-[#235649] mb-2 leading-snug group-hover:text-[#56854e] transition-colors duration-300 line-clamp-2">
+        <h2 className="mb-2 font-heading text-xl font-medium leading-snug text-tinta line-clamp-2 transition-colors duration-300 group-hover:text-terracota">
           {post.title}
         </h2>
 
-        {/* Excerpt */}
-        <p className="text-sm text-gray-500 leading-relaxed line-clamp-3 flex-1">
+        <p className="flex-1 text-sm leading-relaxed text-tinta-soft line-clamp-3">
           {post.excerpt}
         </p>
 
-        {/* Footer: autor + fecha + tiempo */}
-        <div className="flex items-center justify-between pt-4 mt-4 border-t border-[#5a7458]/10">
+        <div className="mt-4 flex items-center justify-between border-t border-crema-dark pt-4">
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-full bg-[#c8dbc4] flex items-center justify-center text-[#3B6D11] font-semibold text-xs flex-shrink-0">
+            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-crema text-xs font-semibold text-bosque-dark">
               LV
             </div>
-            <span className="text-xs text-gray-500">Lucía Vallejo</span>
+            <span className="text-xs text-tinta-soft">Lucía Vallejo</span>
           </div>
-          <span className="text-xs text-gray-400">{post.readTime} min lectura</span>
+          <span className="text-xs text-tinta-soft">{post.readTime} min lectura</span>
         </div>
       </div>
     </a>

@@ -40,44 +40,28 @@
     <priority>1.0</priority>
   </url>
   
-  <!-- Coaching Ejecutivo -->
+  <!-- Sección Formatos -->
   <url>
-    <loc>https://www.coachingderaiz.com/#coaching-ejecutivo</loc>
-    <lastmod>2025-12-02</lastmod>
+    <loc>https://www.coachingderaiz.com/#formatos</loc>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
-  <!-- Coaching de Equipos -->
+  <!-- Sección Casos -->
   <url>
-    <loc>https://www.coachingderaiz.com/#coaching-equipos</loc>
-    <lastmod>2025-12-02</lastmod>
+    <loc>https://www.coachingderaiz.com/#casos</loc>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
-  <!-- Transformación Organizacional -->
+  <!-- Sección Qué es coaching -->
   <url>
-    <loc>https://www.coachingderaiz.com/#transformacion-organizacional</loc>
-    <lastmod>2025-12-02</lastmod>
+    <loc>https://www.coachingderaiz.com/#que-es-coaching</loc>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-  </url>
-  
-  <!-- Sección Proceso -->
-  <url>
-    <loc>https://www.coachingderaiz.com/#proceso</loc>
-    <lastmod>2025-12-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <!-- Sección Testimonios -->
-  <url>
-    <loc>https://www.coachingderaiz.com/#testimonios</loc>
-    <lastmod>2025-12-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
   
   <!-- Sección Contacto -->

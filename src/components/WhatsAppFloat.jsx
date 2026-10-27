@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { WHATSAPP_URL } from '../lib/site';
 
 const WhatsAppFloat = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -14,9 +15,7 @@ const WhatsAppFloat = () => {
   }, []);
 
   const handleWhatsAppClick = () => {
-    const message = encodeURIComponent("¡Hola! Me interesa conocer más sobre tus servicios de coaching. ¿Podrías contarme más?");
-    const whatsappUrl = `https://api.whatsapp.com/send?phone=5491136677321&text=${message}`;
-    window.open(whatsappUrl, '_blank');
+    window.open(WHATSAPP_URL, '_blank', 'noopener,noreferrer');
   };
 
   return (

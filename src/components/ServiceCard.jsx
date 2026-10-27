@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from './Button';
+import { WHATSAPP_URL } from '../lib/site';
 
 const ServiceCard = ({ 
   title, 
@@ -7,15 +8,14 @@ const ServiceCard = ({
   price, 
   consultPrice,
   featured, 
-  ctaText = "Agendá una sesión gratis para conocer más", 
+  ctaText = "Agendar una charla", 
   icon, 
   image,
   results,
   methodology,
   approach
 }) => {
-  const calendlyLink = "https://calendly.com/yaninaluciavallejo/sesion-gratuita-para-conocernos";
-  const whatsappLink = "https://wa.me/5491136677321?text=Hola%20Luc%C3%ADa%2C%20quisiera%20consultar%20el%20precio%20de%20una%20sesi%C3%B3n%20de%20coaching%20individual";
+  const whatsappLink = WHATSAPP_URL;
   
   return (
     <div className={`group relative h-full bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border ${
@@ -28,7 +28,7 @@ const ServiceCard = ({
         <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-20">
           <div className="bg-gradient-to-r from-[#7a9477] to-[#5a7458] text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg flex items-center gap-2 animate-pulse-slow">
             <span className="text-lg">{icon}</span>
-            ¡SESIÓN GRATIS!
+            Destacado
           </div>
         </div>
       )}
@@ -125,17 +125,11 @@ const ServiceCard = ({
         {/* Price - only for session cards */}
         {price && (
           <div className="text-center mb-2.5">
-            <div className={`inline-block px-4 py-1.5 rounded-lg ${
-              price === "GRATIS" 
-                ? 'bg-gradient-to-r from-[#7a9477] to-[#5a7458] text-white shadow-lg' 
-                : 'bg-gradient-to-r from-[#5a7458]/10 to-[#7a9477]/10 text-[#5a7458]'
-            }`}>
+            <div className="inline-block px-4 py-1.5 rounded-lg bg-gradient-to-r from-[#5a7458]/10 to-[#7a9477]/10 text-[#5a7458]">
               <p className="text-xl md:text-2xl font-bold">
                 {price}
               </p>
-              {price !== "GRATIS" && (
-                <p className="text-[10px] opacity-80">por sesión</p>
-              )}
+              <p className="text-[10px] opacity-80">por sesión</p>
             </div>
           </div>
         )}
@@ -160,7 +154,7 @@ const ServiceCard = ({
         {/* CTA Button */}
         <Button 
           variant={featured ? "primary" : "secondary"}
-          href={calendlyLink}
+          href={WHATSAPP_URL}
           className="w-full transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl text-xs md:text-sm py-2"
         >
           <span className="flex items-center justify-center gap-2">

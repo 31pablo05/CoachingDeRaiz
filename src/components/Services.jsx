@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import ServiceCard from './ServiceCard';
+import { WHATSAPP_URL } from '../lib/site';
 
 const Services = () => {
   const sectionRef = useRef(null);
@@ -66,15 +67,7 @@ const Services = () => {
       description: 'Será un encuentro en el que vas a poder detenerte, mirar hacia adentro y explorar lo que hoy te está haciendo ruido o querés transformar.',
       consultPrice: true,
       icon: '💬',
-      ctaText: 'Agendar sesión',
-    },
-    {
-      title: 'Sesión gratuita de 15 min',
-      description: 'Coordinamos una breve conversación de 15 minutos para conocernos, contarte cómo trabajo como coach y escuchar qué estás necesitando en este momento. Es un espacio sin compromiso.',
-      price: 'GRATIS',
-      featured: true,
-      icon: '🎁',
-      ctaText: 'Reservar ahora',
+      ctaText: 'Agendar una charla',
     },
   ];
 
@@ -101,7 +94,7 @@ const Services = () => {
         { name: 'Paquete Inicial', hours: '10 horas mensuales', desc: 'Acompañamiento a líderes o equipos. Incluye sesiones, reuniones de seguimiento y diseño de plan de acción.' },
         { name: 'Sesión individual', desc: 'Coaching individual o sesión de equipo.' }
       ],
-      cta: 'Te invitamos a coordinar una consulta inicial gratuita (sin compromiso) para conocernos y diseñar juntos la mejor modalidad para vos y/o tu equipo.'
+      cta: 'Te invitamos a coordinar una conversación para conocernos y diseñar juntos la mejor modalidad para vos y/o tu equipo.'
     },
     {
       title: 'Por Qué Elegirnos',
@@ -115,8 +108,7 @@ const Services = () => {
   ];
 
   return (
-    <section 
-      id="servicios" 
+    <section
       ref={sectionRef}
       className="relative overflow-hidden py-20 md:py-28"
       aria-label="Servicios de coaching ejecutivo, coaching de equipos y transformación organizacional"
@@ -277,10 +269,10 @@ const Services = () => {
                 ¿No sabés cuál es el servicio ideal para vos?
               </h3>
               <p className="text-white/90 mb-8 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-                Agendá una sesión gratuita de 15 minutos y conversemos sobre tus necesidades. Sin compromiso.
+                Contanos tu desafío y conversemos sobre tus necesidades.
               </p>
               <a
-                href="https://calendly.com/yaninaluciavallejo/sesion-gratuita-para-conocernos"
+                href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 bg-white text-[#5a7458] font-bold py-4 px-10 rounded-xl hover:shadow-2xl transform hover:scale-105 hover:-translate-y-1 transition-all duration-500 group"
@@ -288,7 +280,7 @@ const Services = () => {
                 <svg className="w-6 h-6 animate-pulse-slow" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM9 14H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2zm-8 4H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2z"/>
                 </svg>
-                <span className="text-lg">Agendar Sesión Gratuita</span>
+                <span className="text-lg">Agendar una charla</span>
                 <svg className="w-5 h-5 transform group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>

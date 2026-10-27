@@ -2,39 +2,208 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================
+   SISTEMA DE DISEÑO — Coaching de Raíz (landing nueva)
+   Variables globales de paleta, tipografía y layout.
+   Los valores de color se guardan como "R G B" para poder usar
+   opacidad con Tailwind: rgb(var(--color-x) / <alpha-value>)
+   ============================================================ */
+:root {
+  /* Paleta */
+  --color-bosque: 62 91 82; /* #3E5B52 verde bosque */
+  --color-bosque-dark: 44 67 60; /* #2C433C verde bosque oscuro */
+  --color-bosque-darker: 31 49 43; /* #1F312B verde bosque muy oscuro (footer / bloques oscuros) */
+
+  --color-terracota: 193 102 46; /* #C1662E terracota (acción principal) */
+  --color-terracota-dark: 166 82 31; /* #A6521F terracota oscuro (hover / acentos) */
+  --color-terracota-light: 231 174 135; /* tinte claro de terracota, para overlays/bordes sutiles */
+
+  --color-naranja: 226 103 44; /* #E2672C naranja intenso (detalles y degradé del CTA final) */
+
+  --color-crema: 244 239 227; /* #F4EFE3 crema */
+  --color-crema-dark: 234 225 204; /* #EAE1CC crema oscuro (bordes y fondos de chips) */
+
+  --color-papel: 251 248 241; /* #FBF8F1 papel (fondo general de la página) */
+  --color-celeste: 223 244 251; /* #DFF4FB celeste suave (tarjetas de formatos) */
+
+  --color-tinta: 38 48 44; /* #26302C tinta (texto principal) */
+  --color-tinta-soft: 92 102 96; /* #5C6660 tinta suave (texto secundario) */
+
+  --color-blanco: 255 255 255;
+
+  /* Tipografía */
+  --font-heading: 'Fraunces', Georgia, serif;
+  --font-body: 'Poppins', system-ui, sans-serif;
+
+  /* Layout */
+  --container-max: 1180px;
+  --container-padding: 32px;
+  --container-padding-mobile: 22px;
+  --section-padding-y: 100px;
+  --section-padding-y-mobile: 64px;
+  --nav-height: 72px;
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --nav-height: 80px;
+  }
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
   }
 
-  body {
-    @apply font-body text-primary bg-neutral-cream;
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-sans;
+  body {
+    @apply font-body text-tinta bg-papel;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading text-tinta;
+    line-height: 1.15;
+  }
+
+  h1 {
+    @apply text-h1 font-semibold;
+  }
+
+  h2 {
+    @apply text-h2 font-semibold;
+  }
+
+  h3 {
+    @apply font-semibold;
+  }
+
+  /* Palabra destacada dentro de un título: Fraunces cursiva 500, color terracota */
+  .title-highlight {
+    @apply text-terracota;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  /* Anillo de foco accesible y visible para navegación por teclado */
+  :focus-visible {
+    outline: 3px solid rgb(var(--color-terracota));
+    outline-offset: 3px;
+    border-radius: 4px;
   }
 }
 
 @layer components {
+  /* ----------------------------------------------------------
+     Layout de secciones
+     ---------------------------------------------------------- */
   .section-padding {
-    @apply py-16 px-6 md:py-24 md:px-12 lg:px-20;
+    padding-top: var(--section-padding-y-mobile);
+    padding-bottom: var(--section-padding-y-mobile);
+  }
+  @media (min-width: 768px) {
+    .section-padding {
+      padding-top: var(--section-padding-y);
+      padding-bottom: var(--section-padding-y);
+    }
   }
 
   .container-custom {
-    @apply max-w-7xl mx-auto;
+    @apply mx-auto w-full;
+    max-width: var(--container-max);
+    padding-left: var(--container-padding-mobile);
+    padding-right: var(--container-padding-mobile);
+  }
+  @media (min-width: 768px) {
+    .container-custom {
+      padding-left: var(--container-padding);
+      padding-right: var(--container-padding);
+    }
   }
 
+  /* Las secciones alternan papel y crema para separar visualmente */
+  .section-papel {
+    @apply bg-papel;
+  }
+  .section-crema {
+    @apply bg-crema;
+  }
+
+  /* ----------------------------------------------------------
+     Eyebrow (etiqueta de sección)
+     ---------------------------------------------------------- */
+  .eyebrow {
+    @apply inline-block text-terracota font-bold uppercase text-xs md:text-sm;
+    letter-spacing: 0.14em;
+  }
+
+  /* ----------------------------------------------------------
+     Botones
+     ---------------------------------------------------------- */
   .btn-primary {
-    @apply bg-gradient-to-r from-secondary to-accent-lime text-white font-semibold py-3 px-6 rounded-lg hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300;
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-terracota text-white font-semibold py-3 px-6 transition-all duration-300;
+    box-shadow: 0 12px 24px -8px rgb(var(--color-terracota) / 0.45);
+  }
+  .btn-primary:hover {
+    @apply bg-terracota-dark;
+    transform: translateY(-2px);
   }
 
-  .btn-secondary {
-    @apply bg-white text-primary border-2 border-primary font-semibold py-3 px-6 rounded-lg hover:bg-primary hover:text-white transition-all duration-300;
+  /* Botón crema: para usar sobre fondos oscuros o de color */
+  .btn-crema {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-crema text-bosque-darker font-semibold py-3 px-6 transition-all duration-300;
+  }
+  .btn-crema:hover {
+    @apply bg-crema-dark;
+    transform: translateY(-2px);
   }
 
+  /* Botón outline claro: para usar sobre fondos oscuros */
+  .btn-outline-light {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border-2 border-white text-white font-semibold py-3 px-6 transition-all duration-300;
+  }
+  .btn-outline-light:hover {
+    @apply bg-white text-bosque-darker;
+  }
+
+  /* ----------------------------------------------------------
+     Tarjetas
+     ---------------------------------------------------------- */
   .card {
-    @apply bg-white rounded-xl shadow-md p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+    @apply bg-white rounded-card border border-crema-dark p-6 transition-all duration-300;
+    box-shadow: 0 10px 30px -12px rgb(var(--color-tinta) / 0.12);
+  }
+  .card:hover {
+    box-shadow: 0 16px 40px -14px rgb(var(--color-tinta) / 0.18);
+    transform: translateY(-4px);
+  }
+
+  /* ----------------------------------------------------------
+     Chips
+     ---------------------------------------------------------- */
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full bg-crema text-bosque-dark text-xs md:text-sm font-semibold py-1.5 px-3;
   }
 
   .fade-in-section {
@@ -152,8 +321,8 @@ main {
 }
 
 @keyframes footerGlowPulse {
-  0%, 100% { filter: drop-shadow(0 0 10px rgba(122, 212, 53, 0.3)); }
-  50% { filter: drop-shadow(0 0 20px rgba(122, 212, 53, 0.6)); }
+  0%, 100% { filter: drop-shadow(0 0 10px rgb(var(--color-terracota) / 0.3)); }
+  50% { filter: drop-shadow(0 0 20px rgb(var(--color-terracota) / 0.6)); }
 }
 
 @keyframes footerShimmerWave {
@@ -218,12 +387,12 @@ main {
 }
 
 .glow-effect {
-  box-shadow: 0 0 20px rgba(86, 133, 78, 0.3);
+  box-shadow: 0 0 20px rgb(var(--color-terracota) / 0.3);
   transition: box-shadow 0.3s ease;
 }
 
 .glow-effect:hover {
-  box-shadow: 0 0 30px rgba(122, 212, 53, 0.5);
+  box-shadow: 0 0 30px rgb(var(--color-terracota) / 0.5);
 }
 
 @media (max-width: 768px) {
@@ -249,11 +418,11 @@ main {
 
 .hero-glass-card:hover {
   transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25), 0 0 30px rgba(122, 212, 53, 0.15);
+  box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25), 0 0 30px rgb(var(--color-terracota) / 0.15);
 }
 
 .hero-text-gradient {
-  background: linear-gradient(135deg, #235649, #56854e, #7ad435);
+  background: linear-gradient(135deg, rgb(var(--color-bosque-darker)), rgb(var(--color-bosque)), rgb(var(--color-terracota)));
   background-size: 300% 300%;
   background-clip: text;
   -webkit-background-clip: text;
@@ -279,7 +448,7 @@ main {
 
 .footer-card-hover:hover {
   transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 30px rgba(122, 212, 53, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 30px rgb(var(--color-terracota) / 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .footer-stagger-1 { animation-delay: 0.1s; }
@@ -322,7 +491,7 @@ main {
    ============================================ */
 
 .text-gradient {
-  background: linear-gradient(to right, #56854e, #7ad435);
+  background: linear-gradient(to right, rgb(var(--color-terracota)), rgb(var(--color-naranja)));
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -348,7 +517,7 @@ main {
   left: -10rem;
   width: 500px;
   height: 500px;
-  background: rgba(90, 116, 88, 0.1);
+  background: rgb(var(--color-bosque) / 0.1);
   border-radius: 50%;
   filter: blur(96px);
   animation: float-slower 25s ease-in-out infinite;
@@ -361,7 +530,7 @@ main {
   right: 2.5rem;
   width: 384px;
   height: 384px;
-  background: rgba(90, 116, 88, 0.05);
+  background: rgb(var(--color-bosque) / 0.05);
   border-radius: 50%;
   filter: blur(96px);
   animation: float-slow 20s ease-in-out infinite;
@@ -374,7 +543,7 @@ main {
   left: 2.5rem;
   width: 320px;
   height: 320px;
-  background: rgba(122, 148, 119, 0.05);
+  background: rgb(var(--color-bosque) / 0.05);
   border-radius: 50%;
   filter: blur(96px);
   animation: float-slower 25s ease-in-out infinite;
@@ -387,7 +556,7 @@ main {
   right: 2.5rem;
   width: 288px;
   height: 288px;
-  background: rgba(90, 116, 88, 0.05);
+  background: rgb(var(--color-bosque) / 0.05);
   border-radius: 50%;
   filter: blur(96px);
   animation: pulse 3s ease-in-out infinite;
@@ -400,7 +569,7 @@ main {
   left: 2.5rem;
   width: 384px;
   height: 384px;
-  background: rgba(165, 185, 145, 0.05);
+  background: rgb(var(--color-bosque) / 0.05);
   border-radius: 50%;
   filter: blur(96px);
   animation: pulse 3s ease-in-out 1s infinite;
@@ -410,7 +579,7 @@ main {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom right, rgb(122, 148, 119), rgb(90, 116, 88), rgba(165, 185, 145, 0.3));
+  background: linear-gradient(to bottom right, rgb(var(--color-bosque)), rgb(var(--color-bosque-dark)), rgb(var(--color-bosque) / 0.3));
   border-radius: 1rem;
   transform: rotate(3deg);
   transition: transform 0.5s;
@@ -425,7 +594,7 @@ main {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom right, rgba(165, 185, 145, 0.2), rgba(90, 116, 88, 0.2));
+  background: linear-gradient(to bottom right, rgb(var(--color-bosque) / 0.2), rgb(var(--color-bosque-dark) / 0.2));
   border-radius: 1rem;
   filter: blur(24px);
   opacity: 0;
@@ -458,7 +627,7 @@ main {
   transform: translate(-50%, -50%);
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(165, 185, 145, 0.03) 0%, transparent 70%);
+  background: radial-gradient(circle, rgb(var(--color-bosque) / 0.03) 0%, transparent 70%);
   border-radius: 50%;
   animation: pulse-slow 6s ease-in-out infinite;
 }
@@ -467,7 +636,7 @@ main {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(165, 185, 145, 0.2);
+  background: rgb(var(--color-bosque) / 0.2);
   border-radius: 50%;
   filter: blur(24px);
   opacity: 0;
@@ -478,15 +647,7 @@ main {
   opacity: 1;
 }
 
-/* Scroll offset for fixed navbar on all screen sizes */
+/* La navbar fija no debe tapar el título al llegar por ancla */
 section[id] {
-  scroll-margin-top: 80px;
+  scroll-margin-top: 5.5rem;
 }
-
-@media (max-width: 768px) {
-  section[id] {
-    scroll-margin-top: 70px;
-  }
-}
-
-

@@ -1,285 +1,227 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { NAV_LINKS, SECTION_IDS, WHATSAPP_URL, navHref } from '../lib/site';
+
+const DESKTOP_NAV_QUERY = '(min-width: 1180px)';
 
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
-
- const navLinks = [
-  { name: 'Inicio', href: '/#inicio' },
-  { name: 'Servicios', href: '/#servicios' },
-  { name: '¿Qué es Coaching?', href: '/#que-es-coaching' },
-  { name: 'Sobre mí', href: '/#sobre-mi' },
-  { name: 'Contacto', href: '/#contacto' },
-  { name: 'Blog', href: '/blog/' },
-];
+  const [isOpen, setIsOpen] = useState(false);
+  const [activeId, setActiveId] = useState(null);
+  const [onBlog, setOnBlog] = useState(false);
+  const [logoOk, setLogoOk] = useState(true);
+  const headerRef = useRef(null);
 
   useEffect(() => {
-    // Animación de entrada
-    const timer = setTimeout(() => setIsLoaded(true), 100);
+    const onBlogPage = window.location.pathname.startsWith('/blog');
+    setOnBlog(onBlogPage);
+    if (onBlogPage) return undefined;
 
-    // Determinar sección activa por hash
-    const updateActiveFromHash = () => {
-      const pathname = window.location.pathname;
-      // If we are on a blog page, set blog as active
-      if (pathname.startsWith('/blog')) {
-        setActiveSection('/blog/');
-        return;
+    let frame = null;
+    const updateActive = () => {
+      const navHeight = headerRef.current?.offsetHeight ?? 72;
+      const offset = navHeight + 8;
+      let current = 'inicio';
+
+      for (const id of SECTION_IDS) {
+        const section = document.getElementById(id);
+        if (!section) continue;
+        if (section.getBoundingClientRect().top <= offset) current = id;
       }
-      const hash = window.location.hash.replace('#', '') || 'inicio';
-      setActiveSection(hash);
-    };
-    updateActiveFromHash();
-    window.addEventListener('hashchange', updateActiveFromHash);
-    window.addEventListener('popstate', updateActiveFromHash);
 
-    let rafId = null;
-    let lastScrollY = 0;
-
-    const handleScroll = () => {
-      if (rafId) {
-        cancelAnimationFrame(rafId);
-      }
-      rafId = requestAnimationFrame(() => {
-        const scrollY = window.scrollY;
-        if (Math.abs(scrollY - lastScrollY) > 5) {
-          lastScrollY = scrollY;
-          setIsScrolled(scrollY > 20);
-          const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
-          const progress = documentHeight > 0 ? (scrollY / documentHeight) * 100 : 0;
-          setScrollProgress(Math.min(progress, 100));
-        }
-      });
+      setActiveId(current);
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    const onScroll = () => {
+      if (frame) cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(updateActive);
+    };
+
+    updateActive();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('hashchange', onScroll);
+
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('hashchange', updateActiveFromHash);
-      window.removeEventListener('popstate', updateActiveFromHash);
-      if (rafId) cancelAnimationFrame(rafId);
-      clearTimeout(timer);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('hashchange', onScroll);
+      if (frame) cancelAnimationFrame(frame);
     };
   }, []);
 
+  useEffect(() => {
+    document.body.classList.toggle('nav-open', isOpen);
+    return () => document.body.classList.remove('nav-open');
+  }, [isOpen]);
 
+  useEffect(() => {
+    if (!isOpen) return undefined;
+
+    const dialog = document.getElementById('menu-movil');
+    const closeButton = document.querySelector('[aria-controls="menu-movil"]');
+
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setIsOpen(false);
+        closeButton?.focus();
+        return;
+      }
+      if (event.key !== 'Tab' || !dialog) return;
+
+      const items = [closeButton, ...dialog.querySelectorAll('a')].filter(Boolean);
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (!first || !last) return;
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+    const onResize = () => {
+      if (window.matchMedia(DESKTOP_NAV_QUERY).matches) setIsOpen(false);
+    };
+
+    window.addEventListener('keydown', onKeyDown);
+    window.addEventListener('resize', onResize);
+    return () => {
+      window.removeEventListener('keydown', onKeyDown);
+      window.removeEventListener('resize', onResize);
+    };
+  }, [isOpen]);
+
+  const closeMenu = () => setIsOpen(false);
+
+  const linkClass = (isActive, stacked) =>
+    [
+      'font-body font-medium transition-colors duration-300',
+      stacked ? 'block py-4 text-lg' : 'relative whitespace-nowrap py-2 text-sm',
+      isActive ? 'text-bosque-darker' : 'text-tinta-soft hover:text-tinta',
+    ].join(' ');
+
+  const renderLinks = (stacked) =>
+    NAV_LINKS.map((link) => {
+      const isActive = onBlog ? Boolean(link.href) : link.id === activeId;
+      return (
+        <a
+          key={link.label}
+          href={navHref(link)}
+          onClick={closeMenu}
+          aria-current={isActive ? 'true' : undefined}
+          className={`group ${linkClass(isActive, stacked)}`}
+        >
+          {stacked ? (
+            <span
+              className={`border-b pb-0.5 ${
+                isActive ? 'border-terracota' : 'border-transparent group-hover:border-terracota'
+              }`}
+            >
+              {link.label}
+            </span>
+          ) : (
+            link.label
+          )}
+          {!stacked && (
+            <span
+              aria-hidden="true"
+              className={`absolute inset-x-0 bottom-0.5 h-0.5 origin-left rounded-full bg-terracota transition-transform duration-300 ${
+                isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+              }`}
+            />
+          )}
+        </a>
+      );
+    });
 
   return (
-    <nav 
-      role="navigation"
-      aria-label="Menú principal de navegación"
-      className={`fixed w-full z-50 transition-all duration-500 navbar-blur ${
-        isScrolled 
-          ? 'navbar-glassmorphism shadow-2xl py-2 md:py-3' 
-          : 'bg-white/95 py-4 md:py-6 shadow-lg'
-      } ${
-        isLoaded ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
-      }`}
-    >
-      {/* Barra de progreso del scroll - REMOVED */}
-      <div className="container-custom px-4 sm:px-6 md:px-12 lg:px-20">
-        <div className="flex items-center justify-between">
-          {/* Logo with Image and Text - Mejorado */}
-          <a 
-            href="/"
-            className="flex items-center gap-3 group relative"
-            aria-label="Volver al inicio - Lucía Vallejo Coach Ontológica"
+    <>
+      <header
+        ref={headerRef}
+        className={`fixed inset-x-0 top-0 z-[70] h-[var(--nav-height)] border-b border-crema-dark/70 ${
+          isOpen ? 'bg-papel' : 'bg-papel/90 backdrop-blur-md'
+        }`}
+      >
+        <div className="container-custom flex h-full items-center justify-between gap-6">
+          <a
+            href="/#inicio"
+            className="flex min-w-0 shrink-0 items-center gap-3"
+            aria-label="Coaching de Raíz, ir al inicio"
           >
-            {/* Efecto de background hover */}
-            <div className="absolute -inset-2 bg-gradient-to-r from-secondary-light/20 to-accent-lime/20 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 blur-sm"></div>
-            
-            {/* Logo Image Container con efectos avanzados */}
-            <div className={`relative transition-all duration-500 ${
-              isScrolled ? 'w-12 h-12 sm:w-14 sm:h-14' : 'w-16 h-16 sm:w-20 sm:h-20'
-            }`}>
-              <img 
-                src="/logos/logocoaching.svg" 
-                alt="Coaching de Raíz - Lucía Vallejo Coach Ontológica Empresarial" 
-                title="Coaching de Raíz Logo"
-                width="80"
-                height="80"
-                loading="eager"
-                className="w-full h-full object-contain logo-hover-effect"
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                }}
+            {logoOk && (
+              <img
+                src="/logos/logocoaching.svg"
+                alt=""
+                width="56"
+                height="56"
+                className="h-11 w-11 shrink-0 object-contain lg:h-14 lg:w-14"
+                onError={() => setLogoOk(false)}
               />
-              {/* Anillo decorativo animado */}
-              <div className="absolute inset-0 rounded-full border-2 border-secondary opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 animate-pulse-slow"></div>
-              {/* Efecto de brillo */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
-            </div>
-            
-            {/* Brand Text - Mejorado con gradientes */}
-            <div className="flex flex-col min-w-0 relative z-10">
-              <span className={`font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent group-hover:from-secondary group-hover:to-accent-lime transition-all duration-500 ${
-                isScrolled ? 'text-lg sm:text-xl' : 'text-xl sm:text-2xl'
-              }`}>
-                Coaching de Raíz
-              </span>
-              <span className={`text-secondary-text font-medium leading-tight group-hover:text-secondary transition-colors duration-300 text-xs`}>
-                <div className="transform group-hover:translate-x-1 transition-transform duration-300">Acompañamiento profesional para el</div>
-                <div className="transform group-hover:translate-x-1 transition-transform duration-300 delay-75">desarrollo de líderes, equipos y organizaciones</div>
-              </span>
-            </div>
+            )}
+            <span className="truncate font-heading text-lg font-semibold leading-none text-bosque-darker lg:text-xl">
+              Coaching de Raíz
+            </span>
           </a>
 
-          {/* Desktop Navigation - Mejorado */}
-          <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
-            {navLinks.map((link, index) => (
-              <a
-                key={link.href}
-                href={link.href}
-                style={{ animationDelay: `${(index + 1) * 100}ms` }}
-                className={`font-medium transition-all duration-300 relative pb-1 group ${
-                  activeSection === link.href.replace('/#', '').replace('#', '') ||
-                  activeSection === link.href
-                    ? 'text-secondary'
-                    : 'text-primary hover:text-secondary'
-                } ${
-                  isLoaded ? 'animate-fade-in-down' : 'opacity-0'
-                }`}
-              >
-                {link.name}
-                {/* Underline animado mejorado */}
-                <span 
-                  className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-secondary to-accent-lime transition-all duration-300 ${
-                    activeSection === link.href.replace('/#', '').replace('#', '') ? 'w-full' : 'w-0 group-hover:w-full'
-                  }`}
-                ></span>
-                {/* Efecto de glow en hover */}
-                <span className="absolute -inset-2 bg-gradient-to-r from-secondary/10 to-accent-lime/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></span>
-              </a>
-            ))}
-            
-            {/* CTA Button mejorado */}
+          <div className="hidden items-center gap-7 min-[1180px]:flex">
+            <nav aria-label="Secciones" className="flex items-center gap-x-5">
+              {renderLinks(false)}
+            </nav>
             <a
-              href="https://wa.me/message/VPS3R5LKA4QNJ1"
+              href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className={`relative bg-gradient-to-r from-secondary to-accent-lime text-white font-semibold px-6 py-3 rounded-xl glow-effect hover:scale-105 active:scale-95 transition-all duration-300 whitespace-nowrap overflow-hidden group ${
-                isLoaded ? 'animate-fade-in-down' : 'opacity-0'
-              }`}
-              style={{ animationDelay: '700ms' }}
+              className="btn-primary whitespace-nowrap px-5 py-2.5 text-sm"
             >
-              {/* Efecto de onda en hover */}
-              <span className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
-              <span className="relative">
-                <span className="hidden sm:inline">Sesión </span>Gratuita
-              </span>
-              {/* Pulso sutil para llamar la atención */}
-              <div className="absolute inset-0 bg-gradient-to-r from-secondary to-accent-lime rounded-xl animate-pulse-slow opacity-75 -z-10"></div>
+              Agendar una charla
             </a>
           </div>
 
-          {/* Mobile Menu Button - Mejorado */}
           <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`lg:hidden text-primary focus:outline-none p-3 hover:bg-gradient-to-r hover:from-secondary-light/20 hover:to-accent-lime/20 rounded-xl transition-all duration-300 group ${
-              isLoaded ? 'animate-fade-in-down' : 'opacity-0'
-            }`}
-            style={{ animationDelay: '500ms' }}
-            aria-label="Toggle menu"
-            aria-expanded={isMobileMenuOpen}
+            type="button"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full text-tinta transition-colors hover:bg-crema-dark/60 min-[1180px]:hidden"
+            aria-expanded={isOpen}
+            aria-controls="menu-movil"
+            aria-label={isOpen ? 'Cerrar menú' : 'Abrir menú'}
+            onClick={() => setIsOpen((open) => !open)}
           >
-            <svg
-              className={`w-6 h-6 transition-all duration-500 ${
-                isMobileMenuOpen ? 'rotate-180 scale-110' : 'group-hover:scale-110'
-              }`}
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              {isMobileMenuOpen ? (
-                <path d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-            {/* Efecto de ring animado */}
-            <div className={`absolute inset-0 border-2 border-secondary rounded-xl transition-all duration-300 ${
-              isMobileMenuOpen ? 'scale-110 opacity-100' : 'scale-95 opacity-0'
-            }`}></div>
+            {isOpen ? (
+              <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                <path strokeLinecap="round" d="M6 6l12 12M18 6L6 18" />
+              </svg>
+            ) : (
+              <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                <path strokeLinecap="round" d="M4 7h16M4 12h16M4 17h16" />
+              </svg>
+            )}
           </button>
         </div>
+      </header>
 
-        {/* Mobile Menu - Mejorado */}
-        <div 
-          className={`lg:hidden overflow-hidden transition-all duration-500 ease-out ${
-            isMobileMenuOpen 
-              ? 'max-h-96 opacity-100 mt-4' 
-              : 'max-h-0 opacity-0'
-          }`}
+      {isOpen && (
+        <div
+          id="menu-movil"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menú"
+          className="fixed inset-0 z-[60] flex flex-col bg-papel pt-[var(--nav-height)] min-[1180px]:hidden"
         >
-          {/* Efecto de background blur para el menú mobile */}
-          <div className="absolute inset-x-0 mobile-menu-backdrop bg-gradient-to-b from-white/95 to-white/90 rounded-2xl border border-secondary-light/30 shadow-2xl mx-4"></div>
-          
-          <div className="flex flex-col space-y-2 pb-4 relative z-10">
-            {navLinks.map((link, index) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  // Force active state update after menu closes
-                  setTimeout(() => {
-                    const hash = window.location.hash.replace('#', '') || 'inicio';
-                    const pathname = window.location.pathname;
-                    if (pathname.startsWith('/blog')) {
-                      setActiveSection('/blog/');
-                    } else {
-                      setActiveSection(hash);
-                    }
-                  }, 100);
-                }}
-                style={{ 
-                  animationDelay: `${index * 100}ms`,
-                  transform: isMobileMenuOpen ? 'translateY(0)' : 'translateY(-20px)'
-                }}
-                className={`font-medium py-4 px-6 rounded-xl transition-all duration-500 relative overflow-hidden group ${
-                  activeSection === link.href.replace('/#', '').replace('#', '') ||
-                  activeSection === link.href
-                    ? 'bg-gradient-to-r from-secondary-light/80 to-accent-lime/20 text-primary font-semibold shadow-lg border-l-4 border-secondary'
-                    : 'text-primary hover:bg-gradient-to-r hover:from-secondary-light/40 hover:to-accent-lime/10 active:scale-95'
-                } ${
-                  isMobileMenuOpen ? 'animate-slide-up' : ''
-                }`}
-              >
-                <span className="relative z-10">{link.name}</span>
-                {/* Efecto de shimmer en hover */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-              </a>
-            ))}
-            
-            {/* CTA Button mobile mejorado */}
+          <div className="container-custom flex flex-1 flex-col overflow-y-auto py-6">
+            <nav aria-label="Secciones" className="flex flex-col divide-y divide-crema-dark">
+              {renderLinks(true)}
+            </nav>
             <a
-              href="https://wa.me/message/VPS3R5LKA4QNJ1"
+              href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className={`bg-gradient-to-r from-secondary to-accent-lime text-white font-bold py-4 px-6 rounded-xl text-center glow-effect active:scale-95 transition-all duration-500 mt-4 relative overflow-hidden group ${
-                isMobileMenuOpen ? 'animate-bounce-in' : ''
-              }`}
-              style={{ animationDelay: `${navLinks.length * 100 + 200}ms` }}
+              onClick={closeMenu}
+              className="btn-primary mt-8 w-full"
             >
-              <span className="relative z-10 flex items-center justify-center gap-2">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
-                  <path d="M11.893 5.5c2.998 0 5.434 2.436 5.435 5.435-.001 2.998-2.437 5.434-5.435 5.434s-5.434-2.436-5.434-5.434c0-2.999 2.436-5.435 5.434-5.435z"/>
-                </svg>
-                Sesión Gratuita
-              </span>
-              {/* Efecto de onda */}
-              <div className="absolute inset-0 bg-white/20 transform scale-0 group-hover:scale-100 rounded-xl transition-transform duration-500"></div>
+              Agendar una charla
             </a>
           </div>
         </div>
-      </div>
-    </nav>
+      )}
+    </>
   );
 };
 

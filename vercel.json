@@ -8,14 +8,18 @@
       "destination": "https://www.coachingderaiz.com/$1",
       "permanent": true
     },
-    {"source": "/servicios", "destination": "/", "permanent": true},
-    {"source": "/servicios/", "destination": "/", "permanent": true},
-    {"source": "/sobre-mi", "destination": "/", "permanent": true},
-    {"source": "/sobre-mi/", "destination": "/", "permanent": true},
-    {"source": "/que-es-coaching", "destination": "/", "permanent": true},
-    {"source": "/que-es-coaching/", "destination": "/", "permanent": true},
-    {"source": "/contacto", "destination": "/", "permanent": true},
-    {"source": "/contacto/", "destination": "/", "permanent": true}
+    {"source": "/sobre-mi", "destination": "/#sobre-mi", "permanent": true},
+    {"source": "/sobre-mi/", "destination": "/#sobre-mi", "permanent": true},
+    {"source": "/servicios", "destination": "/#servicios", "permanent": true},
+    {"source": "/servicios/", "destination": "/#servicios", "permanent": true},
+    {"source": "/formatos", "destination": "/#formatos", "permanent": true},
+    {"source": "/formatos/", "destination": "/#formatos", "permanent": true},
+    {"source": "/casos", "destination": "/#casos", "permanent": true},
+    {"source": "/casos/", "destination": "/#casos", "permanent": true},
+    {"source": "/que-es-coaching", "destination": "/#que-es-coaching", "permanent": true},
+    {"source": "/que-es-coaching/", "destination": "/#que-es-coaching", "permanent": true},
+    {"source": "/contacto", "destination": "/#contacto", "permanent": true},
+    {"source": "/contacto/", "destination": "/#contacto", "permanent": true}
   ],
   "headers": [
     {

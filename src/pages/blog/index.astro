@@ -7,6 +7,7 @@ import WhatsAppFloat from '../../components/WhatsAppFloat.jsx';
 import { sanityClient } from '../../lib/sanity';
 import { ALL_POSTS_QUERY } from '../../lib/queries';
 import BlogCard from '../../components/BlogCard.jsx';
+import { WHATSAPP_URL } from '../../lib/site';
 
 let posts = [];
 let error = null;
@@ -21,9 +22,9 @@ try {
 const schema = {
   "@context": "https://schema.org",
   "@type": "Blog",
-  "name": "Blog de Coaching Ontológico - Coaching de Raíz",
+  "name": "Blog de Coaching de Raíz",
   "url": "https://www.coachingderaiz.com/blog/",
-  "description": "Artículos sobre coaching ontológico, liderazgo, equipos y transformación organizacional por Lucía Vallejo.",
+  "description": "Artículos de Lucía Vallejo sobre coaching ontológico empresarial, coaching ejecutivo, coaching de equipos y transformación organizacional.",
   "author": {
     "@type": "Person",
     "name": "Lucía Vallejo"
@@ -32,55 +33,45 @@ const schema = {
 ---
 
 <BaseLayout
-  title="Blog | Coaching Ontológico, Liderazgo y Equipos - Lucía Vallejo"
-  description="Artículos sobre coaching ontológico, liderazgo transformacional y desarrollo de equipos. Reflexiones y herramientas prácticas de Lucía Vallejo, Coach Ontológica Empresarial en Buenos Aires."
+  title="Blog | Coaching ejecutivo, equipos y transformación organizacional - Lucía Vallejo"
+  description="Artículos de Lucía Vallejo sobre coaching ontológico empresarial, coaching ejecutivo, coaching de equipos y transformación organizacional."
   canonical="/blog/"
-  keywords="blog coaching ontológico, liderazgo equipos Argentina, coaching ejecutivo artículos, desarrollo profesional Buenos Aires"
+  keywords="blog coaching ontológico empresarial, coaching ejecutivo, coaching de equipos, transformación organizacional, Lucía Vallejo"
   schema={schema}
 >
   <Navbar client:load />
-  <main class="min-h-screen" style="background: linear-gradient(180deg, #faf5ef 0%, #f0f5ec 100%);">
+  <main class="min-h-screen bg-papel">
 
-    <!-- Header del blog -->
-    <section class="pt-36 pb-12 px-4 text-center">
-      <span class="inline-block text-[#5a7458] font-semibold text-xs uppercase tracking-widest mb-4 px-4 py-1.5 bg-[#5a7458]/10 rounded-full">
-        Blog
-      </span>
-      <h1 class="text-4xl md:text-5xl font-bold text-[#235649] mb-4">
-        Coaching & Liderazgo
-      </h1>
-      <p class="text-lg text-gray-500 max-w-xl mx-auto">
+    <section class="container-custom pt-36 pb-12 text-center">
+      <p class="eyebrow">Blog</p>
+      <h1 class="mt-4 font-heading">Coaching & Liderazgo</h1>
+      <p class="mx-auto mt-5 max-w-xl text-base leading-relaxed text-tinta-soft md:text-lg">
         Reflexiones y herramientas para líderes, equipos y organizaciones
       </p>
     </section>
 
-    <!-- Contenido -->
-    <section class="max-w-6xl mx-auto px-4 pb-20">
+    <section class="container-custom pb-20">
 
       {error && (
-        <div class="text-center py-20">
-          <p class="text-gray-400 text-lg">Error al cargar los artículos. Intentá más tarde.</p>
+        <div class="py-20 text-center">
+          <p class="text-lg text-tinta-soft">Error al cargar los artículos. Intentá más tarde.</p>
         </div>
       )}
 
       {!error && posts.length === 0 && (
-        <div class="text-center py-20">
-          <div class="text-6xl mb-4">🌱</div>
-          <h2 class="text-2xl font-bold text-[#235649] mb-3">Próximamente</h2>
-          <p class="text-gray-500 max-w-md mx-auto">
+        <div class="py-20 text-center">
+          <h2 class="font-heading text-2xl font-medium text-tinta">Próximamente</h2>
+          <p class="mx-auto mt-3 max-w-md text-tinta-soft">
             Lucía está preparando artículos sobre coaching ontológico, liderazgo y transformación de equipos.
           </p>
-          <a
-            href="/"
-            class="inline-block mt-6 bg-[#5a7458] text-white px-6 py-3 rounded-full text-sm font-semibold hover:bg-[#235649] transition-colors duration-300"
-          >
+          <a href="/" class="btn-primary mt-6">
             Volver al inicio
           </a>
         </div>
       )}
 
       {!error && posts.length > 0 && (
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {posts.map(post => (
             <BlogCard post={post} client:load />
           ))}
@@ -89,22 +80,23 @@ const schema = {
 
     </section>
 
-    <!-- CTA al final -->
-    <section class="bg-[#235649] py-16 px-4 text-center">
-      <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
-        ¿Querés transformar tu liderazgo?
-      </h2>
-      <p class="text-white/70 mb-6 max-w-md mx-auto">
-        Agendá una sesión gratuita de 15 minutos y conversemos sobre tus objetivos.
-      </p>
-      <a
-        href="https://api.whatsapp.com/send?phone=5491136677321&text=Hola! Me gustaría agendar una sesión gratuita de 15 minutos"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-block bg-[#7ad435] text-[#235649] font-bold px-8 py-4 rounded-full hover:bg-[#8fe040] transition-colors duration-300"
-      >
-        Agenda tu sesión gratuita
-      </a>
+    <section class="section-padding bg-gradient-radial from-naranja via-terracota to-terracota-dark text-center text-white">
+      <div class="container-custom">
+        <div class="mx-auto max-w-3xl">
+          <h2 class="font-heading text-white">¿Querés transformar tu liderazgo?</h2>
+          <p class="mx-auto mt-5 max-w-md text-base leading-relaxed text-white/90">
+            Contanos tu desafío y conversemos sobre tus objetivos.
+          </p>
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-crema mt-8"
+          >
+            Agendar una charla
+          </a>
+        </div>
+      </div>
     </section>
 
   </main>
