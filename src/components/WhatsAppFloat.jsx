@@ -4,6 +4,7 @@ import { WHATSAPP_URL } from '../lib/site';
 const WhatsAppFloat = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [heroInView, setHeroInView] = useState(false);
 
   useEffect(() => {
     // Show button after a small delay when component mounts
@@ -14,13 +15,30 @@ const WhatsAppFloat = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  // El Hero ya tiene su propio CTA de WhatsApp: el flotante se oculta mientras se ve para no tapar los botones
+  useEffect(() => {
+    const hero = document.getElementById('inicio');
+    if (!hero) return undefined;
+
+    const update = () => setHeroInView(hero.getBoundingClientRect().bottom > 0);
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    return () => {
+      window.removeEventListener('scroll', update);
+      window.removeEventListener('resize', update);
+    };
+  }, []);
+
   const handleWhatsAppClick = () => {
     window.open(WHATSAPP_URL, '_blank', 'noopener,noreferrer');
   };
 
+  const isShown = isVisible && !heroInView;
+
   return (
-    <div className={`fixed bottom-6 right-6 z-50 transition-all duration-500 ${
-      isVisible ? 'translate-y-0 opacity-100 whatsapp-bounce' : 'translate-y-16 opacity-0'
+    <div className={`fixed bottom-[max(1.5rem,env(safe-area-inset-bottom))] right-[max(1.5rem,env(safe-area-inset-right))] z-50 transition-all duration-500 ${
+      isShown ? 'translate-y-0 opacity-100 whatsapp-bounce' : 'pointer-events-none invisible translate-y-16 opacity-0'
     }`}>
       {/* Tooltip */}
       <div className={`absolute bottom-full right-0 mb-3 transition-all duration-300 ${
