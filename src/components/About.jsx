@@ -28,14 +28,15 @@ const About = () => (
     aria-labelledby="sobre-mi-titulo"
     className="section-papel section-padding"
   >
-    <div className="container-custom grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
+    <div className="container-custom grid items-start gap-8 md:gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
       <img
         src="/imagenes/lucia-hero.jpg"
         alt="Lucía Vallejo"
-        width="1200"
-        height="800"
+        width="849"
+        height="1036"
         loading="lazy"
-        className="w-full rounded-[32px] shadow-soft"
+        decoding="async"
+        className="mx-auto h-[clamp(320px,85vw,350px)] w-full rounded-[28px] bg-crema-dark object-cover object-[50%_20%] shadow-soft md:h-[440px] md:max-w-xl md:rounded-[32px] lg:h-auto lg:max-w-none lg:object-center"
       />
 
       <div>
@@ -44,13 +45,13 @@ const About = () => (
           Lucía Vallejo
         </h2>
 
-        <div className="mt-6 space-y-4 text-base leading-relaxed text-tinta-soft">
+        <div className="mt-5 space-y-4 text-base leading-[1.75] text-tinta-soft md:mt-6">
           {paragraphs.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}
         </div>
 
-        <ul className="mt-6 flex flex-wrap gap-2">
+        <ul className="mt-6 flex flex-wrap gap-x-2 gap-y-2.5">
           {credentials.map((item) => (
             <li key={item} className="chip">
               {item}
@@ -58,14 +59,14 @@ const About = () => (
           ))}
         </ul>
 
-        <blockquote className="mt-8 rounded-r-2xl border-l-4 border-terracota bg-crema px-5 py-5 md:px-6">
-          <p className="font-heading text-lg font-medium italic leading-snug text-tinta md:text-xl">
+        <blockquote className="mt-7 rounded-r-2xl border-l-4 border-terracota bg-crema px-4 py-4 md:mt-8 md:px-6 md:py-5">
+          <p className="font-heading text-[17px] font-medium italic leading-[1.45] text-tinta md:text-xl md:leading-snug">
             {quote}
           </p>
-          <footer className="mt-3 text-sm font-medium text-tinta-soft">Lucía Vallejo</footer>
+          <footer className="mt-2.5 text-sm font-medium text-tinta-soft md:mt-3">Lucía Vallejo</footer>
         </blockquote>
 
-        <ul className="mt-6 flex flex-wrap gap-2">
+        <ul className="mt-5 flex flex-wrap gap-2 md:mt-6">
           {focuses.map((item) => (
             <li key={item} className="chip bg-crema-dark py-1 text-xs font-medium text-tinta-soft">
               {item}
