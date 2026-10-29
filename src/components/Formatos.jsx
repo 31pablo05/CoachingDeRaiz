@@ -230,22 +230,22 @@ const Formatos = () => (
       <div className="container-custom">
         <header className="mx-auto max-w-3xl text-center">
           <p className="eyebrow">Desafíos y formatos</p>
-          <h2 className="mt-4 font-heading">Primero definimos qué transformar</h2>
-          <p className="mt-5 text-base leading-relaxed text-tinta-soft md:text-lg">
+          <h2 className="mt-3 font-heading md:mt-4">Primero definimos qué transformar</h2>
+          <p className="mt-4 text-base leading-relaxed text-tinta-soft md:mt-5 md:text-lg">
             Y recién después, el formato y la duración del proceso.
           </p>
         </header>
 
-        <ul className="mt-12 grid grid-cols-1 gap-5 md:mt-16 md:grid-cols-2">
+        <ul className="mt-9 grid grid-cols-1 gap-3.5 md:mt-16 md:grid-cols-2 md:gap-5">
           {formats.map((format) => (
             <li
               key={format.title}
-              className={`flex min-h-full flex-col rounded-card p-7 shadow-soft transition-transform duration-300 hover:-translate-y-1 motion-reduce:hover:translate-y-0 md:p-8 ${format.tone}`}
+              className={`flex flex-col rounded-card p-5 shadow-soft transition-transform duration-300 hover:-translate-y-1 motion-reduce:hover:translate-y-0 md:min-h-full md:p-8 ${format.tone}`}
             >
-              <h3 className="font-heading text-2xl font-medium text-inherit md:text-3xl">{format.title}</h3>
-              <p className="mt-4 text-base leading-relaxed">{format.text}</p>
-              <div className="mt-auto pt-8">
-                <p className={`border-t pt-5 text-sm font-semibold ${format.rule}`}>{format.detail}</p>
+              <h3 className="font-heading text-[1.4rem] font-medium leading-snug text-inherit md:text-3xl">{format.title}</h3>
+              <p className="mt-2.5 text-[15px] leading-relaxed md:mt-4 md:text-base">{format.text}</p>
+              <div className="mt-auto pt-4 md:pt-8">
+                <p className={`border-t pt-3 text-sm font-semibold md:pt-5 ${format.rule}`}>{format.detail}</p>
               </div>
             </li>
           ))}

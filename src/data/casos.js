@@ -16,8 +16,8 @@
  *
  * logos[]
  *   id, name, src     name se usa como texto alternativo
- *   dark   opcional    tarjeta verde para logos claros (texto blanco)
- *   zoom   opcional    amplía logos con mucho margen transparente en el PNG
+ *   dark   opcional    panel verde detrás del logo (letras blancas)
+ *   fit    opcional    'compact' achica un logo de bloque lleno para equilibrarlo
  *   Array vacío: el bloque de empresas no se muestra.
  */
 
@@ -89,7 +89,7 @@ export const cases = [
 ];
 
 export const logos = [
-  { id: 'envases-avalos', name: 'Envases Avalos', src: '/logos/empresa1.png' },
-  { id: 'basf', name: 'BASF', src: '/logos/empresa2.png' },
-  { id: 'grumont', name: 'Grumont Construcciones', src: '/logos/empresa3.png', dark: true, zoom: true },
+  { id: 'envases-avalos', name: 'Envases Avalos', src: '/logos/empresa1-web.png' },
+  { id: 'basf', name: 'BASF', src: '/logos/empresa2.png', fit: 'compact' },
+  { id: 'grumont', name: 'Grumont Construcciones', src: '/logos/empresa3-web.png', dark: true },
 ];
