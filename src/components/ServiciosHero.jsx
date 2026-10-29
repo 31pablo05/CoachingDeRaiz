@@ -80,21 +80,7 @@ const ServiciosHero = () => {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col items-center gap-3 lg:mt-14">
-          <p className="text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-crema/70">
-            Empezá por acá
-          </p>
-          <button
-            type="button"
-            onClick={goToNext}
-            aria-label="Bajar al bloque siguiente"
-            className="hero-float inline-flex h-12 w-12 items-center justify-center rounded-full border border-crema/50 text-crema transition-colors hover:bg-crema hover:text-bosque-darker"
-          >
-            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 9l6 6 6-6" />
-            </svg>
-          </button>
-        </div>
+        
       </div>
     </section>
   );

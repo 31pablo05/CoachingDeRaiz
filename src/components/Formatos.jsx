@@ -62,15 +62,24 @@ const roomPhotos = [
   {
     src: '/imagenes/sala1.jpeg',
     alt: 'Taller con un equipo, toma vertical',
+    width: 1200,
+    height: 1600,
     tall: true,
+    position: 'object-[50%_80%] md:object-center',
   },
   {
     src: '/imagenes/sala2.jpg',
     alt: 'Dinámica de un taller con un equipo',
+    width: 620,
+    height: 465,
+    position: 'object-center',
   },
   {
     src: '/imagenes/sala3.jpg',
     alt: 'Equipo en conversación durante un taller',
+    width: 560,
+    height: 746,
+    position: 'object-[50%_65%] md:object-center',
   },
 ];
 
@@ -160,17 +169,20 @@ const Formatos = () => (
           </p>
         </header>
 
-        <ol className="mt-12 grid grid-cols-1 md:mt-16 md:grid-cols-2 lg:grid-cols-4">
+        <ol className="mx-auto mt-10 grid max-w-md grid-cols-1 md:mt-14 md:max-w-none md:grid-cols-2 lg:mt-16 lg:grid-cols-4">
           {steps.map((step, index) => (
             <li
               key={step.number}
-              className="border-crema-dark px-4 py-8 text-center border-b last:border-b-0 md:px-6 md:odd:border-r md:[&:nth-child(n+3)]:border-b-0 lg:border-b-0 lg:border-r lg:py-4 lg:last:border-r-0"
+              className="relative grid grid-cols-[2.5rem_minmax(0,1fr)] gap-x-4 border-crema-dark pb-7 last:pb-0 md:block md:border-b md:px-6 md:py-8 md:text-center md:odd:border-r md:last:pb-8 md:[&:nth-child(n+3)]:border-b-0 lg:border-b-0 lg:border-r lg:py-4 lg:last:border-r-0 lg:last:pb-4"
             >
-              <span className={`mx-auto flex h-12 w-12 items-center justify-center rounded-full font-heading text-lg font-semibold ${stepTones[index]}`}>
+              {index < steps.length - 1 && (
+                <span className="absolute bottom-1.5 left-5 top-[3.25rem] w-px -translate-x-1/2 bg-bosque/25 md:hidden" aria-hidden="true" />
+              )}
+              <span className={`flex h-10 w-10 items-center justify-center rounded-full font-heading text-base font-semibold md:mx-auto md:h-12 md:w-12 md:text-lg ${stepTones[index]}`}>
                 {step.number}
               </span>
-              <h3 className="mt-5 font-heading text-2xl font-medium text-tinta">{step.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-tinta-soft md:text-base">{step.text}</p>
+              <h3 className="self-center font-heading text-[1.375rem] font-medium leading-tight text-tinta md:mt-5 md:text-2xl md:leading-[1.15]">{step.title}</h3>
+              <p className="col-start-2 mt-1.5 text-[15px] leading-relaxed text-tinta-soft md:mt-3 md:text-base">{step.text}</p>
             </li>
           ))}
         </ol>
@@ -178,13 +190,13 @@ const Formatos = () => (
     </div>
 
     <div className="section-papel section-padding">
-      <div className="container-custom grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
+      <div className="container-custom grid items-start gap-10 md:gap-12 lg:grid-cols-2 lg:gap-16">
         <div>
           <p className="eyebrow">En la sala</p>
           <h2 className="mt-4 font-heading">Qué pasa cuando trabajamos con un equipo</h2>
-          <ul className="mt-8 divide-y divide-crema-dark">
+          <ul className="mt-6 divide-y divide-crema-dark md:mt-8">
             {roomItems.map((item) => (
-              <li key={item.title} className="flex items-start gap-4 py-5 first:pt-0 last:pb-0">
+              <li key={item.title} className="flex items-start gap-4 py-4 first:pt-0 last:pb-0 md:py-5">
                 <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-crema text-bosque">
                   <RoomIcon name={item.icon} />
                 </span>
@@ -197,16 +209,17 @@ const Formatos = () => (
           </ul>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 md:min-h-[520px] md:grid-cols-[1.15fr_1fr] md:grid-rows-2">
+        <div className="grid grid-cols-2 gap-2.5 md:min-h-[520px] md:grid-cols-[1.15fr_1fr] md:grid-rows-2 md:gap-4">
           {roomPhotos.map((photo) => (
             <img
               key={photo.src}
               src={photo.src}
               alt={photo.alt}
-              width={photo.tall ? 720 : 560}
-              height={photo.tall ? 960 : 440}
+              width={photo.width}
+              height={photo.height}
               loading="lazy"
-              className={`w-full rounded-[28px] bg-crema-dark object-cover ${photo.tall ? 'aspect-[3/4] md:row-span-2 md:aspect-auto md:h-full' : 'aspect-[16/10] md:aspect-auto md:h-full'}`}
+              decoding="async"
+              className={`aspect-[4/3] w-full rounded-[20px] bg-crema-dark object-cover md:aspect-auto md:h-full md:rounded-[28px] ${photo.position} ${photo.tall ? 'col-span-2 md:col-span-1 md:row-span-2' : ''}`}
             />
           ))}
         </div>
